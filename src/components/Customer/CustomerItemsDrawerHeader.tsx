@@ -15,7 +15,7 @@ const CustomerItemsDrawerHeader = ({ OnOpen, name }: Props) => {
   };
   return (
     <HStack justifyContent={"space-between"}>
-      <Text textColor={"black"} mr={4}>
+      <Text textColor={"black"} mr={8} fontSize={32}>
         {name}
       </Text>
       <HStack justifyContent={"center"} spacing={0}>
