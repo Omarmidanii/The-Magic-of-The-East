@@ -22,6 +22,7 @@ export const SearchInput = () => {
         icon={<BsSearch color="white"/>}
         onClick={() => setShowSearch(!showSearch)}
         aria-label="Search"
+        borderRadius={100}
         bg={RED}
       />
       <MotionBox

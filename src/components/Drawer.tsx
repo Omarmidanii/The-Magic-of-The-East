@@ -24,12 +24,12 @@ const CustomDrawer = ({
   header,
 }: Props) => {
   return (
-    <Drawer isOpen={isOpen} placement={"left"} onClose={onClose} size={{base : 'sm' , md: 'md' , lg:'lg'}}>
+    <Drawer isOpen={isOpen} placement={"left"} onClose={onClose} size={{base : 'sm' , md: 'md' , lg:'lg'}} >
       <DrawerOverlay />
-      <DrawerContent m={5}  >
+      <DrawerContent m={5} borderRadius={15} >
         <DrawerCloseButton />
-        <DrawerHeader  bgColor={HeaderColor}>{header}</DrawerHeader>
-        <DrawerBody bgColor={BodyColor} overflowY={"auto"} maxHeight={"100vh"}>
+        <DrawerHeader  bgColor={HeaderColor}  borderTopRadius={15}>{header}</DrawerHeader>
+        <DrawerBody bgColor={BodyColor} overflowY={"auto"} maxHeight={"100vh"} borderBottomRadius={15}>
           {body}
         </DrawerBody>
       </DrawerContent>

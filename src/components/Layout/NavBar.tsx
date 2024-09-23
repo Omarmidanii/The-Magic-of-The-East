@@ -18,7 +18,7 @@ export const NavBar = () => {
   return (
     <HStack justifyContent="space-between" p={2} bgColor={YALLOW}>
       <Link to="/Home">
-        <Image src={logo} boxSize={{ lg: "100px", base: "60px" }} />
+        <Image src={logo} marginBottom={-6} marginTop={-3} boxSize={{ lg: "120px", base: "100px" }} />
       </Link>
       {!showTabs && <NavDrawer />}
       {showTabs && <Tabs />}

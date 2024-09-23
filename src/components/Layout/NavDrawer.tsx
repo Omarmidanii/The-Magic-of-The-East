@@ -45,12 +45,12 @@ function NavDrawer() {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent borderRadius={10}>
           <DrawerCloseButton />
-          <DrawerHeader bgColor={YALLOW} textColor={RED}>
+          <DrawerHeader paddingTop={4} borderTopRadius={10} paddingRight={12} bgColor={"gray.100"} textColor={RED}>
             {t("The Magic Of The East")}
           </DrawerHeader>
-          <DrawerBody bgColor={YALLOW}>
+          <DrawerBody bgColor={"gray.100"}>
             <Divider borderColor={RED} />
             <List color={"white"}>
               {Object.entries(Tab).map(([name, value], index) => (
@@ -106,36 +106,39 @@ function NavDrawer() {
               </Box>
             </List>
           </DrawerBody>
-          <DrawerFooter bgColor={YALLOW} borderTopWidth="1px">
-            <HStack>
+          <DrawerFooter bgColor={YALLOW} borderBottomRadius={10} borderTopWidth="1px" height={14}>
+            <HStack spacing={-4}>
               <IconButton
-                icon={<FaWhatsapp />}
+                icon={<FaWhatsapp  size={20}/>}
+                boxSize={8}
                 bgColor={YALLOW}
                 aria-label="Open WhatsApp chat"
                 _hover={{
-                  bg : RED
+                  bg : 'yellow.500'
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")
                 }
               />
               <IconButton
-                icon={<FaFacebook />}
+                icon={<FaFacebook size={18} />}
+                boxSize={8}
                 bgColor={YALLOW}
                 aria-label="Open Facebook Page"
                 _hover={{
-                  bg : RED
+                  bg : 'yellow.500'
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")
                 }
               />
               <IconButton
-                icon={<FaInstagram />}
+                icon={<FaInstagram size={20} />}
+                boxSize={8}
                 bgColor={YALLOW}
                 aria-label="Open Instagram Page"
                 _hover={{
-                  bg : RED
+                  bg : 'yellow.500'
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")

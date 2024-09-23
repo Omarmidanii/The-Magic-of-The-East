@@ -1,4 +1,4 @@
-import { Button, HStack, Text } from "@chakra-ui/react";
+import { Button, HStack, IconButton, Text } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import CustomDelete from "../Delete";
 
@@ -14,13 +14,17 @@ const CustomerItemsDrawerHeader = ({ OnOpen, name }: Props) => {
     }
   };
   return (
-    <HStack justifyContent={"space-between"}>
-      <Text textColor={"black"} mr={8} fontSize={32}>
+    <HStack justifyContent={"space-between"} paddingX={5} marginBottom={-2}>
+      <Text textColor={"black"} mr={8} fontSize={28}>
         {name}
       </Text>
-      <HStack justifyContent={"center"} spacing={0}>
-        <Button
-          leftIcon={<FaEdit />}
+      <HStack justifyContent={"center"} spacing={0} marginBottom={-2}>
+        <IconButton
+          aria-label=""
+          paddingBottom={0.5}
+          paddingLeft={0.5}
+          icon={<FaEdit size={17} />}
+          boxSize={8}
           ml={2}
           onClick={handleEdit}
           bg="blue.500"
