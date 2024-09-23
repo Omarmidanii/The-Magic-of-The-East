@@ -1,13 +1,13 @@
 import { Box, Button, HStack, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { FaBoxOpen, FaChartLine, FaUsers } from "react-icons/fa";
+import { FaBoxOpen, FaUsers } from "react-icons/fa";
 import { GiExpense } from "react-icons/gi";
 import { IconType } from "react-icons/lib";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { RED } from "../../constants";
 import { useState } from "react";
-import { PiChartLineUpBold, PiChartLineUpLight } from "react-icons/pi";
+import { PiChartLineUpBold } from "react-icons/pi";
 
 interface valueofTab {
   enName: string;
@@ -15,9 +15,9 @@ interface valueofTab {
 }
 
 export const Tab: Record<string, valueofTab> = {
+  السلع: { enName: "items", icon: FaBoxOpen },
   الموظفين: { enName: "employers", icon: FaUsers },
   الزبائن: { enName: "customers", icon: RiCustomerService2Fill },
-  السلع: { enName: "items", icon: FaBoxOpen },
   المصاريف: { enName: "expenses", icon: GiExpense },
   التقارير: { enName: "reports", icon: PiChartLineUpBold },
 };

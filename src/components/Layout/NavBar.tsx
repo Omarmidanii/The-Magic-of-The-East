@@ -1,5 +1,4 @@
 import {
-  Box,
   HStack,
   IconButton,
   Image,
@@ -8,7 +7,7 @@ import {
 import { IoMdSettings } from "react-icons/io";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import YALLOW, { RED } from "../../constants";
+import YALLOW from "../../constants";
 import NavDrawer from "./NavDrawer";
 import { SearchInput } from "../SearchInput";
 import { Tabs } from "./Tabs";
