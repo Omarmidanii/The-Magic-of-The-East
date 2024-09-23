@@ -9,7 +9,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import {AiOutlinePhone } from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import { FaPhoneFlip } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 import CustomerItemsDrawer from "./CustomerItemsDrawer";
@@ -38,31 +38,52 @@ const CustomerTable = () => {
     { name: "ghina", phone: "963996681459+", address: "dummer" },
   ];
   return (
-    <TableContainer>
+    <TableContainer overflowY={"auto"} height={window.innerHeight / 1.36}>
       <Table>
-        <Thead >
-          <Tr  >
+        <Thead>
+          <Tr>
             <Th></Th>
-            <Th  fontSize={'medium'} textAlign={'center'} >
-             الاسم
+            <Th fontSize={"medium"} textAlign={"center"}>
+              الاسم
             </Th>
             <Show above="md">
-            <Th textAlign={'center'} fontSize={'medium'}><Icon boxSize={"16px"} as={FaPhoneFlip} pl={1} ml={0.5} marginBottom={-0.5} />الرقم</Th>
-            <Th textAlign={'center'} fontSize={'medium'}><Icon boxSize={"19px"} as={MdLocationOn} pl={1} marginBottom={-1} />المنطقة</Th>
-            </Show><Th  fontSize={'medium'}><Icon boxSize={"23px"} as={PiBasketFill}  marginBottom={-1.5} /></Th>
-            
+              <Th textAlign={"center"} fontSize={"medium"}>
+                <Icon
+                  boxSize={"16px"}
+                  as={FaPhoneFlip}
+                  pl={1}
+                  ml={0.5}
+                  marginBottom={-0.5}
+                />
+                الرقم
+              </Th>
+              <Th textAlign={"center"} fontSize={"medium"}>
+                <Icon
+                  boxSize={"19px"}
+                  as={MdLocationOn}
+                  pl={1}
+                  marginBottom={-1}
+                />
+                المنطقة
+              </Th>
+            </Show>
+            <Th fontSize={"medium"}>
+              <Icon boxSize={"23px"} as={PiBasketFill} marginBottom={-1.5} />
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
           {data.map((customer, index) => (
             <Tr key={index}>
               <Td>{index + 1}</Td>
-              <Td  textAlign={'center'}>{customer.name}</Td>
+              <Td textAlign={"center"}>{customer.name}</Td>
               <Show above="md">
-              <Td textAlign={'center'}>{customer.phone}</Td>
-              <Td textAlign={'center'}>{customer.address}</Td>
+                <Td textAlign={"center"}>{customer.phone}</Td>
+                <Td textAlign={"center"}>{customer.address}</Td>
               </Show>
-              <Td paddingX={4}><CustomerItemsDrawer  customer={customer}/></Td>
+              <Td paddingX={4}>
+                <CustomerItemsDrawer customer={customer} />
+              </Td>
             </Tr>
           ))}
         </Tbody>

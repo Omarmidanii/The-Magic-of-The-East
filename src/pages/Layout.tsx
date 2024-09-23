@@ -23,7 +23,8 @@ export const Layout = () => {
       <GridItem
         area={"main"}
         maxHeight={"100%"}
-        overflowY={"auto"}
+        overflowY={"hidden"}
+        height={window.innerHeight/1.16 }
         borderTopRadius={60}
         bg={"white"}
       >
