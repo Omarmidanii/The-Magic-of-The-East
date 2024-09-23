@@ -7,6 +7,7 @@ import { RiCustomerService2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { RED } from "../../constants";
 import { useState } from "react";
+import { PiChartLineUpBold, PiChartLineUpLight } from "react-icons/pi";
 
 interface valueofTab {
   enName: string;
@@ -18,7 +19,7 @@ export const Tab: Record<string, valueofTab> = {
   الزبائن: { enName: "customers", icon: RiCustomerService2Fill },
   السلع: { enName: "items", icon: FaBoxOpen },
   المصاريف: { enName: "expenses", icon: GiExpense },
-  التقارير: { enName: "reports", icon: FaChartLine },
+  التقارير: { enName: "reports", icon: PiChartLineUpBold },
 };
 export const Tabs = () => {
   const { t } = useTranslation();

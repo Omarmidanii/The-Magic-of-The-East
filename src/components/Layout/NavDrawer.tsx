@@ -19,7 +19,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { Tab } from "./Tabs";
-import { PiListBulletsLight } from "react-icons/pi";
+import { PiListBulletsBold, PiListBulletsLight } from "react-icons/pi";
 import { MdLogout } from "react-icons/md";
 import { FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
 import YALLOW, { RED } from "../../constants";
@@ -34,8 +34,11 @@ function NavDrawer() {
     <>
       <IconButton
         ref={btnRef}
-        icon={<PiListBulletsLight />}
+        bgColor={YALLOW}
+        icon={<PiListBulletsBold size={24} color="white" />}
         onClick={onOpen}
+        borderRadius={100}
+        _hover={{ bg: "yellow.500" }}
         aria-label="Open Drawer"
       />
       <Drawer
@@ -47,12 +50,18 @@ function NavDrawer() {
         <DrawerOverlay />
         <DrawerContent borderRadius={10}>
           <DrawerCloseButton />
-          <DrawerHeader paddingTop={4} borderTopRadius={10} paddingRight={12} bgColor={"gray.100"} textColor={RED}>
+          <DrawerHeader
+            paddingTop={4}
+            borderTopRadius={10}
+            paddingRight={12}
+            bgColor={"gray.100"}
+            textColor={RED}
+          >
             {t("The Magic Of The East")}
           </DrawerHeader>
           <DrawerBody bgColor={"gray.100"}>
-            <Divider borderColor={RED} />
-            <List color={"white"}>
+            <Divider borderColor={RED} marginBottom={5} />
+            <List color={"white"} spacing={-4}>
               {Object.entries(Tab).map(([name, value], index) => (
                 <Box
                   key={index}
@@ -72,14 +81,16 @@ function NavDrawer() {
                         as={value.icon}
                         mr={2}
                         ml={2}
+                        marginBottom={-1}
                         color={RED}
                       />
                       <Button
+                        marginX={1}
                         fontSize={"large"}
                         variant={"link"}
                         color={"white"}
                         className="button-hover"
-                        textColor={'black'}
+                        textColor={"black"}
                       >
                         {t(name)}
                       </Button>
@@ -98,23 +109,40 @@ function NavDrawer() {
                 }}
               >
                 <ListItem textAlign={lng == "en" ? "left" : "right"} py={4}>
-                  <Icon as={MdLogout} mr={2} ml={2}  color={RED} />
-                  <Button fontSize={"large"} variant={"link"} color={"white"}  className="button-hover" textColor={'black'}>
+                  <Icon
+                    as={MdLogout}
+                    mr={2}
+                    ml={2}
+                    marginBottom={-1}
+                    color={RED}
+                  />
+                  <Button
+                    fontSize={"large"}
+                    variant={"link"}
+                    color={"white"}
+                    className="button-hover"
+                    textColor={"black"}
+                  >
                     {t("Logout")}
                   </Button>
                 </ListItem>
               </Box>
             </List>
           </DrawerBody>
-          <DrawerFooter bgColor={YALLOW} borderBottomRadius={10} borderTopWidth="1px" height={14}>
+          <DrawerFooter
+            bgColor={YALLOW}
+            borderBottomRadius={10}
+            borderTopWidth="1px"
+            height={14}
+          >
             <HStack spacing={-4}>
               <IconButton
-                icon={<FaWhatsapp  size={20}/>}
+                icon={<FaWhatsapp size={20} />}
                 boxSize={8}
                 bgColor={YALLOW}
                 aria-label="Open WhatsApp chat"
                 _hover={{
-                  bg : 'yellow.500'
+                  bg: "yellow.500",
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")
@@ -126,7 +154,7 @@ function NavDrawer() {
                 bgColor={YALLOW}
                 aria-label="Open Facebook Page"
                 _hover={{
-                  bg : 'yellow.500'
+                  bg: "yellow.500",
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")
@@ -138,7 +166,7 @@ function NavDrawer() {
                 bgColor={YALLOW}
                 aria-label="Open Instagram Page"
                 _hover={{
-                  bg : 'yellow.500'
+                  bg: "yellow.500",
                 }}
                 onClick={() =>
                   window.open("https://wa.me/00963938625359", "_blank")

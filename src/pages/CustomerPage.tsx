@@ -16,10 +16,9 @@ const CustomerPage = () => {
 
   return (
     <>
-      <Button leftIcon={<MdAdd />} m={4} mr={8} colorScheme="green" onClick={handleAdd}>
+      <Button leftIcon={<MdAdd />} m={5} mt={6} mr={8} borderRadius={25} colorScheme="green" onClick={handleAdd}>
         اضافة زبون جديد
       </Button>
-      <Divider />
       <CustomerTable />
       <CustomModal
         buttonLabel="اضافة زبون"
