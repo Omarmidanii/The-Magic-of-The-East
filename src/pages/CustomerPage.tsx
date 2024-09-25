@@ -1,4 +1,4 @@
-import { Button, Divider, useDisclosure } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import CustomerTable from "../components/Customer/CustomerTable";
 import CustomModal from "../components/Modal";
 import CustomerForm from "../components/Customer/CustomerForm";
