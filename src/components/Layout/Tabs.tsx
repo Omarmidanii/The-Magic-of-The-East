@@ -15,7 +15,7 @@ interface valueofTab {
 }
 
 export const Tab: Record<string, valueofTab> = {
-  السلع: { enName: "items", icon: FaBoxOpen },
+  السلع: { enName: "categories", icon: FaBoxOpen },
   الموظفين: { enName: "employers", icon: FaUsers },
   الزبائن: { enName: "customers", icon: RiCustomerService2Fill },
   المصاريف: { enName: "expenses", icon: GiExpense },
