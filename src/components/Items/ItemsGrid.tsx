@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const items = [
-  { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
+  { name: "غرفة ريفي بيج", images: [OIP, OIP1, OIP2] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
@@ -24,14 +24,14 @@ const ItemsGrid = ({ width, height }: Props) => {
   return (
     <Box borderRadius={20} width={width} height={height-70}>
       <SimpleGrid
-        columns={width >= 1280 ? 4 : width >= 992 ? 3 : width >= 590 ? 2 : 1} //{{  sm: 1, base: 1, md: 2, lg: 3, xl: 4 }}
+        columns={width >= 1400 ? 5 :width >= 1180 ? 4 : width >= 850 ? 3 : width >= 560 ? 2 : 1} //{{  sm: 1, base: 1, md: 2, lg: 3, xl: 4 }}
         spacing={10}
         padding={10}
       >
         {items?.map((info, index) => (
-          <div key={index}>
+          <Box key={index}>
             <ItemCard images={info.images}>{info.name}</ItemCard>
-          </div>
+          </Box>
         ))}
       </SimpleGrid>
     </Box>

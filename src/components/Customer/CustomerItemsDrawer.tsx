@@ -38,8 +38,6 @@ const CustomerItemsDrawer = ({ customer }: Props) => {
       <CustomDrawer
         isOpen={isOpen}
         onClose={onClose}
-        bodyColor={"gray.100"}
-        headerColor={"gray.100"}
         body={<CustomerItemIDrawerBody customer={customer} />}
         header={
           <CustomerItemsDrawerHeader name={customer.name} OnOpen={OnOpen} />

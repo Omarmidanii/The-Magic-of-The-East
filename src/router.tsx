@@ -5,6 +5,7 @@ import { SettingPage } from "./pages/SettingPage";
 import { Languages } from "./components/SettingPage/Languages";
 import CustomerPage from "./pages/CustomerPage";
 import ItemsPage from "./pages/ItemsPage";
+import GategoryPage from "./pages/GategoryPage";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
              path: 'items',
-             element: <ItemsPage />
+             element: <GategoryPage />
             }
         ]
     }

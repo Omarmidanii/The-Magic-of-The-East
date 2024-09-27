@@ -31,22 +31,19 @@ export const colors: Record<string, colorProperties> = {
 };
 
 const ItemsFilter = () => {
-    const {width}=resizeWindow();
+  const { width } = resizeWindow();
   const { isOpen, onToggle, onClose } = useDisclosure();
   return (
     <Popover
       returnFocusOnClose={false}
       isOpen={isOpen}
       onClose={onClose}
-      placement={width>=500?"left-start":"bottom"}
+      placement={width >= 500 ? "left-start" : "bottom"}
       closeOnBlur={false}
     >
       <PopoverTrigger>
         <Button
           leftIcon={<LuSettings2 />}
-          marginRight={10}
-          mb={-4}
-          mt={6}
           borderRadius={20}
           bgColor={RED}
           textColor={"gray.100"}
@@ -54,22 +51,25 @@ const ItemsFilter = () => {
             textColor: "black",
             bgColor: "gray.200",
           }}
+          boxShadow={'lg'}
           onClick={onToggle}
         >
           فلترة النتائج
         </Button>
       </PopoverTrigger>
-      <PopoverContent mr={2} shadow={'xl'}>
+      <PopoverContent mr={2} shadow={"xl"}>
         <PopoverBody m={2}>
-          <ItemsColorFilter colors={colors}/>
+          <ItemsColorFilter colors={colors} />
           <br />
-          <ItemsSizesFilter name="الطول :" max={400}/>
-          <ItemsSizesFilter name="العرض :" max={200}/>
-          <ItemsSizesFilter name="الارتفاع :" max={300}/>
+          <ItemsSizesFilter name="الطول :" max={400} />
+          <ItemsSizesFilter name="العرض :" max={200} />
+          <ItemsSizesFilter name="الارتفاع :" max={300} />
         </PopoverBody>
         <PopoverFooter display="flex" justifyContent="flex-end">
           <ButtonGroup size="sm">
-            <Button variant="outline" onClick={onClose}>Cancel</Button>
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
             <Button colorScheme="green">Apply</Button>
           </ButtonGroup>
         </PopoverFooter>
