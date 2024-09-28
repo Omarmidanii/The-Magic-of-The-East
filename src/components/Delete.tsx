@@ -8,6 +8,7 @@ import {
   AlertDialogOverlay,
   //Spinner,
   CloseButton,
+  IconButton,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 //import useDelete from "../hooks/useDelete";
@@ -37,8 +38,10 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
   return (
     <>
       {type === "Button" && (
-        <Button
-          leftIcon={<FaTrash />}
+        <IconButton
+          aria-label=""
+          boxSize={8}
+          icon={<FaTrash />}
           colorScheme="red"
           onClick={(e) => {
             e.stopPropagation();
@@ -46,7 +49,7 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
           }}
         >
           {showText ? "حذف" : ""}
-        </Button>
+        </IconButton>
       )}
       {type != "Button" && (
         <CloseButton

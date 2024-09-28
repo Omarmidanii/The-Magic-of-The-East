@@ -2,9 +2,11 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import { NavBar } from "../components/Layout/NavBar";
 import YALLOW from "../constants";
+import resizeWindow from "../services/resizeWindow";
 
 export const Layout = () => {
   document.dir = "rtl";
+  const {height}=resizeWindow();
   return (
     <Grid
       templateAreas={`
@@ -23,7 +25,8 @@ export const Layout = () => {
       <GridItem
         area={"main"}
         maxHeight={"100%"}
-        overflowY={"auto"}
+        overflowY={"hidden"}
+        height={height-100 }
         borderTopRadius={60}
         bg={"white"}
       >
