@@ -15,7 +15,9 @@ const AddButton = ({ onOpen, label }: Props) => {
       <Button
         leftIcon={<MdAdd />}
         m={4}
+        mt={6}
         mr={8}
+        borderRadius={25} 
         colorScheme="green"
         onClick={handleAdd}
       >
