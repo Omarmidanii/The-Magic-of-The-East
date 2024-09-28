@@ -12,7 +12,8 @@ const CustomerForm = () => {
   return (
     <Formik
       initialValues={{
-        name: "",
+        firstname: "",
+        lastname: "",
         phone: "",
         address: "",
       }}
@@ -20,21 +21,39 @@ const CustomerForm = () => {
       onSubmit={() => {}}
     >
       <Form>
-        <FormControl id="name">
-          <FormLabel fontFamily={"cursive"}>الاسم</FormLabel>
+        <FormControl id="firstname">
+          <FormLabel fontFamily={"cursive"}> الاسم الاول</FormLabel>
           <InputGroup>
             <Field
-              name="name"
+              name="firstname"
               as={Input}
               type="text"
-              placeholder="الاسم بالكامل"
+              placeholder="الاسم الاول"
               _placeholder={{ color: "gray.700" }}
               borderRadius={"20"}
               width={"full"}
               pr={"30px"}
             />
           </InputGroup>
-          <ErrorMessage name="name">
+          <ErrorMessage name="firstname">
+            {(msg) => <Text color="red.500">{msg}</Text>}
+          </ErrorMessage>
+        </FormControl>
+        <FormControl id="lastname">
+          <FormLabel fontFamily={"cursive"}> الاسم الاخير</FormLabel>
+          <InputGroup>
+            <Field
+              name="lastname"
+              as={Input}
+              type="text"
+              placeholder="الاسم الاخير"
+              _placeholder={{ color: "gray.700" }}
+              borderRadius={"20"}
+              width={"full"}
+              pr={"30px"}
+            />
+          </InputGroup>
+          <ErrorMessage name="lastname">
             {(msg) => <Text color="red.500">{msg}</Text>}
           </ErrorMessage>
         </FormControl>

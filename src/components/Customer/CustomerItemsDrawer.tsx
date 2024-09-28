@@ -42,7 +42,7 @@ const CustomerItemsDrawer = ({ customer }: Props) => {
         headerColor={"gray.100"}
         body={<CustomerItemIDrawerBody customer={customer} />}
         header={
-          <CustomerItemsDrawerHeader name={customer.name} OnOpen={OnOpen} />
+          <CustomerItemsDrawerHeader name={customer.firstname + " " + customer.lastname} OnOpen={OnOpen} />
         }
       />
       <CustomModal

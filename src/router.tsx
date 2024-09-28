@@ -5,6 +5,7 @@ import { SettingPage } from "./pages/SettingPage";
 import { Languages } from "./components/SettingPage/Languages";
 import CustomerPage from "./pages/CustomerPage";
 import ItemsPage from "./pages/ItemsPage";
+import EmployerPage from "./pages/EmployerPage";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
              path: 'customers',
              element: <CustomerPage />
+            },
+            {
+             path: 'employers',
+             element: <EmployerPage />
             }
         ]
     }

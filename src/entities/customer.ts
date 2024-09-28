@@ -1,6 +1,7 @@
 export default interface customer{
     id? : number;
-    name : string;
+    firstname: string;
+    lastname : string;
     phone : string;
     address : string;
     items? : string;

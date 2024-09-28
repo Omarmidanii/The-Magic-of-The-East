@@ -14,26 +14,16 @@ import { MdLocationOn } from "react-icons/md";
 import CustomerItemsDrawer from "./CustomerItemsDrawer";
 const CustomerTable = () => {
   const data = [
-    { name: "عمر الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
-    { name: "omar", phone: "963938625359+", address: "Qudsaya suburb" },
-    { name: "ghina", phone: "963996681459+", address: "dummer" },
+    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+
+  
   ];
   return (
     <TableContainer>
@@ -54,7 +44,7 @@ const CustomerTable = () => {
           {data.map((customer, index) => (
             <Tr key={index}>
               <Td>{index + 1}</Td>
-              <Td  textAlign={'center'}>{customer.name}</Td>
+              <Td  textAlign={'center'}>{customer.firstname + " " + customer.lastname}</Td>
               <Show above="md">
               <Td textAlign={'center'}>{customer.phone}</Td>
               <Td textAlign={'center'}>{customer.address}</Td>

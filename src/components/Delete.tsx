@@ -78,7 +78,7 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
               <Button ref={cancelRef} onClick={onClose}>
                 {"الغاء"}
               </Button>
-              <Button colorScheme="red" ml={3}>
+              <Button colorScheme="red" mr={3}>
                 {"حذف"}
               </Button>
             </AlertDialogFooter>

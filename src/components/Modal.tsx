@@ -12,7 +12,7 @@ const CustomModal = ({ children, buttonLabel, isOpen , onClose , color } : Props
       <Modal isOpen={isOpen} size={{lg:'lg' , base:'md'}} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bgColor={color}>
-          <ModalHeader color={'white'} mr={8}>{buttonLabel}</ModalHeader>
+          <ModalHeader mr={8}>{buttonLabel}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {children}

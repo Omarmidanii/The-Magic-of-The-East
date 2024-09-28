@@ -1,25 +1,15 @@
-import { Button, Divider, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import AddButton from "../components/AddButton";
+import CustomerForm from "../components/Customer/CustomerForm";
 import CustomerTable from "../components/Customer/CustomerTable";
 import CustomModal from "../components/Modal";
-import CustomerForm from "../components/Customer/CustomerForm";
-import { MdAdd } from "react-icons/md";
 
 const CustomerPage = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
-  const handleAdd = () => {
-    console.log(22);
-    if (onOpen) {
-      onOpen();
-    }
-  };
-
   return (
     <>
-      <Button leftIcon={<MdAdd />} m={4} mr={8} colorScheme="green" onClick={handleAdd}>
-        اضافة زبون جديد
-      </Button>
-      <Divider />
+      <AddButton onOpen={onOpen} label="اضافة زبون جديد" />
       <CustomerTable />
       <CustomModal
         buttonLabel="اضافة زبون"
