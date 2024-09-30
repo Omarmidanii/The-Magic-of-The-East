@@ -17,7 +17,7 @@ export const NavBar = () => {
 
   return (
     <HStack justifyContent="space-between" p={2} paddingX={5} bgColor={YALLOW}>
-      <Link to="/Home">
+      <Link to="/">
         <Image
           src={logo}
           marginBottom={-6}
