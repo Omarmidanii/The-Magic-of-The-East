@@ -9,7 +9,6 @@ import {
     Thead,
     Tr
 } from "@chakra-ui/react";
-import { AiOutlinePhone } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import EmployerInfo from "./EmployerInfo";
 
@@ -26,13 +25,12 @@ const EmployersTabel = () => {
     <TableContainer>
       <Table>
         <Thead>
-          <Tr borderBottom={'2px'}>
+          <Tr>
             <Th fontSize={"medium"} textAlign={textAlign}>
               الاسم
             </Th>
             <Show above="md">
             <Th textAlign={textAlign} fontSize={"medium"}>
-              <Icon boxSize={"25px"} as={AiOutlinePhone} pl={1} pt={3} />
               الرقم
             </Th>
             </Show>

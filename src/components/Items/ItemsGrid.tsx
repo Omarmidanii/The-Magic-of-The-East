@@ -12,9 +12,9 @@ interface Props {
 
 export const items = [
   { name: "غرفة ريفي بيج", images: [OIP, OIP1, OIP2] },
+  { name: "غرفة نوم", images: [OIP] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
-  { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
-  { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
+  { name: "غرفة نوم", images: [OIP, OIP1] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
   { name: "غرفة نوم", images: [OIP, OIP1, OIP2] },
 ];
