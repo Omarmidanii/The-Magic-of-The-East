@@ -32,10 +32,16 @@ const ItemCard = ({ children, images }: Props) => {
       <Stack>
         <Box>
           <Grid
-            templateAreas={`
+            templateAreas={
+              images.length >= 3
+                ? `
                 "side up"
                 "side down"
-              `}
+              `
+                : images.length == 2
+                ? `"side up"`
+                : `"side"`
+            }
             height={"200"}
             templateRows="repeat(5, 1fr)"
           >
@@ -50,27 +56,31 @@ const ItemCard = ({ children, images }: Props) => {
               bgImage={images[0 % images.length]}
               bgSize={"cover"}
             />
-            <GridItem
-              m={1}
-              boxShadow={`0 10px 20px -2px gray`}
-              rowSpan={3}
-              area={"up"}
-              borderRadius={15}
-              marginBottom={1.5}
-              bgPosition={"center"}
-              bgImage={images[1 % images.length]}
-              bgSize={"cover"}
-            />
-            <GridItem
-              m={1}
-              boxShadow={`0 10px 20px -2px gray`}
-              rowSpan={2}
-              borderRadius={15}
-              area={"down"}
-              bgPosition={"center"}
-              bgImage={images[2 % images.length]}
-              bgSize={"cover"}
-            />
+            {images.length >= 2 && (
+              <GridItem
+                m={1}
+                boxShadow={`0 10px 20px -2px gray`}
+                rowSpan={images.length == 2 ? 5 : 3}
+                area={"up"}
+                borderRadius={15}
+                marginBottom={1.5}
+                bgPosition={"center"}
+                bgImage={images[1 % images.length]}
+                bgSize={"cover"}
+              />
+            )}
+            {images.length >= 3 && (
+              <GridItem
+                m={1}
+                boxShadow={`0 10px 20px -2px gray`}
+                rowSpan={2}
+                borderRadius={15}
+                area={"down"}
+                bgPosition={"center"}
+                bgImage={images[2 % images.length]}
+                bgSize={"cover"}
+              />
+            )}
           </Grid>
         </Box>
 

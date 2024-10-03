@@ -1,18 +1,20 @@
-import { Button, Collapse, Text } from "@chakra-ui/react";
+import { Box, Button, Collapse, Text } from "@chakra-ui/react";
 import { categories } from "../components/Items/GategoriesSelector";
 import GategorySlider from "../components/Items/GategorySlider";
 import { items } from "../components/Items/ItemsGrid";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import resizeWindow from "../services/resizeWindow";
+import { RED } from "../constants";
 
 const GategoryPage = () => {
   const [show, setShow] = useState(false);
+  const { width, height } = resizeWindow();
 
   const handleToggle = () => setShow(!show);
   return (
-    <div style={{ marginRight: 80, overflowY: "auto", height: 620 }}>
+    <div style={{ marginRight: width>500?60:30, overflowY: "auto", height: height/1.2 }}>
       <Collapse
-        startingHeight={740}
+        startingHeight={760}
         in={show}
         transition={{
           exit: { duration: 3, delay: 0.5 },
@@ -20,17 +22,17 @@ const GategoryPage = () => {
         }}
       >
         {categories.map((value, index) => (
-          <div key={index} style={{ marginTop: index ? 48 : 20 }}>
+          <Box borderRight={'4px'} borderColor={RED} paddingX={5}><div key={index} style={{ marginTop: index ? 48 : 30 }}>
             {" "}
             <Text fontStyle={"italic"} fontSize={24} mb={-4}>
               {value}:
             </Text>
             <GategorySlider items={items} />
-          </div>
+          </div></Box>
         ))}
       </Collapse>
-      <Button size="sm" onClick={handleToggle} mt={5}>
-        Show {show ? "Less" : "More"}
+      <Button size="sm" onClick={handleToggle} mt={10} mb={20} colorScheme="red" bgColor={RED}>
+        Show {show ? "Less" : "More"} categories
       </Button>
     </div>
   );

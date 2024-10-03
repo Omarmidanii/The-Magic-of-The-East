@@ -1,4 +1,4 @@
-import { Button, Divider } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { MdAdd } from "react-icons/md";
 interface Props {
   onOpen: () => void;
@@ -23,7 +23,6 @@ const AddButton = ({ onOpen, label }: Props) => {
       >
         {label}
       </Button>
-      <Divider />
     </>
   );
 };
