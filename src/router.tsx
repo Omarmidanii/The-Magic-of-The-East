@@ -7,6 +7,8 @@ import CustomerPage from "./pages/CustomerPage";
 import ItemsPage from "./pages/ItemsPage";
 import GategoryPage from "./pages/GategoryPage";
 import EmployerPage from "./pages/EmployerPage";
+import ExpensesPage from "./pages/ExpensesPage";
+import ReportPage from "./pages/ReportPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: 'employers',
         element: <EmployerPage />
+      },
+      {
+        path: "expenses",
+        element: <ExpensesPage />
+      },
+      {
+        path: "reports",
+        element: <ReportPage />
       }
     ],
   },
