@@ -11,11 +11,11 @@ import {
 import Rating from "../Rating";
 
 interface Props {
-  children: string | undefined;
+  name: string | undefined;
   images: string[];
 }
 
-const ItemCard = ({ children, images }: Props) => {
+const ItemCard = ({ name, images }: Props) => {
   return (
     <Card
       p={2}
@@ -89,7 +89,7 @@ const ItemCard = ({ children, images }: Props) => {
             <Text color={"gray.500"} fontSize={13} mt={-2} mb={1}>
               غرفة نوم
             </Text>
-            {children}
+            {name}
           </Heading>
           <Rating rate={75} />
         </CardBody>
