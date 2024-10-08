@@ -9,6 +9,7 @@ import OIP4 from "../../assets/OIP4.jpeg";
 import CustomDrawer from "../Drawer";
 import { useState } from "react";
 import ItemDetailsDrawer from "./ItemDetailsDrawer";
+import CustomerItemsDrawerHeader from "../Customer/CustomerItemsDrawerHeader";
 
 interface Props {
   width: number;
@@ -21,11 +22,7 @@ export const items = [
     discription:
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln asjx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln        asjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP, OIP1, OIP2, OIP3, OIP4],
-    colors: [
-      "pink",
-      "red.500",
-      "gray",
-    ],
+    colors: ["pink", "red.500", "gray"],
     sizes: { الطول: 205, العرض: 100, العمق: 120 },
   },
   {
@@ -153,9 +150,10 @@ const ItemsGrid = ({ width, height }: Props) => {
         onClose={onClose}
         body={<ItemDetailsDrawer item={currentIem} />}
         header={
-          <Box mr={8} fontSize={24}>
-            {currentIem.name} details
-          </Box>
+          <CustomerItemsDrawerHeader
+            name={"معلومات " +currentIem.name }
+            OnOpen={onOpen}
+          />
         }
       />
     </Box>

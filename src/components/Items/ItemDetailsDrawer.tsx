@@ -6,6 +6,7 @@ import { AiOutlineColumnHeight } from "react-icons/ai";
 import { AiOutlineColumnWidth } from "react-icons/ai";
 import { IoResizeSharp } from "react-icons/io5";
 import item from "../../entities/item";
+import swal from "sweetalert";
 
 interface Props {
   item: item;
@@ -14,8 +15,15 @@ interface Props {
 const ItemDetailsDrawer = ({ item }: Props) => {
   const { width } = resizeWindow();
   const icons = [AiOutlineColumnHeight, AiOutlineColumnWidth, IoResizeSharp];
+  const showAlert = () => {
+    swal({
+      title: "Hello!",
+      text: "This is a SweetAlert2 alert",
+      icon: "success",
+    });
+  };
   return (
-    <div>
+    <div style={{ marginTop: 20 }}>
       <ItemsImagesSlider images={item.images} />
       <Divider
         mt={10}
@@ -56,12 +64,16 @@ const ItemDetailsDrawer = ({ item }: Props) => {
         {Object.entries(item.sizes).map(([name, value], index) => (
           <Box key={index}>
             <Text mt={5} mb={2} fontSize={22}>
-              <Icon as={icons[index]} mb={-1} ml={2}/>{name}
+              <Icon as={icons[index]} mb={-1} ml={2} />
+              {name}
             </Text>
-            <Text color={"gray.600"} mr={7}>{value}</Text>
+            <Text color={"gray.600"} mr={7}>
+              {value}
+            </Text>
           </Box>
         ))}
       </Stack>
+      <button onClick={showAlert}>kaxnlm</button>
     </div>
   );
 };

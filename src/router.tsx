@@ -9,8 +9,10 @@ import GategoryPage from "./pages/GategoryPage";
 import EmployerPage from "./pages/EmployerPage";
 import ExpensesPage from "./pages/ExpensesPage";
 import ReportPage from "./pages/ReportPage";
+import LandingPage from "./pages/LandingPage";
 
 const router = createBrowserRouter([
+  { path: "/home", element: <LandingPage />, errorElement: <ErrorPage /> },
   {
     path: "/",
     element: <Layout />,
@@ -38,17 +40,17 @@ const router = createBrowserRouter([
         element: <ItemsPage />,
       },
       {
-        path: 'employers',
-        element: <EmployerPage />
+        path: "employers",
+        element: <EmployerPage />,
       },
       {
         path: "expenses",
-        element: <ExpensesPage />
+        element: <ExpensesPage />,
       },
       {
         path: "reports",
-        element: <ReportPage />
-      }
+        element: <ReportPage />,
+      },
     ],
   },
 ]);

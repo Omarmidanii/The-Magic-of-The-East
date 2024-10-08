@@ -5,7 +5,7 @@ import { GiExpense } from "react-icons/gi";
 import { IconType } from "react-icons/lib";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import YALLOW, { RED } from "../../constants";
+import { RED } from "../../constants";
 import { PiChartLineUpBold } from "react-icons/pi";
 import { useState } from "react";
 
@@ -32,17 +32,14 @@ export const Tabs = () => {
       {Object.entries(Tab).map(([name, value], index) => (
         <Stack>
           <Box
-            key={index}
-            _hover={{
-              ".button-hover": {
-                textColor: RED,
-                transform:
-                  localStorage.getItem("CurrentPage") === value.enName
-                    ? ""
-                    : "scale(1.3)",
-                transition: "transform 0.3s ease-in-out",
-              },
+            style={{
+              transform:
+                localStorage.getItem("CurrentPage") === value.enName
+                  ? "translateY(15px) translateX(-20px) scale(1.5)" // Adjust the values as needed
+                  : "translateY(0) scale(1)",
+              transition: "transform 0.4s ease-in-out",
             }}
+            key={index}
             onClick={() => {
               setSelectedTab(value.enName);
               localStorage.removeItem("CurrentPage");
@@ -52,33 +49,32 @@ export const Tabs = () => {
             <Link to={`/${value.enName}`}>
               <Button
                 fontSize={"large"}
-                bgColor={YALLOW}
-                className="button-hover"
-                _hover={{ bgColor: YALLOW }}
+                backgroundColor={"transparent"}
+                _hover={{
+                  backgroundColor: "transparent",
+                  textColor: RED,
+                  transform:
+                    localStorage.getItem("CurrentPage") === value.enName
+                      ? ""
+                      : "scale(1.3)",
+                  transition: "transform 0.4s ease-in-out",
+                }}
                 textColor={
                   localStorage.getItem("CurrentPage") === value.enName
                     ? RED
                     : ""
                 }
               >
-                <Text
-                  fontSize={
-                    localStorage.getItem("CurrentPage") === value.enName
-                      ? 24
-                      : 16
-                  }
-                >
-                  {t(name)}
-                </Text>
+                <Text fontSize={16}>{t(name)}</Text>
               </Button>
             </Link>
           </Box>
           {localStorage.getItem("CurrentPage") === value.enName && (
             <Box
               mr={index % 2 ? 3 : 0}
-              mt={2}
+              mt={5}
               boxShadow={`0 5px 15px 2px red`}
-              mb={-10}
+              mb={-7}
               boxSize={1}
               width={index % 2 ? 28 : 24}
               borderRadius={25}
