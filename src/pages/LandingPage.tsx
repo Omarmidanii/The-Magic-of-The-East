@@ -1,13 +1,13 @@
-import { Stack} from "@chakra-ui/react";
-import LandingNav from "../components/Landinng/LandingNav";
+import {Stack} from "@chakra-ui/react";
 import UpperPart from "../components/Landinng/UpperPart";
+import LandingFooter from "../components/Landinng/LandingFooter";
 
 
 const LandingPage = () => {
   return (
     <Stack>
-      <LandingNav />
       <UpperPart/>
+      <LandingFooter/>
     </Stack>
   );
 };

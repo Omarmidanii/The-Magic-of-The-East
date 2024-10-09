@@ -10,9 +10,24 @@ import EmployerPage from "./pages/EmployerPage";
 import ExpensesPage from "./pages/ExpensesPage";
 import ReportPage from "./pages/ReportPage";
 import LandingPage from "./pages/LandingPage";
+import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
-  { path: "/home", element: <LandingPage />, errorElement: <ErrorPage /> },
+  {
+    path: "/home",
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <LandingPage />,
+      },
+      {
+        path: "categories",
+        element: <GategoryPage/>,
+      }
+    ],
+  },
   {
     path: "/",
     element: <Layout />,
