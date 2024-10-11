@@ -13,6 +13,8 @@ import {
 import { useRef, useState } from "react";
 //import useDelete from "../hooks/useDelete";
 import { FaTrash } from "react-icons/fa";
+import ReactPlayer from "react-player";
+import check from "../assets/check.mp4";
 
 interface Props {
   ID: number;
@@ -25,6 +27,24 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = useRef(null);
+  /*const showAlert = () => {
+    swal({
+      title: "هل أنت متأكد؟",
+      text: "في حال حذف هذا العنصر لن تتمكن من استعادته!",
+      icon: "warning",
+      buttons:['إلغاء', 'حذف'],
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  };*/
+
   //const Delete = useDelete(ID, target , target2);
   // const handleDelete = () => {
   //   Delete.mutate({
@@ -74,6 +94,14 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
             </AlertDialogHeader>
 
             <AlertDialogBody>
+              {/*<ReactPlayer
+                url={check}
+                playing
+                loop
+                controls={false}
+                width="70%"
+                height="70%"
+              />*/}
               {"هل انت متاكد من حذف هذا العنصر؟"}
             </AlertDialogBody>
 
