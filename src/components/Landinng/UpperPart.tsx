@@ -7,8 +7,7 @@ import table from "../../assets/LandingAnimation/table.mp4";
 import { RED } from "../../constants";
 import whitebed from "../../assets/whitebed.png";
 import redbed from "../../assets/redbed.png";
-
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 const UpperPart = () => {
   return (
@@ -46,7 +45,7 @@ const UpperPart = () => {
         سواء كنت تبحث عن تجديد غرفة المعيشة، أو إضافة لمسة جمالية لغرفة النوم،
         أو تجهيز مكتبك بأثاث عملي وأنيق
       </Text>
-      <HStack mb={48} px={10} mt={16}>
+      <HStack mb={48} px={10} mt={5}>
         <Stack placeItems={"center"}>
           <ReactPlayer
             url={kitchen}
@@ -112,7 +111,7 @@ const UpperPart = () => {
       </HStack>
       <Divider width={900} borderColor={"gray.600"} />
 
-      <HStack ml={-58} spacing={28} my={44}>
+      <HStack ml={-58} spacing={28} mt={32}>
         <Stack placeItems={"start"} my={20}>
           <HStack mr={-96} my={-32}>
             <Box
@@ -157,7 +156,7 @@ const UpperPart = () => {
             <Text
               as={motion.div}
               animate={{
-                rotateZ: [0, 10, -10,  0, 0, 0, 0],
+                rotateZ: [0, 10, -10, 0, 0, 0, 0],
                 transition: {
                   duration: 2,
                   repeat: Infinity,
@@ -204,6 +203,7 @@ const UpperPart = () => {
           </Box>
         }
       </HStack>
+
     </Stack>
   );
 };

@@ -2,7 +2,7 @@ import { Box, HStack, Image, Tab, TabList, Tabs, Text } from "@chakra-ui/react";
 import home3 from "../../assets/home3.jpg"
 import logo from "../../assets/logo.png";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LandingNav = () => {
   const navigate = useNavigate();

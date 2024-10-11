@@ -1,4 +1,4 @@
-import { Divider, HStack, Icon, Link, Stack, Text } from "@chakra-ui/react";
+import { Divider, HStack, Link, Stack, Text } from "@chakra-ui/react";
 import ReactPlayer from "react-player";
 import location from "../../assets/LandingFooter/location.mp4";
 import facebook from "../../assets/LandingFooter/facebook.mp4";
