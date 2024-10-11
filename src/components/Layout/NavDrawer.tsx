@@ -17,14 +17,14 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import { Tab } from "./Tabs";
-import { PiListBulletsBold, PiListBulletsLight } from "react-icons/pi";
-import { MdLogout } from "react-icons/md";
-import { FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
-import YALLOW, { RED } from "../../constants";
 import { useTranslation } from "react-i18next";
+import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
+import { PiListBulletsBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import YALLOW, { RED } from "../../constants";
 import useLanguage from "../../stores/LanguageStore";
+import { Tab } from "./Tabs";
 function NavDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef(null);
