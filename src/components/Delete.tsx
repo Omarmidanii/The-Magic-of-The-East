@@ -9,6 +9,7 @@ import {
   //Spinner,
   CloseButton,
   IconButton,
+  Box,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 //import useDelete from "../hooks/useDelete";
@@ -56,7 +57,7 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
   //   return <Spinner />;
   // }
   return (
-    <>
+    <Box>
       {type === "Button" && (
         <IconButton
           aria-label=""
@@ -73,12 +74,14 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
       )}
       {type != "Button" && (
         <CloseButton
+          boxSize={2}
+          _hover={{
+            boxSize: 5,
+            bg: "red.500",
+          }}
           onClick={(e) => {
             e.stopPropagation();
             setIsOpen(true);
-          }}
-          _hover={{
-            bg: "red.500",
           }}
         />
       )}
@@ -116,7 +119,7 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
           </AlertDialogContent>
         </AlertDialogOverlay>
       </AlertDialog>
-    </>
+    </Box>
   );
 }
 export default CustomDelete;
