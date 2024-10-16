@@ -1,6 +1,7 @@
-import { Box, Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
 import DataItem from "../../entities/Expenses";
+import CustomDelete from "../Delete";
 
 interface Props {
   item: DataItem;
@@ -19,18 +20,23 @@ const EmployersSalaryDetails = ({ item }: Props) => {
       <Table variant="simple" width="100%">
         <Thead>
           <Tr>
-            <Th>اسم العامل</Th>
-            <Th>الراتب</Th>
-            <Th>المكافآت</Th>
+            <Th textAlign={"center"}>اسم العامل</Th>
+            <Th textAlign={"center"}>الراتب</Th>
+            <Th textAlign={"center"}>المكافآت</Th>
           </Tr>
         </Thead>
         <Tbody>
           {item.employers.employer.map((em, Index) => (
             <React.Fragment key={Index}>
               <Tr>
-                <Td>{em.firstname}</Td>
-                <Td>{em.salary}</Td>
-                <Td>{em.reward}</Td>
+                <Td>
+                  <CustomDelete type="" ID={2} endpoint="" />
+                  <Text textAlign={"center"} pr={2}>
+                    {em.firstname}
+                  </Text>
+                </Td>
+                <Td textAlign={"center"}>{em.salary}</Td>
+                <Td textAlign={"center"}>{em.reward}</Td>
               </Tr>
             </React.Fragment>
           ))}

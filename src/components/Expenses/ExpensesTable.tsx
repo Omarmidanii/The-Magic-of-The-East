@@ -1,6 +1,7 @@
 import {
   Collapse,
   HStack,
+  IconButton,
   Table,
   Tbody,
   Td,
@@ -15,6 +16,7 @@ import { FaDollarSign, FaUserTie } from "react-icons/fa";
 import DataItem from "../../entities/Expenses";
 import EmployersSalaryDetails from "./EmployersSalaryDetails";
 import WarehouseExpensesDetails from "./WarehouseExpensesDetails";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 interface ExpandedRows {
   [key: string]: "salary" | "expenses" | null;
 }
@@ -64,24 +66,28 @@ const ExpensesTable = () => {
   };
 
   return (
-    <Table variant="simple" width="100%">
+    <Table
+      variant="simple"
+      width="100%"
+      size={{ base: "sm", md: "md", lg: "lg" }}
+    >
       <Thead>
         <Tr>
           <Th>
-            <HStack>
+            <HStack justifyContent={"center"}>
               <BsFillCalendar2MonthFill />
               <Text>الشهر </Text>
             </HStack>
           </Th>
           <Th>
-            <HStack>
+            <HStack justifyContent={"center"}>
               <FaUserTie />
               <Text>اجار العمال </Text>
             </HStack>
           </Th>
 
           <Th>
-            <HStack>
+            <HStack justifyContent={"center"}>
               <FaDollarSign />
               <Text> مصاريف الصالات </Text>
             </HStack>
@@ -92,18 +98,38 @@ const ExpensesTable = () => {
         {sampleData.map((item) => (
           <React.Fragment key={item.month}>
             <Tr>
-              <Td>{item.month}</Td>
-              <Td
-                onClick={() => handleRowToggle(item.month, "salary")}
-                cursor="pointer"
-              >
-                {item.employers.totalSalary}
+              <Td textAlign={"center"}>{item.month}</Td>
+              <Td>
+                <HStack justifyContent={"center"}>
+                  <Text>{item.employers.totalSalary}</Text>
+                  <IconButton
+                    _hover={{ bgColor: "yellow.100", color: "gray.700" }}
+                    color={"gray.600"}
+                    borderRadius={50}
+                    cursor="pointer"
+                    bg={"none"}
+                    onClick={() => handleRowToggle(item.month, "salary")}
+                    boxSize={"30px"}
+                    as={IoArrowDownCircleOutline}
+                    aria-label=""
+                  />
+                </HStack>
               </Td>
-              <Td
-                onClick={() => handleRowToggle(item.month, "expenses")}
-                cursor="pointer"
-              >
-                {item.expenses}
+              <Td>
+                <HStack justifyContent={"center"}>
+                  <Text>{item.expenses}</Text>
+                  <IconButton
+                    _hover={{ bgColor: "yellow.100", color: "gray.700" }}
+                    color={"gray.600"}
+                    borderRadius={50}
+                    cursor="pointer"
+                    bg={"none"}
+                    onClick={() => handleRowToggle(item.month, "expenses")}
+                    boxSize={"30px"}
+                    as={IoArrowDownCircleOutline}
+                    aria-label=""
+                  />
+                </HStack>
               </Td>
             </Tr>
             <Tr>
