@@ -8,16 +8,17 @@ import {
   Th,
   Td,
   Table,
+  Show,
 } from "@chakra-ui/react";
 import bill from "../../entities/bill";
 
 interface Props {
   bills: bill[];
-  onToggle: () => void
-  onToggle2: () => void
+  onToggle: () => void;
+  onToggle2: () => void;
 }
 
-const BillsTable = ({ bills , onToggle, onToggle2}: Props) => {
+const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
   const styles = {
     table: {
       borderCollapse: "separate",
@@ -31,6 +32,7 @@ const BillsTable = ({ bills , onToggle, onToggle2}: Props) => {
       padding: "20px",
     },
     midCell: {
+      borderRightRadius: { sm: "0px", base: "10px" },
       backgroundColor: "#EEEEEE",
       padding: "20px",
     },
@@ -49,19 +51,29 @@ const BillsTable = ({ bills , onToggle, onToggle2}: Props) => {
           <Tr>
             <Th>التاريح</Th>
             <Th isNumeric>المشتري</Th>
-            <Th isNumeric> رقم الفاتورة #</Th>
+            <Show above="sm">
+              <Th isNumeric> رقم الفاتورة #</Th>
+            </Show>
           </Tr>
         </Thead>
         <Tbody>
           {bills.map((val, index) => (
-            <Tr key={index} onClick={()=>{onToggle(); setTimeout(onToggle2,1000)}}>
+            <Tr
+              key={index}
+              onClick={() => {
+                onToggle();
+                setTimeout(onToggle2, 1000);
+              }}
+            >
               <Td sx={styles.leftCell}>{val.date}</Td>
               <Td sx={styles.midCell} isNumeric>
                 {val.customerName}
               </Td>
-              <Td sx={styles.rightCell} isNumeric>
-                {val.id}
-              </Td>
+              <Show above="sm">
+                <Td sx={styles.rightCell} isNumeric>
+                  {val.id}
+                </Td>
+              </Show>
             </Tr>
           ))}
         </Tbody>
@@ -69,7 +81,9 @@ const BillsTable = ({ bills , onToggle, onToggle2}: Props) => {
           <Tr>
             <Th>التاريح</Th>
             <Th isNumeric>المشتري</Th>
-            <Th isNumeric>رقم الفاتورة</Th>
+            <Show above="sm">
+              <Th isNumeric>رقم الفاتورة</Th>
+            </Show>
           </Tr>
         </Tfoot>
       </Table>

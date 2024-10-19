@@ -1,6 +1,6 @@
 import { Doughnut } from "react-chartjs-2";
 import { Plugin } from "chart.js";
-import { Box, HStack, Text } from "@chakra-ui/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import { RED } from "../../constants";
 import {
   Chart as ChartJS,
@@ -15,21 +15,20 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-
+import resizeWindow from "../../services/resizeWindow";
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    RadialLinearScale,
-    PointElement,
-    BarElement,
-    LineElement,
-    ArcElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-
+  CategoryScale,
+  LinearScale,
+  RadialLinearScale,
+  PointElement,
+  BarElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const PieChart = () => {
   const centerTextPlugin: Plugin<"doughnut"> = {
@@ -82,10 +81,40 @@ const PieChart = () => {
       centerText: true,
     },
   };
+
+  const { width, height } = resizeWindow();
+
   return (
-    <HStack h={280} mt={5} mr={5}>
-      <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
-      <Box borderRight={"4px"} borderColor={RED} mt={10} px={4} pb={2}>
+    <Stack
+      direction={
+        width > 1210
+          ? "row"
+          : width > 992
+          ? "column"
+          : width > 550
+          ? "row"
+          : "column"
+      }
+    >
+      <Box
+        w={
+          width > 992
+            ? (20 * width) / 100
+            : width > 550
+            ? (40 * width) / 100
+            : (80 * width) / 100
+        }
+      >
+        <Doughnut data={data} options={options} plugins={[centerTextPlugin]} />
+      </Box>
+      <Box
+        borderRight={"4px"}
+        h={"fit-content"}
+        borderColor={RED}
+        mt={width > 1210 ? 24 : width > 550 && width < 992 ? height / 9 : 10}
+        px={4}
+        pb={2}
+      >
         <Text mb={3}>
           <b>فرق المبيع والشراء:</b> 2156115
         </Text>
@@ -93,7 +122,7 @@ const PieChart = () => {
           <b>مجمل الربح مع المصاريف:</b> 2156115
         </Text>
       </Box>
-    </HStack>
+    </Stack>
   );
 };
 

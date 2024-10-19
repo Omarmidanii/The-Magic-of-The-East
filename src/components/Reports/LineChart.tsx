@@ -59,6 +59,7 @@ const LineChart = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio:false,
     plugins: {
       legend: {
         display: false,
@@ -74,7 +75,7 @@ const LineChart = () => {
     },
   };
   return (
-    <Box w={"100%"} p={10}>
+    <Box w={"100%"} h={400} p={{base:2, sm:10}}>
       <Line data={dataLine} options={options} />
     </Box>
   );

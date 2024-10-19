@@ -1,25 +1,18 @@
-import { Box, Button, Icon } from "@chakra-ui/react";
-import { PiArrowRightBold } from "react-icons/pi";
+import { Box } from "@chakra-ui/react";
+import BillDetailsHeader from "./BillDetailsHeader";
+import BillDetailsGroup from "./BillDetailsGroup";
 
 interface Props {
+  BillId: number;
   onToggle: () => void;
   onToggle2: () => void;
 }
 
-const BillDetails = ({ onToggle, onToggle2 }: Props) => {
+const BillDetails = ({ BillId, onToggle, onToggle2 }: Props) => {
   return (
     <Box px={5} py={5}>
-      <Button
-        px={-1}
-        onClick={() => {
-          onToggle();
-          setTimeout(onToggle2, 1000);
-        }}
-      >
-        <Icon as={PiArrowRightBold} boxSize={5} />
-      </Button>
-<br/><br/><br/><br/><br/>
-      HI ITS DETAILS
+      <BillDetailsHeader onToggle={onToggle} onToggle2={onToggle2} />
+      <BillDetailsGroup/>
     </Box>
   );
 };

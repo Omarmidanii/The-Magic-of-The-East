@@ -4,7 +4,7 @@ import LineChart from "./LineChart";
 
 const statisticsCharts = () => {
   return (
-    <Stack p={5}>
+    <Stack h={'100%'} p={5} mb={{base:32, sm:0}} mt={{base:16, sm:0}}>
       <PieChart />
       <LineChart />
     </Stack>

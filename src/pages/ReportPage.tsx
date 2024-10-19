@@ -1,17 +1,23 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Stack } from "@chakra-ui/react";
 import StatisticsCharts from "../components/Reports/StatisticsCharts";
 import Bills from "../components/Reports/Bills";
+import resizeWindow from "../services/resizeWindow";
 
 const ReportPage = () => {
+  const { width, height } = resizeWindow();
   return (
-    <Grid templateRows="repeat(1, 1fr)" templateColumns="repeat(5, 1fr)">
-      <GridItem colSpan={3} px={5}>
+    <Stack
+      direction={{ lg: "row", base: "column" }}
+      h={height - 70}
+      overflow={{ lg: "hidden", base: "auto" }}
+    >
+      <Box w={{ lg: "60%", base: "100%" }} px={5}>
         <Bills />
-      </GridItem>
-      <GridItem colSpan={2} px={5}>
+      </Box>
+      <Box w={{ lg: "40%", base: "100%" }} h={"100%"} px={5}>
         <StatisticsCharts />
-      </GridItem>
-    </Grid>
+      </Box>
+    </Stack>
   );
 };
 
