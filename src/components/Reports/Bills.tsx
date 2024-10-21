@@ -32,7 +32,7 @@ const Bills = () => {
   const { isOpen: isOpen2, onToggle: onToggle2 } = useDisclosure();
 
   return (
-    <Box w={"98%"} h={height - 130} mt={4} mr={4}>
+    <Box w={"98%"} h={Math.max(height - 130, 400)} mt={4} mr={4}>
       <Box boxSize={82} w={"100%"} px={{ sm: 5, base: 0 }}>
         <Stack
           direction={{ md: "row", base: "column" }}
@@ -63,7 +63,7 @@ const Bills = () => {
       <Box
         px={5}
         mt={{ base: 12, md: 0 }}
-        h={height - 220}
+        h={Math.max(height - 220, 300)}
         overflow={"auto"}
         sx={{
           direction: "ltr",
