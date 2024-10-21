@@ -15,9 +15,9 @@ const CustomerPage = () => {
         buttonLabel="اضافة زبون"
         isOpen={isOpen}
         onClose={onClose}
-        color={'gray.100'}
+        color={'white'}
       >
-        <CustomerForm />
+        <CustomerForm onClose={onClose}/>
       </CustomModal>
     </>
   );

@@ -47,7 +47,7 @@ const BillDetailsGroup = () => {
                   width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11
                 ),
               ].map((s, ind, arr) => (
-                <Th>
+                <Th key={ind}>
                   {ind == 0 ? (
                     "المبيع"
                   ) : ind == 1 ? (
@@ -64,66 +64,66 @@ const BillDetailsGroup = () => {
         </Thead>
         <Tbody>
           {billItem.map((value, index) => (
-            <>
+            <div key={index}>
               <Collapse in={true}>
-                <Tr key={index}>
-                  {[...Array(width < 600 ? 5 : width < 900 ? 8 : width < 1200 ? 7: 10)].map(
-                    (s, ind, arr) => (
-                      <Td>
-                        {ind == 0 ? (
-                          value.sell
-                        ) : ind == 1 ? (
-                          value.buy
-                        ) : ind == arr.length - 1 ? (
-                          <>
-                            <Icon
-                              as={
-                                index == openedIndex ? LuArrowUp : LuArrowDown
-                              }
-                              mr={5}
-                              mb={-1}
-                              onClick={() =>
-                                setOpenedIndex(
-                                  index == openedIndex ? -1 : index
-                                )
-                              }
-                            />
-                            {value.name}
-                          </>
-                        ) : (
-                          <></>
-                        )}
-                      </Td>
-                    )
-                  )}
+                <Tr>
+                  {[
+                    ...Array(
+                      width < 600 ? 5 : width < 900 ? 8 : width < 1200 ? 7 : 10
+                    ),
+                  ].map((s, ind, arr) => (
+                    <Td key={ind}>
+                      {ind == 0 ? (
+                        value.sell
+                      ) : ind == 1 ? (
+                        value.buy
+                      ) : ind == arr.length - 1 ? (
+                        <>
+                          <Icon
+                            as={index == openedIndex ? LuArrowUp : LuArrowDown}
+                            mr={5}
+                            mb={-1}
+                            onClick={() =>
+                              setOpenedIndex(index == openedIndex ? -1 : index)
+                            }
+                          />
+                          {value.name}
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </Td>
+                  ))}
                 </Tr>
               </Collapse>
 
               <Collapse in={openedIndex == index}>
                 <BillDetailsitems index={index} />
               </Collapse>
-            </>
+            </div>
           ))}
         </Tbody>
 
         <Tfoot>
           <Collapse in={true}>
             <Tr>
-              {[...Array(width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8: 11)].map(
-                (s, ind, arr) => (
-                  <Th>
-                    {ind == 0 ? (
-                      "المبيع"
-                    ) : ind == 1 ? (
-                      "الشراء"
-                    ) : ind == arr.length - 1 ? (
-                      "اسم المجموعة"
-                    ) : (
-                      <></>
-                    )}
-                  </Th>
-                )
-              )}
+              {[
+                ...Array(
+                  width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11
+                ),
+              ].map((s, ind, arr) => (
+                <Th key={ind}>
+                  {ind == 0 ? (
+                    "المبيع"
+                  ) : ind == 1 ? (
+                    "الشراء"
+                  ) : ind == arr.length - 1 ? (
+                    "اسم المجموعة"
+                  ) : (
+                    <></>
+                  )}
+                </Th>
+              ))}
             </Tr>
           </Collapse>
         </Tfoot>

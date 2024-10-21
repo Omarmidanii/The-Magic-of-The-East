@@ -11,12 +11,12 @@ const BillDetailsitems = ({ index }: Props) => {
 
   return (
     <>
-      {billItem2.map((value) => (
-        <Tr bgColor={"#FFEEEE"}>
+      {billItem2.map((value, ind2) => (
+        <Tr key={ind2} bgColor={"#FFEEEE"}>
           {[
             ...Array(width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11),
           ].map((s, ind, arr) => (
-            <Td borderColor={"gray.200"}>
+            <Td key={ind} borderColor={"gray.200"}>
               {ind == 0 ? (
                 value.sell + 10000
               ) : ind == 1 ? (

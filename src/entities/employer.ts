@@ -5,7 +5,7 @@ export default interface employer {
   phone?: string;
   address?: string;
   position?: string;
-  salary?: number;
+  salary?: string;
   reward?: number;
 };
 

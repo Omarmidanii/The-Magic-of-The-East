@@ -1,4 +1,4 @@
-import { useDisclosure } from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import EmployersTabel from "../components/Employers/EmployersTabel";
 import AddButton from "../components/AddButton";
 import CustomModal from "../components/Modal";
@@ -14,9 +14,17 @@ const EmployerPage = () => {
         buttonLabel="اضافة موظف"
         isOpen={isOpen}
         onClose={onClose}
-        color={"gray.100"}
+        color={"white"}
       >
-        <EmployerForm />
+        <Box
+          h={400}
+          mb={10}
+          px={5}
+          style={{ scrollbarWidth: "thin" }}
+          overflow={"auto"}
+        >
+          <EmployerForm onClose={onClose} />{" "}
+        </Box>
       </CustomModal>
     </>
   );

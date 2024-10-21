@@ -23,7 +23,7 @@ export const items = [
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln asjx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln        asjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP, OIP1, OIP2, OIP3, OIP4],
     colors: ["pink", "red.500", "gray"],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
     name: "غرفة نوم",
@@ -39,7 +39,7 @@ export const items = [
       "gray",
       "green",
     ],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
     name: "غرفة نوم",
@@ -55,7 +55,7 @@ export const items = [
       "gray",
       "green",
     ],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
     name: "غرفة نوم",
@@ -71,7 +71,7 @@ export const items = [
       "gray",
       "green",
     ],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
     name: "غرفة نوم",
@@ -87,7 +87,7 @@ export const items = [
       "gray",
       "green",
     ],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
     name: "غرفة نوم",
@@ -103,7 +103,7 @@ export const items = [
       "gray",
       "green",
     ],
-    sizes: { الطول: 205, العرض: 100, العمق: 120 },
+    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
 ];
 
@@ -114,7 +114,7 @@ const ItemsGrid = ({ width, height }: Props) => {
     discription: "",
     images: [""],
     colors: [""],
-    sizes: { الطول: 0, العرض: 0, العمق: 0 },
+    items: [{ name: "تخت", sizes: { الطول: 0, العرض: 0, العمق: 0 } }],
   });
   return (
     <Box borderRadius={20} width={width} height={height - 70}>
@@ -148,10 +148,10 @@ const ItemsGrid = ({ width, height }: Props) => {
       <CustomDrawer
         isOpen={isOpen}
         onClose={onClose}
-        body={<ItemDetailsDrawer item={currentIem} />}
+        body={<ItemDetailsDrawer group={currentIem} />}
         header={
           <CustomerItemsDrawerHeader
-            name={"معلومات " +currentIem.name }
+            name={"معلومات " + currentIem.name}
             OnOpen={onOpen}
           />
         }

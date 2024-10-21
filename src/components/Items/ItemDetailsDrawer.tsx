@@ -2,29 +2,19 @@ import { Box, Divider, Icon, Stack, Text } from "@chakra-ui/react";
 import ItemsImagesSlider from "./ItemsImagesSlider";
 import resizeWindow from "../../services/resizeWindow";
 import { GiCheckMark } from "react-icons/gi";
-import { AiOutlineColumnHeight } from "react-icons/ai";
-import { AiOutlineColumnWidth } from "react-icons/ai";
-import { IoResizeSharp } from "react-icons/io5";
-import item from "../../entities/item";
-import swal from "sweetalert";
+import group from "../../entities/group";
+import SizesTable from "./SizesTable";
 
 interface Props {
-  item: item;
+  group: group;
 }
 
-const ItemDetailsDrawer = ({ item }: Props) => {
+const ItemDetailsDrawer = ({ group }: Props) => {
   const { width } = resizeWindow();
-  const icons = [AiOutlineColumnHeight, AiOutlineColumnWidth, IoResizeSharp];
-  const showAlert = () => {
-    swal({
-      title: "Hello!",
-      text: "This is a SweetAlert2 alert",
-      icon: "success",
-    });
-  };
+
   return (
     <div style={{ marginTop: 20 }}>
-      <ItemsImagesSlider images={item.images} />
+      <ItemsImagesSlider images={group.images} />
       <Divider
         mt={10}
         borderColor={"gray"}
@@ -36,13 +26,13 @@ const ItemDetailsDrawer = ({ item }: Props) => {
         {" "}
         الوصف:
       </Text>
-      <Text color={"gray.500"}>{item.discription}</Text>
+      <Text color={"gray.500"}>{group.discription}</Text>
       <Text mt={5} mb={3} fontSize={22}>
         {" "}
         الألوان المتوفرة:
       </Text>
       <Box>
-        {item.colors.map((value, index) => (
+        {group.colors.map((value, index) => (
           <Icon
             mx={1.5}
             key={index}
@@ -61,19 +51,8 @@ const ItemDetailsDrawer = ({ item }: Props) => {
         mb={20}
         mt={5}
       >
-        {Object.entries(item.sizes).map(([name, value], index) => (
-          <Box key={index}>
-            <Text mt={5} mb={2} fontSize={22}>
-              <Icon as={icons[index]} mb={-1} ml={2} />
-              {name}
-            </Text>
-            <Text color={"gray.600"} mr={7}>
-              {value}
-            </Text>
-          </Box>
-        ))}
+        <SizesTable items={group.items} />
       </Stack>
-      <button onClick={showAlert}>kaxnlm</button>
     </div>
   );
 };

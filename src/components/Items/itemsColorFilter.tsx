@@ -1,19 +1,21 @@
-import { Box, Icon } from "@chakra-ui/react";
+import { Box, Icon, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { GiCheckMark } from "react-icons/gi";
 import { colorProperties } from "./ItemsFilter";
+import useGroupcolorsStore from "../../stores/GroupColorsStore";
 
 interface Props {
+  filter: boolean;
   colors: Record<string, colorProperties>;
 }
 
-const ItemsColorFilter = ({ colors }: Props) => {
+const ItemsColorFilter = ({ colors, filter }: Props) => {
   const [usedColors, setColors] = useState(colors);
-
+  const groupcolors = useGroupcolorsStore();
   return (
     <Box mb={2}>
       {" "}
-      اللون :
+      {filter ? "اللون :" : <Text mb={2}>الألوان المتوفرة:</Text>}
       {Object.entries(usedColors).map(([name, value], index) => (
         <Icon
           margin={1}

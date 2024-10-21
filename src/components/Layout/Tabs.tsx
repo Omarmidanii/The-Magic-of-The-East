@@ -30,7 +30,7 @@ export const Tabs = () => {
   return (
     <HStack>
       {Object.entries(Tab).map(([name, value], index) => (
-        <Stack>
+        <Stack key={index}>
           <Box
             style={{
               transform:
@@ -39,7 +39,6 @@ export const Tabs = () => {
                   : "translateY(0) scale(1)",
               transition: "transform 0.4s ease-in-out",
             }}
-            key={index}
             onClick={() => {
               setSelectedTab(value.enName);
               localStorage.removeItem("CurrentPage");

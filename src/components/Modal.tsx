@@ -6,10 +6,11 @@ interface Props{
     buttonLabel: string;
     isOpen: boolean;
     onClose: () => void;
+    size?: Record<string, string>;
 }
-const CustomModal = ({ children, buttonLabel, isOpen , onClose , color } : Props) => {
+const CustomModal = ({ children, buttonLabel, isOpen , onClose , color, size={lg:'lg' , base:'md'} } : Props) => {
   return (
-      <Modal isOpen={isOpen} size={{lg:'lg' , base:'md'}} onClose={onClose}>
+      <Modal isOpen={isOpen} size={size} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bgColor={color}>
           <ModalHeader mr={8}>{buttonLabel}</ModalHeader>

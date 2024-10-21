@@ -1,14 +1,29 @@
 import {
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-    InputGroup,
-    Text
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  Text,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import swal from "sweetalert";
 
-const CustomerForm = () => {
+interface Props {
+  onClose: () => void;
+}
+
+const CustomerForm = ({ onClose }: Props) => {
+  const showAlert = () => {
+    swal({
+      title: "Hello!",
+      text: "This is a SweetAlert2 alert",
+      icon: "success",
+    }).then(() => {
+      onClose();
+    });
+  };
+
   return (
     <Formik
       initialValues={{
@@ -21,16 +36,17 @@ const CustomerForm = () => {
       onSubmit={() => {}}
     >
       <Form>
-        <FormControl id="firstname">
+        <FormControl my={4} id="firstname">
           <FormLabel fontFamily={"cursive"}> الاسم الاول</FormLabel>
-          <InputGroup>
+          <InputGroup bgColor={"#F8F8F8"} borderRadius={"10"}>
             <Field
               name="firstname"
+              fontFamily={"cursive"}
               as={Input}
               type="text"
               placeholder="الاسم الاول"
-              _placeholder={{ color: "gray.700" }}
-              borderRadius={"20"}
+              _placeholder={{ color: "gray.600" }}
+              borderRadius={"10"}
               width={"full"}
               pr={"30px"}
             />
@@ -39,16 +55,17 @@ const CustomerForm = () => {
             {(msg) => <Text color="red.500">{msg}</Text>}
           </ErrorMessage>
         </FormControl>
-        <FormControl id="lastname">
+        <FormControl mb={4} id="lastname">
           <FormLabel fontFamily={"cursive"}> الاسم الاخير</FormLabel>
-          <InputGroup>
+          <InputGroup bgColor={"#F8F8F8"} borderRadius={"10"}>
             <Field
               name="lastname"
+              fontFamily={"cursive"}
               as={Input}
               type="text"
               placeholder="الاسم الاخير"
-              _placeholder={{ color: "gray.700" }}
-              borderRadius={"20"}
+              _placeholder={{ color: "gray.600" }}
+              borderRadius={"10"}
               width={"full"}
               pr={"30px"}
             />
@@ -57,52 +74,73 @@ const CustomerForm = () => {
             {(msg) => <Text color="red.500">{msg}</Text>}
           </ErrorMessage>
         </FormControl>
-        <FormControl id="phone">
-            <FormLabel fontFamily={"cursive"}>الرقم</FormLabel>
-            <InputGroup>
-              <Field
-                name="phone"
-                as={Input}
-                type="text"
-                placeholder="+963900000000"
-                _placeholder={{ color: "gray.700" }}
-                borderRadius={'20'}
-                width={'full'}
-                pr={'30px'}
-              />
-            </InputGroup>
-            <ErrorMessage name="phone">
-              {(msg) => <Text color="red.500">{msg}</Text>}
-            </ErrorMessage>
-          </FormControl>
-          <FormControl id="address">
-            <FormLabel fontFamily={"cursive"}>المنطقة</FormLabel>
-            <InputGroup>
-              <Field
-                name="address"
-                as={Input}
-                type="text"
-                placeholder="المنطقة"
-                _placeholder={{ color: "gray.700" }}
-                borderRadius={'20'}
-                width={'full'}
-                pr={'30px'}
-              />
-            </InputGroup>
-            <ErrorMessage name="address">
-              {(msg) => <Text color="red.500">{msg}</Text>}
-            </ErrorMessage>
-          </FormControl>
-          <Button
-            bgColor={'green'}
-            color={'white'}
-            width="full"
-            type="submit"
-            marginTop={5}
-            borderRadius={"20"}
-          >
-            {"اضافة"}
-          </Button>
+        <FormControl mb={4} id="phone">
+          <FormLabel fontFamily={"cursive"}>الرقم</FormLabel>
+          <InputGroup bgColor={"#F8F8F8"} borderRadius={"10"}>
+            <Field
+              name="phone"
+              as={Input}
+              type="text"
+              placeholder="+963900000000"
+              _placeholder={{ color: "gray.600" }}
+              borderRadius={"10"}
+              width={"full"}
+              pr={"30px"}
+            />
+          </InputGroup>
+          <ErrorMessage name="phone">
+            {(msg) => <Text color="red.500">{msg}</Text>}
+          </ErrorMessage>
+        </FormControl>
+        <FormControl mb={4} id="address">
+          <FormLabel fontFamily={"cursive"}>المنطقة</FormLabel>
+          <InputGroup bgColor={"#F8F8F8"} borderRadius={"10"}>
+            <Field
+              name="address"
+              fontFamily={"cursive"}
+              as={Input}
+              type="text"
+              placeholder="المنطقة"
+              _placeholder={{ color: "gray.600" }}
+              borderRadius={"10"}
+              width={"full"}
+              pr={"30px"}
+            />
+          </InputGroup>
+          <ErrorMessage name="address">
+            {(msg) => <Text color="red.500">{msg}</Text>}
+          </ErrorMessage>
+        </FormControl>
+        <Button
+          mb={8}
+          bgColor={"#228822"}
+          _hover={{ bgColor: "#117711" }}
+          color={"white"}
+          width="30%"
+          boxShadow={"md"}
+          type="submit"
+          marginTop={8}
+          borderRadius={"10"}
+          onClick={() => showAlert()}
+        >
+          {"اضافة"}
+        </Button>
+        <Button
+          mb={8}
+          _hover={{ bgColor: "#EEEEEE" }}
+          width="30%"
+          bgColor={"white"}
+          borderWidth={"2px"}
+          borderColor={"gray.100"}
+          boxShadow={"md"}
+          mr={2}
+          type="submit"
+          marginTop={8}
+          borderRadius={"10"}
+          onClick={() => onClose()}
+        >
+          {"الغاء"}
+        </Button>
       </Form>
     </Formik>
   );

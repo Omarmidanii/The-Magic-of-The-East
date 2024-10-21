@@ -1,5 +1,5 @@
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import item from "../../entities/item";
+import item from "../../entities/group";
 import ItemCard from "../Items/ItemCard";
 import resizeWindow from "../../services/resizeWindow";
 import Lottie from "lottie-react";
@@ -23,7 +23,7 @@ const ShowItems = ({ items }: Props) => {
       <Text
         placeSelf={"center"}
         borderBottom={"2px"}
-        borderColor={'yellow.400'}
+        borderColor={"yellow.400"}
         fontFamily="Khebrat"
         mb={20}
         fontSize={32}
@@ -77,7 +77,9 @@ const ShowItems = ({ items }: Props) => {
           >
             عرض جميع منتجاتنا
           </Text>{" "}
-          <Lottie animationData={scrollDown} loop={true} />
+          <Box boxSize={16}>
+            <Lottie animationData={scrollDown} loop={true} />
+          </Box>
         </Link>
       </div>
     </Stack>
