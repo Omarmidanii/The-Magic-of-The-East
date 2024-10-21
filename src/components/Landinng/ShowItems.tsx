@@ -6,7 +6,6 @@ import Lottie from "lottie-react";
 import scrollDown from "../../assets/scrollDown.json";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { RED } from "../../constants";
 
 interface Props {
   items: item[];
@@ -16,19 +15,19 @@ const ShowItems = ({ items }: Props) => {
 
   return (
     <Stack
-      bgGradient={`linear(10deg,#AA4455,#992233 )`} // blanchedalmond, honeydew
-      bgColor={"#992233"}
+      bgGradient={`linear(10deg,#AA3344,#992233 )`}
       pt={20}
-      mb={32}
+      mb={48}
+      mt={10}
     >
       <Text
         placeSelf={"center"}
         borderBottom={"2px"}
-        borderColor={"#EEAA77"}
+        borderColor={'yellow.400'}
         fontFamily="Khebrat"
         mb={20}
         fontSize={32}
-        color={"#FFEEaa"}
+        color={"yellow.300"}
       >
         {" "}
         تفقد أخر منتجاتنا المصنعة باحترافية عالية!
@@ -39,7 +38,7 @@ const ShowItems = ({ items }: Props) => {
             {index <
               (width > 1400 ? 5 : width > 1080 ? 4 : width > 770 ? 3 : 1) && (
               <Box
-                boxShadow={`0px 5px 20px 7px white`}
+                boxShadow={`0px 5px 20px 1px white`}
                 key={index}
                 boxSize={300}
                 height={305}

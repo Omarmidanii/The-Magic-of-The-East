@@ -14,6 +14,10 @@ const Fonts = () => (
         @font-face{
         font-family: 'Beiruti';
         src:url('/src/assets/Fonts/Beiruti.ttf') format('truetype');
+    } 
+         @font-face{
+        font-family: 'Noto';
+        src:url('/src/assets/Fonts/Noto.ttf') format('truetype');
     } `}
   />
 );

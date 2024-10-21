@@ -42,7 +42,7 @@ const ExpensesTabs = () => {
             _hover={{ bg: RED }}
             color={activeTab === "tab1" ? "white" : "black"}
             animate={{
-              x: activeTab === "tab1" ? -50 : -180,
+              x: activeTab === "tab1" ? -60 : -200,
               scale: activeTab === "tab1" ? 1.2 : 1,
             }}
             transition={{ duration: 0.5 }}
@@ -67,7 +67,7 @@ const ExpensesTabs = () => {
             bg={activeTab === "tab2" ? RED : "gray.200"}
             color={activeTab === "tab2" ? "white" : "black"}
             animate={{
-              x: activeTab === "tab2" ? 80 : 210,
+              x: activeTab === "tab2" ? 90 : 230,
               scale: activeTab === "tab2" ? 1.2 : 1,
             }}
             transition={{ duration: 0.5 }}

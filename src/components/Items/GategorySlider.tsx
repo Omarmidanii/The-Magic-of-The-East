@@ -24,7 +24,7 @@ const GategorySlider = ({ items }: Props) => {
       ))}{" "}
       <Link to={`/items`}>
         <IconButton
-          _hover={{ bgColor: "yellow.100", color: "gray.700" }}
+          _hover={{ bgColor: "gray.100", color: "gray.700" }}
           color={"gray.600"}
           borderRadius={50}
           aria-label=""
