@@ -14,21 +14,19 @@ import {
   Title,
 } from "chart.js";
 
-
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    RadialLinearScale,
-    PointElement,
-    BarElement,
-    LineElement,
-    ArcElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+  CategoryScale,
+  LinearScale,
+  RadialLinearScale,
+  PointElement,
+  BarElement,
+  LineElement,
+  ArcElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  
 const LineChart = () => {
   const dataLine = {
     labels: [
@@ -48,7 +46,10 @@ const LineChart = () => {
     datasets: [
       {
         label: "",
-        data: [550000, 225000, 310000, 516516, 546513, 785484,467215,614632,514862,346321,686214,416324],
+        data: [
+          550000, 225000, 310000, 516516, 546513, 785484, 467215, 614632,
+          514862, 346321, 686214, 416324,
+        ],
         borderRadius: 10,
         borderColor: "#88DDDD",
         tension: 0.3,
@@ -59,7 +60,7 @@ const LineChart = () => {
 
   const options = {
     responsive: true,
-    maintainAspectRatio:false,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: false,
@@ -75,7 +76,7 @@ const LineChart = () => {
     },
   };
   return (
-    <Box w={"100%"} h={400} p={{base:2, sm:10}}>
+    <Box w={"100%"} h={400} p={{ base: 2, sm: 10 }} overflowX={"auto"}>
       <Line data={dataLine} options={options} />
     </Box>
   );
