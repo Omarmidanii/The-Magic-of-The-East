@@ -22,7 +22,7 @@ const GategorySlider = ({ items }: Props) => {
           )}
         </div>
       ))}{" "}
-      <Link to={`/items`}>
+      <Link to={`/dash/items`}>
         <IconButton
           _hover={{ bgColor: "gray.100", color: "gray.700" }}
           color={"gray.600"}

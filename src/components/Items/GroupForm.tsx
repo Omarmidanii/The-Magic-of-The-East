@@ -9,6 +9,7 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import { RxCross2 } from "react-icons/rx";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import useGroupImagesStore from "../../stores/GroupImagesStore";
 import ItemsColorFilter from "./itemsColorFilter";
@@ -18,7 +19,7 @@ import useGroupItemsStore from "../../stores/GroupitemsStore";
 import { useRef } from "react";
 
 const GroupForm = () => {
-  const { setImages, images } = useGroupImagesStore();
+  const { setImages, images, removeImage } = useGroupImagesStore();
   const { items, setItems } = useGroupItemsStore();
 
   //refs
@@ -32,6 +33,15 @@ const GroupForm = () => {
       <Stack>
         {images?.map((img, index) => (
           <HStack key={index}>
+            <Icon
+              as={RxCross2}
+              borderRadius={20}
+              p={1}
+              boxSize={6}
+              _hover={{ bgColor: "red.600", color: "white" }}
+              cursor="pointer"
+              onClick={() => removeImage(img.name)}
+            />
             <Image
               borderRadius={10}
               boxSize={10}
@@ -81,13 +91,28 @@ const GroupForm = () => {
 
       <Text fontSize={16} mt={20} mb={4}>
         + ادخل قطعة جديدة:
-        <Input mt={3} placeholder="الاسم" ref={refName} />
+        <Input mt={3} placeholder="الاسم" fontFamily={"Noto"} ref={refName} />
       </Text>
 
       <HStack>
-        <Input placeholder="الطول" ref={refH} type="number" />
-        <Input placeholder="العرض" ref={refW} type="number" />
-        <Input placeholder="العمق" ref={refD} type="number" />
+        <Input
+          placeholder="الطول"
+          fontFamily={"Noto"}
+          ref={refH}
+          type="number"
+        />
+        <Input
+          placeholder="العرض"
+          fontFamily={"Noto"}
+          ref={refW}
+          type="number"
+        />
+        <Input
+          placeholder="العمق"
+          fontFamily={"Noto"}
+          ref={refD}
+          type="number"
+        />
       </HStack>
       <Button
         mt={2}
@@ -105,7 +130,7 @@ const GroupForm = () => {
       >
         إضافة
       </Button>
-      <SizesTable items={items} />
+      <SizesTable items={items} newItem={true} />
     </div>
   );
 };

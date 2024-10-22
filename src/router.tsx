@@ -14,7 +14,7 @@ import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: <HomePage />,
     errorElement: <ErrorPage />,
     children: [
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "/dash",
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [

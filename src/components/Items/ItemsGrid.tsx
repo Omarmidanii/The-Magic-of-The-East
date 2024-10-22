@@ -136,6 +136,11 @@ const ItemsGrid = ({ width, height }: Props) => {
         {items?.map((info, index) => (
           <Box
             key={index}
+            cursor="pointer"
+            _hover={{
+              transform: "scale(1.05)",
+              transition: "transform 0.3s ease",
+            }}
             onClick={() => {
               onOpen();
               setCurrentItem(info);

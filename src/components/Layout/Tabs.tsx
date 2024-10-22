@@ -15,11 +15,11 @@ interface valueofTab {
 }
 
 export const Tab: Record<string, valueofTab> = {
-  السلع: { enName: "categories", icon: FaBoxOpen },
-  الموظفين: { enName: "employers", icon: FaUsers },
-  الزبائن: { enName: "customers", icon: RiCustomerService2Fill },
-  المصاريف: { enName: "expenses", icon: GiExpense },
-  التقارير: { enName: "reports", icon: PiChartLineUpBold },
+  السلع: { enName: "dash/categories", icon: FaBoxOpen },
+  الموظفين: { enName: "dash/employers", icon: FaUsers },
+  الزبائن: { enName: "dash/customers", icon: RiCustomerService2Fill },
+  المصاريف: { enName: "dash/expenses", icon: GiExpense },
+  التقارير: { enName: "dash/reports", icon: PiChartLineUpBold },
 };
 
 export const Tabs = () => {

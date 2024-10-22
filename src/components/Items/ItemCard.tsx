@@ -21,10 +21,6 @@ const ItemCard = ({ name, images }: Props) => {
       p={2}
       overflow="hidden"
       borderRadius={20}
-      _hover={{
-        transform: "scale(1.05)",
-        transition: "transform 0.3s ease",
-      }}
       boxShadow={`0`}
       //bgGradient={`linear(210deg,gray.100 , white  )`}
       //bgColor={'#FFFFE0'}

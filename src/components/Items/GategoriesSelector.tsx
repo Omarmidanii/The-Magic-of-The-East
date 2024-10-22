@@ -16,6 +16,10 @@ const GategoriesSelector = () => {
     <Select
       variant="flushed"
       paddingX={2}
+      sx={{
+        direction: "ltr",
+        textAlign: "right",
+      }}
       placeholder="جميع السلع"
       width={{ sm: 300 }}
       colorScheme="red"

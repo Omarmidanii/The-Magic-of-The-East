@@ -15,7 +15,7 @@ const BillDetailsitems = ({ index }: Props) => {
         <Tr key={ind2} bgColor={"#FFEEEE"}>
           {[
             ...Array(width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11),
-          ].map((s, ind, arr) => (
+          ].map((_, ind, arr) => (
             <Td key={ind} borderColor={"gray.200"}>
               {ind == 0 ? (
                 value.sell + 10000

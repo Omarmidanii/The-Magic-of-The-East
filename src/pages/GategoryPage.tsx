@@ -6,10 +6,7 @@ import { useState } from "react";
 import resizeWindow from "../services/resizeWindow";
 import { RED } from "../constants";
 import AddButton from "../components/AddButton";
-import CustomDrawer from "../components/Drawer";
-import CustomerItemsDrawerHeader from "../components/Customer/CustomerItemsDrawerHeader";
 import CustomModal from "../components/Modal";
-import EmployerForm from "../components/Employers/EmployerForm";
 import GroupForm from "../components/Items/GroupForm";
 
 const GategoryPage = () => {

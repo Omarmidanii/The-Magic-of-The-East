@@ -18,6 +18,7 @@ const ItemsColorFilter = ({ colors, filter }: Props) => {
       {filter ? "اللون :" : <Text mb={2}>الألوان المتوفرة:</Text>}
       {Object.entries(usedColors).map(([name, value], index) => (
         <Icon
+          cursor="pointer"
           margin={1}
           key={index}
           mb={-2}

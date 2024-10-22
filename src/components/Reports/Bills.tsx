@@ -10,8 +10,8 @@ import {
 import resizeWindow from "../../services/resizeWindow";
 import BillsTable from "./BillsTable";
 import bill from "../../entities/bill";
-import { RED } from "../../constants";
 import BillDetails from "./BillDetails";
+import SearchBy from "./SearchBy";
 
 const bills: bill[] = [
   { id: 54546, customerName: "زلمة", date: "2025/10/20" },
@@ -50,10 +50,7 @@ const Bills = () => {
             الفواتير:
           </Text>
           <HStack spacing={4} mt={{ base: 2, md: 0 }}>
-            <Button colorScheme="red" bgColor={RED} borderRadius={20}>
-              {" "}
-              بحث حسب...
-            </Button>
+            <SearchBy/>
             <Button colorScheme="green" borderRadius={20}>
               إضافة فاتورة
             </Button>

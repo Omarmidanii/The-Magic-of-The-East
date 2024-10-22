@@ -9,7 +9,7 @@ interface Props {
 const Rating = ({ rate }: Props) => {
   return (
     <HStack mb={-3} mt={4}>
-      {[...Array(5)].map((star, index) =>
+      {[...Array(5)].map((_, index) =>
         rate /*.data?.percentage_rating || 0*/ - (index + 1) * 20 > 0 ? (
           <Icon key={index} boxSize={4} color={"yellow.300"} as={FaStar} />
         ) : rate /*.data?.percentage_rating || 0*/ - (index + 1) * 20 + 10 >

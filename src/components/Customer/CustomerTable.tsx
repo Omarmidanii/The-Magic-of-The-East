@@ -13,19 +13,22 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 import CustomerItemsDrawer from "./CustomerItemsDrawer";
 import { PiBasketFill } from "react-icons/pi";
-const CustomerTable = () => {
-  const data = [
-    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
-    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
-    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
-    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
-    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
-    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
-    { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
-    { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
 
+export const customers = [
+  { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+  { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+  { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+  { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+  { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+  { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+  { firstname: "عمر",lastname: "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" },
+  { firstname: "غنى",lastname: "الحرش", phone: "963996681459+", address: "dummer" },
+
+
+];
+
+const CustomerTable = () => {
   
-  ];
   return (
     <TableContainer overflowY={"auto"} height={window.innerHeight / 1.36}>
       <Table>
@@ -62,7 +65,7 @@ const CustomerTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((customer, index) => (
+          {customers.map((customer, index) => (
             <Tr key={index}>
               <Td>{index + 1}</Td>
               <Td  textAlign={'center'}>{customer.firstname + " " + customer.lastname}</Td>

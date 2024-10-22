@@ -46,7 +46,7 @@ const BillDetailsGroup = () => {
                 ...Array(
                   width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11
                 ),
-              ].map((s, ind, arr) => (
+              ].map((_, ind, arr) => (
                 <Th key={ind}>
                   {ind == 0 ? (
                     "المبيع"
@@ -71,7 +71,7 @@ const BillDetailsGroup = () => {
                     ...Array(
                       width < 600 ? 5 : width < 900 ? 8 : width < 1200 ? 7 : 10
                     ),
-                  ].map((s, ind, arr) => (
+                  ].map((_, ind, arr) => (
                     <Td key={ind}>
                       {ind == 0 ? (
                         value.sell
@@ -80,6 +80,7 @@ const BillDetailsGroup = () => {
                       ) : ind == arr.length - 1 ? (
                         <>
                           <Icon
+                            cursor="pointer"
                             as={index == openedIndex ? LuArrowUp : LuArrowDown}
                             mr={5}
                             mb={-1}
@@ -111,7 +112,7 @@ const BillDetailsGroup = () => {
                 ...Array(
                   width < 600 ? 6 : width < 900 ? 9 : width < 1200 ? 8 : 11
                 ),
-              ].map((s, ind, arr) => (
+              ].map((_, ind, arr) => (
                 <Th key={ind}>
                   {ind == 0 ? (
                     "المبيع"

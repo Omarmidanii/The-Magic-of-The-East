@@ -59,6 +59,7 @@ const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
         <Tbody>
           {bills.map((val, index) => (
             <Tr
+              cursor="pointer"
               key={index}
               onClick={() => {
                 onToggle();
