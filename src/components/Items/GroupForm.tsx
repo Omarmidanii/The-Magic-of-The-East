@@ -16,11 +16,19 @@ import ItemsColorFilter from "./itemsColorFilter";
 import { colors } from "./ItemsFilter";
 import SizesTable from "./SizesTable";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Group from "../../entities/group";
 
-const GroupForm = () => {
+interface Props {
+  group?: Group | undefined;
+}
+
+const GroupForm = ({ group = undefined }: Props) => {
   const { setImages, images, removeImage } = useGroupImagesStore();
   const { items, setItems } = useGroupItemsStore();
+  const [prevImages, setPrevImages] = useState(
+    group?.images ? [...group.images] : [""]
+  );
 
   //refs
   const refH = useRef<HTMLInputElement>(null);
@@ -31,6 +39,23 @@ const GroupForm = () => {
   return (
     <div>
       <Stack>
+        {group?.images?.map((img, index) => (
+          <HStack key={index}>
+            <Icon
+              as={RxCross2}
+              borderRadius={20}
+              p={1}
+              boxSize={6}
+              _hover={{ bgColor: "red.600", color: "white" }}
+              cursor="pointer"
+              onClick={() => {
+                prevImages?.filter((image) => img !== image);
+              }}
+            />
+            <Image borderRadius={10} boxSize={10} src={img} />
+            <Text>{img}</Text>
+          </HStack>
+        ))}
         {images?.map((img, index) => (
           <HStack key={index}>
             <Icon
@@ -84,6 +109,7 @@ const GroupForm = () => {
       </Button>
       <Textarea
         mb={8}
+        value={group?.discription ? group?.discription  : ""}
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />

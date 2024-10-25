@@ -10,6 +10,8 @@ import CustomDrawer from "../Drawer";
 import { useState } from "react";
 import ItemDetailsDrawer from "./ItemDetailsDrawer";
 import CustomerItemsDrawerHeader from "../Customer/CustomerItemsDrawerHeader";
+import CustomModal from "../Modal";
+import GroupForm from "./GroupForm";
 
 interface Props {
   width: number;
@@ -109,6 +111,11 @@ export const items = [
 
 const ItemsGrid = ({ width, height }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenEdit,
+    onOpen: onOpenEdit,
+    onClose: onCloseEdit,
+  } = useDisclosure();
   const [currentIem, setCurrentItem] = useState({
     name: "",
     discription: "",
@@ -157,10 +164,30 @@ const ItemsGrid = ({ width, height }: Props) => {
         header={
           <CustomerItemsDrawerHeader
             name={"معلومات " + currentIem.name}
-            OnOpen={onOpen}
+            OnOpen={() => {
+              onOpenEdit();
+              onClose();
+            }}
           />
         }
       />
+      <CustomModal
+        buttonLabel="اضافة مجموعة"
+        isOpen={isOpenEdit}
+        onClose={onCloseEdit}
+        color={"white"}
+        size={{ md: "xl", base: "md" }}
+      >
+        <Box
+          h={400}
+          mb={10}
+          px={5}
+          style={{ scrollbarWidth: "thin" }}
+          overflow={"auto"}
+        >
+          <GroupForm group={currentIem} />{" "}
+        </Box>
+      </CustomModal>
     </Box>
   );
 };

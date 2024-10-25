@@ -10,10 +10,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import swal from "sweetalert";
 
 interface Props {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
-const CustomerForm = ({ onClose }: Props) => {
+const CustomerForm = ({ onClose = () => {} }: Props) => {
   const showAlert = () => {
     swal({
       title: "Hello!",
