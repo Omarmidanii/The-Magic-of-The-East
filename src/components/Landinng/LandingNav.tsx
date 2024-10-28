@@ -40,7 +40,7 @@ const LandingNav = () => {
             >
               <motion.div whileHover={{ rotate: -6 }}>المفروشات</motion.div>
             </Tab>
-            <Tab marginX={2} fontFamily="Beiruti" fontSize={20}>
+            <Tab marginX={2} fontFamily="Beiruti" fontSize={20} onClick={() => navigate("/login")}>
               <motion.div whileHover={{ rotate: -6 }}>تسجيل الدخول</motion.div>
             </Tab>
           </TabList>

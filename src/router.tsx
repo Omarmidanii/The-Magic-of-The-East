@@ -11,8 +11,14 @@ import ExpensesPage from "./pages/ExpensesPage";
 import ReportPage from "./pages/ReportPage";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/",
     element: <HomePage />,
@@ -24,8 +30,8 @@ const router = createBrowserRouter([
       },
       {
         path: "categories",
-        element: <GategoryPage/>,
-      }
+        element: <GategoryPage />,
+      },
     ],
   },
   {
