@@ -27,8 +27,8 @@ const ExpensesTable = () => {
       employers: {
         totalSalary: 5700,
         employer: [
-          { firstname: "omar", salary: 2000, reward: 200 },
-          { firstname: "Ghina", salary: 3000, reward: 500 },
+          { firstname: "omar", salary: "2000", reward: 200 },
+          { firstname: "Ghina", salary: "3000", reward: 500 },
         ],
       },
       expenses: 45000,
@@ -38,8 +38,8 @@ const ExpensesTable = () => {
       employers: {
         totalSalary: 5700,
         employer: [
-          { firstname: "omar", salary: 2000, reward: 200 },
-          { firstname: "Ghina", salary: 3000, reward: 500 },
+          { firstname: "omar", salary: "2000", reward: 200 },
+          { firstname: "Ghina", salary: "3000", reward: 500 },
         ],
       },
       expenses: 2000,
@@ -49,8 +49,8 @@ const ExpensesTable = () => {
       employers: {
         totalSalary: 5700,
         employer: [
-          { firstname: "omar", salary: 2000, reward: 200 },
-          { firstname: "Ghina", salary: 3000, reward: 500 },
+          { firstname: "omar", salary: "2000", reward: 200 },
+          { firstname: "Ghina", salary: "3000", reward: 500 },
         ],
       },
       expenses: 2000,
@@ -132,9 +132,9 @@ const ExpensesTable = () => {
                 </HStack>
               </Td>
             </Tr>
-            <Tr>
-              <Td colSpan={3}>
-                <Collapse in={expandedRows[item.month] === "salary"}>
+            <Tr >
+              <Td colSpan={3} >
+                <Collapse in={expandedRows[item.month] === "salary"} >
                   <EmployersSalaryDetails item={item} />
                 </Collapse>
                 <Collapse in={expandedRows[item.month] === "expenses"}>

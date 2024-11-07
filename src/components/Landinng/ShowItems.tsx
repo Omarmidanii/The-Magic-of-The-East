@@ -59,7 +59,7 @@ const ShowItems = ({ items }: Props) => {
           placeSelf: "center",
         }}
       >
-        <Link to={"/Home/categories"}>
+        <Link to={"/categories"}>
           <Text
             as={motion.div}
             animate={{

@@ -32,6 +32,10 @@ const router = createBrowserRouter([
         path: "categories",
         element: <GategoryPage />,
       },
+      {
+        path: "items",
+        element: <ItemsPage />,
+      },
     ],
   },
   {
@@ -41,7 +45,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <ItemsPage />,
+        element: <GategoryPage />,
       },
       {
         path: "settings",

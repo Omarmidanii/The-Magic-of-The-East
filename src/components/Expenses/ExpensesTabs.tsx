@@ -26,8 +26,8 @@ const ExpensesTabs = () => {
     console.log(tab);
   };
   return (
-    <Tabs pt={10}>
-      <TabList pb={2} justifyContent="center">
+    <Tabs pt={9}>
+      <TabList borderWidth={'0px'} pb={8} justifyContent="center">
         <Tab
           bgColor={"transparent"}
           sx={{
@@ -39,13 +39,13 @@ const ExpensesTabs = () => {
             as={Button}
             onClick={() => handleTabClick("tab1")}
             bg={activeTab === "tab1" ? RED : "gray.200"}
-            _hover={{ bg: RED }}
+            _hover={{ bg: activeTab === "tab1" ? RED : "gray.300" }}
             color={activeTab === "tab1" ? "white" : "black"}
             animate={{
               x: activeTab === "tab1" ? -60 : -200,
               scale: activeTab === "tab1" ? 1.2 : 1,
             }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             zIndex={activeTab === "tab1" ? 1 : 0}
             fontSize={14}
           >
@@ -63,14 +63,14 @@ const ExpensesTabs = () => {
           <MotionBox
             as={Button}
             onClick={() => handleTabClick("tab2")}
-            _hover={{ bg: RED }}
+            _hover={{ bg: activeTab === "tab2" ? RED : "gray.300" }}
             bg={activeTab === "tab2" ? RED : "gray.200"}
             color={activeTab === "tab2" ? "white" : "black"}
             animate={{
               x: activeTab === "tab2" ? 90 : 230,
               scale: activeTab === "tab2" ? 1.2 : 1,
             }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             zIndex={activeTab === "tab2" ? 1 : 0}
             fontSize={14}
           >

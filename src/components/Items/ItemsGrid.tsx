@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, useDisclosure } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
 import ItemCard from "./ItemCard";
 
 import OIP from "../../assets/OIP.jpg";
@@ -123,8 +123,15 @@ const ItemsGrid = ({ width, height }: Props) => {
     colors: [""],
     items: [{ name: "تخت", sizes: { الطول: 0, العرض: 0, العمق: 0 } }],
   });
+
+  const currentPathname = window.location.pathname;
+
   return (
-    <Box borderRadius={20} width={width} height={height - 70}>
+    <Box
+      borderRadius={20}
+      width={width}
+      height={currentPathname == "/dash/items"  ? height - 70 : "auto"}
+    >
       <SimpleGrid
         columns={
           width >= 1400
@@ -162,13 +169,19 @@ const ItemsGrid = ({ width, height }: Props) => {
         onClose={onClose}
         body={<ItemDetailsDrawer group={currentIem} />}
         header={
-          <CustomerItemsDrawerHeader
-            name={"معلومات " + currentIem.name}
-            OnOpen={() => {
-              onOpenEdit();
-              onClose();
-            }}
-          />
+          currentPathname == "/dash/items" ? (
+            <CustomerItemsDrawerHeader
+              name={"معلومات " + currentIem.name}
+              OnOpen={() => {
+                onOpenEdit();
+                onClose();
+              }}
+            />
+          ) : (
+            <Text textColor={"black"} mr={8} fontSize={24}>
+              معلومات {currentIem.name}
+            </Text>
+          )
         }
       />
       <CustomModal

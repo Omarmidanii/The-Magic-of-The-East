@@ -109,7 +109,7 @@ const GroupForm = ({ group = undefined }: Props) => {
       </Button>
       <Textarea
         mb={8}
-        value={group?.discription ? group?.discription  : ""}
+        value={group?.discription && group?.discription}
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />

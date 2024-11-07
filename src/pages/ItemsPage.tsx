@@ -6,9 +6,21 @@ import GategoriesSelector from "../components/Items/GategoriesSelector";
 
 const ItemsPage = () => {
   const { width, height } = resizeWindow();
+  const currentPathname = window.location.pathname;
+
   return (
-    <div style={{ overflowY: "auto" ,overflowX:"hidden"}}>
-      <Stack direction={{base:'column', sm:'row'}} spacing={6} marginX={14} mb={{sm:-4}} mt={6} justifyContent={'space-between'} >
+    <div style={{ overflowY: "auto", overflowX: "hidden" }}>
+      {currentPathname == "/items" && (
+        <div style={{ marginTop: 150 }}></div>
+      )}
+      <Stack
+        direction={{ base: "column", sm: "row" }}
+        spacing={6}
+        marginX={14}
+        mb={{ sm: -4 }}
+        mt={6}
+        justifyContent={"space-between"}
+      >
         <ItemsFilter />
         <GategoriesSelector />
       </Stack>

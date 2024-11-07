@@ -17,23 +17,32 @@ const GategoryPage = () => {
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
+  const currentPathname = window.location.pathname;
+
   return (
     <div
       style={{
         marginRight: width > 500 ? 60 : 30,
         overflowY: "auto",
-        height: height / 1.2,
+        height:
+          currentPathname == "/dash/categories" || currentPathname == "/dash"
+            ? height / 1.2
+            : "auto",
         paddingTop: 10,
       }}
     >
-      <AddButton onOpen={onOpen} label="اضافة سلعة" />
+      {currentPathname == "/dash/categories" || currentPathname == "/dash" ? (
+        <AddButton onOpen={onOpen} label="اضافة سلعة" />
+      ) : (
+        <div style={{ marginTop: 150 }}></div>
+      )}
 
       <CustomModal
         buttonLabel="اضافة مجموعة"
         isOpen={isOpen}
         onClose={onClose}
         color={"white"}
-        size={{md:'xl', base:'md'}}
+        size={{ md: "xl", base: "md" }}
       >
         <Box
           h={400}

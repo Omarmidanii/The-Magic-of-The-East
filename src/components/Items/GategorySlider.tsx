@@ -10,6 +10,8 @@ interface Props {
 
 const GategorySlider = ({ items }: Props) => {
   const { width } = resizeWindow();
+  const currentPathname = window.location.pathname;
+
   return (
     <HStack>
       {items?.map((image, index) => (
@@ -22,7 +24,13 @@ const GategorySlider = ({ items }: Props) => {
           )}
         </div>
       ))}{" "}
-      <Link to={`/dash/items`}>
+      <Link
+        to={
+          currentPathname == "/dash/categories" || currentPathname == "/dash"
+            ? `/dash/items`
+            : `/items`
+        }
+      >
         <IconButton
           _hover={{ bgColor: "gray.100", color: "gray.700" }}
           color={"gray.600"}
