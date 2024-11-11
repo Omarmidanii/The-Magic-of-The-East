@@ -1,13 +1,15 @@
 import { Box, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React from "react";
-import DataItem from "../../entities/Expenses";
 import CustomDelete from "../Delete";
+import { sampleData } from "./ExpensesTable";
 
 interface Props {
-  item: DataItem;
+  month: number;
 }
 
-const EmployersSalaryDetails = ({ item }: Props) => {
+const EmployersSalaryDetails = ({ month }: Props) => {
+  let item = sampleData[month].employers.employer;
+
   return (
     <Box
       mb={16}
@@ -26,7 +28,7 @@ const EmployersSalaryDetails = ({ item }: Props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {item.employers.employer.map((em, Index) => (
+          {item.map((em, Index) => (
             <React.Fragment key={Index}>
               <Tr>
                 <Td>

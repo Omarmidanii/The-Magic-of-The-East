@@ -12,6 +12,8 @@ import { useState } from "react";
 import { RED } from "../../constants";
 import useExpensesTab from "../../stores/ExpensesTabStore";
 import ExpensesTable from "./ExpensesTable";
+import { FaDollarSign, FaUserTie } from "react-icons/fa";
+import { BsReceiptCutoff } from "react-icons/bs";
 
 const MotionBox = motion(Box);
 
@@ -27,7 +29,7 @@ const ExpensesTabs = () => {
   };
   return (
     <Tabs pt={9}>
-      <TabList borderWidth={'0px'} pb={8} justifyContent="center">
+      <TabList borderWidth={"0px"} pb={8} justifyContent="center">
         <Tab
           bgColor={"transparent"}
           sx={{
@@ -82,9 +84,48 @@ const ExpensesTabs = () => {
       </TabList>
       <TabPanels>
         <TabPanel>
-          <ExpensesTable />
+          {activeTab == "tab1" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.8 },
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <ExpensesTable
+                headers={[
+                  { icon: FaUserTie, name: "اجار العمال ", enName: "salary" },
+                  {
+                    icon: FaDollarSign,
+                    name: "مصاريف الصالات ",
+                    enName: "expenses",
+                  },
+                ]}
+              />
+            </motion.div>
+          )}
         </TabPanel>
-        <TabPanel>32</TabPanel>
+
+        <TabPanel>
+          {activeTab == "tab2" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.8 },
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <ExpensesTable
+                headers={[
+                  { icon: FaUserTie, name: "اجار الصالات ", enName: "rent" },
+                  { icon: BsReceiptCutoff, name: "الضرائب ", enName: "bills" },
+                ]}
+              />
+            </motion.div>
+          )}
+        </TabPanel>
       </TabPanels>
     </Tabs>
   );
