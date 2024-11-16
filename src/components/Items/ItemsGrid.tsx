@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Icon, SimpleGrid, Text, useDisclosure } from "@chakra-ui/react";
 import ItemCard from "./ItemCard";
 
 import OIP from "../../assets/OIP.jpg";
@@ -12,6 +12,8 @@ import ItemDetailsDrawer from "./ItemDetailsDrawer";
 import CustomerItemsDrawerHeader from "../Customer/CustomerItemsDrawerHeader";
 import CustomModal from "../Modal";
 import GroupForm from "./GroupForm";
+import useBillGroupStore from "../../stores/BillGroupStore";
+import { GiCheckMark } from "react-icons/gi";
 
 interface Props {
   width: number;
@@ -28,7 +30,7 @@ export const items = [
     items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
-    name: "غرفة نوم",
+    name: "1غرفة نوم",
     discription:
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln asjx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln        asjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP],
@@ -44,7 +46,7 @@ export const items = [
     items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
-    name: "غرفة نوم",
+    name: "2غرفة نوم",
     discription:
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajs        xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP, OIP1, OIP3, OIP4, OIP2],
@@ -60,7 +62,7 @@ export const items = [
     items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
-    name: "غرفة نوم",
+    name: "غرفة نوم3",
     discription:
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP, OIP1],
@@ -76,7 +78,7 @@ export const items = [
     items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
-    name: "غرفة نوم",
+    name: "4غرفة نوم",
     discription:
       " هايisd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
     images: [OIP, OIP1, OIP2],
@@ -92,7 +94,7 @@ export const items = [
     items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
   },
   {
-    name: "غرفة نوم",
+    name: "5غرفة نوم",
     discription:
       "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa",
     images: [OIP, OIP4, OIP1, OIP2],
@@ -126,11 +128,13 @@ const ItemsGrid = ({ width, height }: Props) => {
 
   const currentPathname = window.location.pathname;
 
+  const { groups, setGroups, removeGroup } = useBillGroupStore();
+
   return (
     <Box
       borderRadius={20}
       width={width}
-      height={currentPathname == "/dash/items"  ? height - 70 : "auto"}
+      height={currentPathname == "/dash/items" ? height - 70 : "auto"}
     >
       <SimpleGrid
         columns={
@@ -148,19 +152,53 @@ const ItemsGrid = ({ width, height }: Props) => {
         padding={10}
       >
         {items?.map((info, index) => (
-          <Box
-            key={index}
-            cursor="pointer"
-            _hover={{
-              transform: "scale(1.05)",
-              transition: "transform 0.3s ease",
-            }}
-            onClick={() => {
-              onOpen();
-              setCurrentItem(info);
-            }}
-          >
-            <ItemCard images={info.images} name={info.name} />
+          <Box mt={8}>
+            {!isOpen && currentPathname == "/chooseGroup" && (
+              <span
+                style={{
+                  zIndex: 99999,
+                  display: "inline-block",
+                  position: "sticky",
+                }}
+              >
+                <Icon
+                  cursor={"pointer"}
+                  as={GiCheckMark}
+                  p={0.5}
+                  bgColor={"white"}
+                  borderRadius={50}
+                  boxSize={7}
+                  color={
+                    groups?.some((group) => group.name === info.name)
+                      ? "green.300"
+                      : "white"
+                  }
+                  boxShadow={"lg"}
+                  borderWidth={"2px"}
+                  borderColor={"gray.200"}
+                  onClick={() => {
+                    groups?.some((group) => group.name === info.name)
+                      ? removeGroup(info)
+                      : setGroups(info);
+                  }}
+                />
+              </span>
+            )}
+            <Box
+            mt={-8}
+              key={index}
+              cursor="pointer"
+              _hover={{
+                transform: "scale(1.05)",
+                transition: "transform 0.3s ease",
+              }}
+              onClick={() => {
+                onOpen();
+                setCurrentItem(info);
+              }}
+            >
+              <ItemCard images={info.images} name={info.name} />
+            </Box>
           </Box>
         ))}
       </SimpleGrid>

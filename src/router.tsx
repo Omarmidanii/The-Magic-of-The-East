@@ -12,11 +12,17 @@ import ReportPage from "./pages/ReportPage";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import ChooseBillGroups from "./pages/ChooseBillGroups";
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/chooseGroup",
+    element: <ChooseBillGroups />,
     errorElement: <ErrorPage />,
   },
   {

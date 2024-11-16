@@ -53,8 +53,8 @@ export const sampleData: DataItem[] = [
     ],
     rent: 7000,
     rentDetails: [
-      { name: "الصالة الثانية", value: 2000 },
-      { name: "الصالة الاولى", value: 2000 },
+      { name: "الصالة الثانية", value: 2000000 },
+      { name: "الصالة الاولى", value: 2000000 },
     ],
   },
   {

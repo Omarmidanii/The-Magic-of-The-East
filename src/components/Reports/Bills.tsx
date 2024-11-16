@@ -12,6 +12,10 @@ import BillsTable from "./BillsTable";
 import bill from "../../entities/bill";
 import BillDetails from "./BillDetails";
 import SearchBy from "./SearchBy";
+import CustomModal from "../Modal";
+import AddBill from "./AddBill";
+import useBillGroupStore from "../../stores/BillGroupStore";
+import { useEffect } from "react";
 
 const bills: bill[] = [
   { id: 54546, customerName: "زلمة", date: "2025/10/20" },
@@ -30,6 +34,19 @@ const Bills = () => {
   const { height } = resizeWindow();
   const { isOpen: isOpen1, onToggle: onToggle1 } = useDisclosure();
   const { isOpen: isOpen2, onToggle: onToggle2 } = useDisclosure();
+
+  const { groups } = useBillGroupStore();
+  const {
+    isOpen: isOpenAddBill,
+    onClose: onCloseAddBill,
+    onOpen: onOpenAddBill,
+  } = useDisclosure();
+
+  useEffect(() => {
+    if (groups?.length && groups?.length > 0 && !isOpenAddBill) {
+      onOpenAddBill();
+    }
+  }, []);
 
   return (
     <Box w={"98%"} h={Math.max(height - 130, 400)} mt={4} mr={4}>
@@ -50,8 +67,12 @@ const Bills = () => {
             الفواتير:
           </Text>
           <HStack spacing={4} mt={{ base: 2, md: 0 }}>
-            <SearchBy/>
-            <Button colorScheme="green" borderRadius={20}>
+            <SearchBy />
+            <Button
+              colorScheme="green"
+              borderRadius={20}
+              onClick={() => onOpenAddBill()}
+            >
               إضافة فاتورة
             </Button>
           </HStack>
@@ -91,6 +112,14 @@ const Bills = () => {
           <BillDetails BillId={2} onToggle={onToggle2} onToggle2={onToggle1} />
         </Collapse>
       </Box>
+      <CustomModal
+        buttonLabel="اضافة مصروف للصالة"
+        isOpen={isOpenAddBill}
+        onClose={onCloseAddBill}
+        color={"white"}
+      >
+        <AddBill onCloseAll={onCloseAddBill} />
+      </CustomModal>
     </Box>
   );
 };

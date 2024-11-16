@@ -12,14 +12,16 @@ import {
 import { FaUser } from "react-icons/fa";
 import EmployerInfo from "./EmployerInfo";
 
-const EmployersTabel = () => {
-  const data = [
+export const data = [
     { firstname: "عمر" , lastname : "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" , position : "مدير صالة" , salary : "1000000" },
     { firstname: "غنى", lastname : "الحرش" , phone: "963996681459+", address: "مشروع دمر" , position : "مديرة صالة" , salary : "2000000" },
     { firstname: "عمر" , lastname : "الميداني", phone: "963938625359+", address: "ضاحية قدسيا" , position : "مدير صالة" , salary : "1000000" },
     { firstname: "غنى", lastname : "الحرش" , phone: "963996681459+", address: "مشروع دمر" , position : "مديرة صالة" , salary : "2000000" },
    
   ];
+
+const EmployersTabel = () => {
+  
   const textAlign = "right";
   return (
     <TableContainer>
