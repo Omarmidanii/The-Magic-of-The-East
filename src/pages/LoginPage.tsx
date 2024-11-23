@@ -1,7 +1,8 @@
+import { Box, Image, Stack, Text, Tooltip } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import Logo from "../assets/logo.png";
 import login from "../assets/login.jpg";
-import { Box, Image, Input, Stack, Text, Tooltip } from "@chakra-ui/react";
+import Logo from "../assets/logo.png";
+import LoginForm from "../components/Login/LoginForm";
 import { RED } from "../constants";
 const LoginPage = () => {
   document.dir = "lft";
@@ -61,27 +62,7 @@ const LoginPage = () => {
               <br />
               الرجاء تسجيل الدخول في حالة كنت مدير الصالة فقط
             </Text>
-            <Input
-              pr={8}
-              sx={{
-                direction: "ltr",
-                textAlign: "right",
-              }}
-              bgColor={"gray.100"}
-              placeholder="البريد الالكتروني"
-              mt={16}
-            />
-            <Input
-              pr={8}
-              type="password"
-              sx={{
-                direction: "ltr",
-                textAlign: "right",
-              }}
-              bgColor={"gray.100"}
-              placeholder="كلمة السر"
-              mt={8}
-            />
+            <LoginForm />
           </Box>{" "}
         </Box>
       }
