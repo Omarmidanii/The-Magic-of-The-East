@@ -13,6 +13,7 @@ import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ChooseBillGroups from "./pages/ChooseBillGroups";
+import PrivateRoute from "./services/AuthenticationCheck";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +47,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dash",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
