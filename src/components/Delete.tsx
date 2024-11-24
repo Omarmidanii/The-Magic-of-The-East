@@ -11,51 +11,50 @@ import {
   IconButton,
   Box,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
-//import useDelete from "../hooks/useDelete";
+import { useEffect, useRef, useState } from "react";
 import { FaTrash } from "react-icons/fa";
-import ReactPlayer from "react-player";
-import check from "../assets/check.mp4";
+import useDelete from "../hooks/useDelete";
 
 interface Props {
   ID: number;
+  refetch?:()=>void;
   endpoint: string;
   type: string;
   showText?: boolean;
 }
 
-function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
+function CustomDelete({ ID,refetch=(()=>{}), endpoint, type, showText = true }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = useRef(null);
-  /*const showAlert = () => {
-    swal({
-      title: "هل أنت متأكد؟",
-      text: "في حال حذف هذا العنصر لن تتمكن من استعادته!",
-      icon: "warning",
-      buttons:['إلغاء', 'حذف'],
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-      } else {
-        swal("Your imaginary file is safe!");
-      }
-    });
-  };*/
 
-  //const Delete = useDelete(ID, target , target2);
-  // const handleDelete = () => {
-  //   Delete.mutate({
-  //     _method: "DELETE",
-  //   });
-  // };
+  const showAlert = () => {
+    swal({
+      text: "تم الحذف بنجاح!",
+      icon: "success",
+    });
+  };
+
+  const Delete = useDelete(ID, endpoint);
+  const handleDelete = () => {
+    Delete.mutate({
+      _method: "DELETE",
+    });
+  };
   // if (Delete.isLoading) {
   //   if (isOpen == true) onClose();
   //   return <Spinner />;
   // }
+
+  useEffect(() => {
+    
+    if(Delete.isSuccess){
+      showAlert();
+      onClose();
+      refetch();
+    }
+  }, [Delete.isSuccess]);
+  
   return (
     <Box>
       {type === "Button" && (
@@ -97,14 +96,6 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              {/*<ReactPlayer
-                url={check}
-                playing
-                loop
-                controls={false}
-                width="70%"
-                height="70%"
-              />*/}
               {"هل انت متاكد من حذف هذا العنصر؟"}
             </AlertDialogBody>
 
@@ -112,7 +103,7 @@ function CustomDelete({ ID, endpoint, type, showText = true }: Props) {
               <Button ref={cancelRef} onClick={onClose}>
                 {"الغاء"}
               </Button>
-              <Button colorScheme="red" mr={3}>
+              <Button colorScheme="red" mr={3} onClick={()=>{handleDelete(); console.log('njkbjm')}}>
                 {"حذف"}
               </Button>
             </AlertDialogFooter>

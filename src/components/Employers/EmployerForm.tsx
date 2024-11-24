@@ -159,7 +159,7 @@ const EmployerForm = ({ onClose }: Props) => {
           type="submit"
           marginTop={8}
           borderRadius={"10"}
-          onClick={showAlert}
+          onClick={()=>showAlert()}
         >
           {"اضافة"}
         </Button>

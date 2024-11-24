@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   Image,
+  Input,
   Select,
   Stack,
   Text,
@@ -84,7 +85,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
           <Icon as={LuSofa} mb={-1} ml={2} /> إضافة مجموعة للفاتورة
         </Button>
       </Link>
-      <Stack mt={5} maxH={120} overflow={'auto'}>
+      <Stack mt={5} mb={-4} maxH={140} overflow={'auto'}>
         {groups?.map((val, index) => (
           <HStack key={index}>
             <Icon
@@ -103,6 +104,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
           </HStack>
         ))}
       </Stack>
+      <HStack mt={8} pl={2}><Text w={36}>إجمالي المبيع:</Text><Input placeholder="000,000,000"/></HStack>
       <Divider mt={8} mb={-1} />
       <Button
         mb={8}
@@ -130,7 +132,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
         type="submit"
         marginTop={8}
         borderRadius={"10"}
-        onClick={() => onClose()}
+        onClick={() => onCloseAll()}
       >
         {"الغاء"}
       </Button>

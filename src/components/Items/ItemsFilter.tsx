@@ -14,21 +14,6 @@ import ItemsColorFilter from "./itemsColorFilter";
 import ItemsSizesFilter from "./ItemsSizesFilter";
 import resizeWindow from "../../services/resizeWindow";
 
-export interface colorProperties {
-  base: string;
-  border: string;
-  checked: boolean;
-}
-
-export const colors: Record<string, colorProperties> = {
-  yellow: { base: "yellow", border: "#FFD700", checked: false },
-  blue: { base:   "blue.500", border: "#1E3A8A", checked: true },
-  orange: { base: "orange", border: "#FF4500", checked: false },
-  pink: { base:   "pink", border: "#FF78BF", checked: true },
-  red: { base:    "red.500", border: "#B22222", checked: false },
-  gray: { base:   "gray", border: "#63666A", checked: true },
-  green: { base: "green", border: "#63666A", checked: true },
-};
 
 const ItemsFilter = () => {
   const { width } = resizeWindow();
@@ -59,7 +44,7 @@ const ItemsFilter = () => {
       </PopoverTrigger>
       <PopoverContent mr={2} shadow={"xl"}>
         <PopoverBody m={2}>
-          <ItemsColorFilter colors={colors} filter={true} />
+          <ItemsColorFilter checkedColors={[2,4,5,7]} filter={true} />
           <br />
           <ItemsSizesFilter name="الطول :" max={400} />
           <ItemsSizesFilter name="العرض :" max={200} />
