@@ -17,23 +17,26 @@ class APIClient<T> {
   constructor(endPoint: string) {
     this.endPoint = endPoint;
   }
-  get = (config: AxiosRequestConfig) => {
-    return axiosInstance.get<T>(this.endPoint, config).then((res) => res.data);
+  get = async (config: AxiosRequestConfig) => {
+    const res = await axiosInstance.get<T>(this.endPoint, config);
+    return res.data;
   };
-  post = <D>(data: D) => {
-    return axiosInstance.post<T>(this.endPoint, data).then((res) => res.data);
+  post = async <D>(data: D) => {
+    const res = await axiosInstance.post<T>(this.endPoint, data);
+    return res.data;
   };
 
-  put = <D>(data : D) => {
-    return axiosInstance.put<T>(this.endPoint , data).then((res) => res.data);
-  }
-  delete = () => {
-    return axiosInstance.delete<T>(this.endPoint).then((res) => res.data);
-  }
-  getWithId = (id: number | undefined) => {
-    return axiosInstance
-      .get<T>(this.endPoint + "/" + id)
-      .then((res) => res.data);
+  put = async <D>(data: D) => {
+    const res = await axiosInstance.put<T>(this.endPoint, data);
+    return res.data;
+  };
+  delete = async () => {
+    const res = await axiosInstance.delete<T>(this.endPoint);
+    return res.data;
+  };
+  getWithId = async (id: number | undefined) => {
+    const res = await axiosInstance.get<T>(this.endPoint + "/" + id);
+    return res.data;
   };
 }
 
