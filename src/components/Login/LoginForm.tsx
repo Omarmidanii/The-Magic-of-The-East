@@ -97,8 +97,8 @@ const LoginForm = () => {
           <HStack placeContent={"center"}>
             <Button
               mb={4}
-              bgColor={"#228822"}
-              _hover={{ bgColor: "#117711" }}
+              bgColor={"red.600"}
+              _hover={{ bgColor: "#AA0000" }}
               color={"white"}
               width="30%"
               boxShadow={"lg"}
