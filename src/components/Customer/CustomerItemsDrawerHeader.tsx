@@ -1,4 +1,4 @@
-import { Button, HStack, IconButton, Text } from "@chakra-ui/react";
+import { HStack, IconButton, Text } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import CustomDelete from "../Delete";
 
