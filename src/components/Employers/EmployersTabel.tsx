@@ -17,7 +17,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import useFetchEmplyees from "../../hooks/useFetchEmplyees";
 import React from "react";
 import loading from "../../assets/loading.mp4";
-import resizeWindow from "../../services/resizeWindow";
 import ReactPlayer from "react-player";
 
 export const data = [
@@ -58,34 +57,37 @@ export const data = [
 const EmployersTabel = () => {
   const textAlign = "right";
 
-  const { data,refetch, error, isLoading, fetchNextPage, hasNextPage } =
+  const { data, refetch, error, isLoading, fetchNextPage, hasNextPage } =
     useFetchEmplyees();
   const fetchedBranchesCount =
     data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
 
-  const { height } = resizeWindow();
 
   return (
-    <Box h={height - 200} overflowY={"auto"} px={4} py={2}>
-      <InfiniteScroll
-        dataLength={fetchedBranchesCount}
-        hasMore={!!hasNextPage}
-        next={() => fetchNextPage()}
-        loader={
-          <Stack placeItems={"center"} my={5}>
-            <ReactPlayer
-              url={loading}
-              playing
-              loop
-              controls={false}
-              width="7%"
-              height="7%"
-              muted
-            />{" "}
-          </Stack>
-        }
+      <TableContainer
+        id="scrollableTable"
+        overflowY={"auto"}
+        maxH={window.innerHeight / 1.36}
       >
-        <TableContainer >
+        <InfiniteScroll
+          dataLength={fetchedBranchesCount}
+          hasMore={hasNextPage}
+          next={() => fetchNextPage()}
+          loader={
+            <Stack placeItems={"center"} my={5}>
+              <ReactPlayer
+                url={loading}
+                playing
+                loop
+                controls={false}
+                width="7%"
+                height="7%"
+                muted
+              />{" "}
+            </Stack>
+          }
+          scrollableTarget="scrollableTable"
+        >
           <Table>
             <Thead>
               <Tr>
@@ -130,9 +132,8 @@ const EmployersTabel = () => {
               ))}
             </Tbody>
           </Table>
-        </TableContainer>
-      </InfiniteScroll>
-    </Box>
+        </InfiniteScroll>
+      </TableContainer>
   );
 };
 

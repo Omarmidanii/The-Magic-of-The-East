@@ -23,7 +23,7 @@ import CustomDelete from "../Delete";
 import { useEffect, useState } from "react";
 import useEditEmployee from "../../hooks/useEditEmployee";
 import swal from "sweetalert";
-import useDEleteEmployee from "../../hooks/useDEleteEmployee";
+import useErrorStore from "../../stores/errorStore";
 
 interface Props {
   employer: employer;
@@ -34,19 +34,26 @@ const EmployerInfo = ({ employer, fun }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(employer);
   const Edit = useEditEmployee(employer.id ? employer.id : 0);
-  const [deleteID, setDeleteID] = useState(-1);
-  const deleteEmp = useDEleteEmployee(deleteID);
+  const { message } = useErrorStore();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const showAlert = () => {
+  const showAlert = (type: "suc" | "err") => {
     swal({
       title: "تعديل" + employer.firstname,
-      text: "تم التعديل بنجاح!",
-      icon: "success",
+      text:
+        type == "suc"
+          ? "تم التعديل بنجاح!"
+          : (message?.firstname && message?.firstname[0]) ||
+            (message?.lastname && message?.lastname[0]) ||
+            (message?.phonenumber && message?.phonenumber[0]) ||
+            (message?.position && message?.position[0]) ||
+            (message?.salary && message?.salary[0]) ||
+            "حدث خطأ اثناء التعديل الرجاء المحاولة لاحقا",
+      icon: type == "suc" ? "success" : "error",
     });
   };
 
@@ -57,10 +64,13 @@ const EmployerInfo = ({ employer, fun }: Props) => {
 
   useEffect(() => {
     if (Edit.isSuccess) {
-      showAlert();
       fun();
+      showAlert("suc");
     }
-  }, [Edit.isPending]);
+    if (Edit.error) {
+      showAlert("err");
+    }
+  }, [Edit.isSuccess, Edit.error]);
 
   return (
     <Popover>
@@ -90,7 +100,7 @@ const EmployerInfo = ({ employer, fun }: Props) => {
                   onChange={handleInputChange}
                 />
                 <Input
-                  name="phone"
+                  name="phonenumber"
                   value={formData.phonenumber}
                   onChange={handleInputChange}
                 />
@@ -142,7 +152,12 @@ const EmployerInfo = ({ employer, fun }: Props) => {
         </PopoverBody>
         <PopoverFooter>
           <Box>
-            <CustomDelete ID={employer.id || -1} refetch={fun} endpoint="employees" type="Button" />
+            <CustomDelete
+              ID={employer.id || -1}
+              refetch={fun}
+              endpoint="employees"
+              type="Button"
+            />
             {isEditing ? (
               <Button onClick={handleSave} colorScheme="blue" mr={2}>
                 حفظ

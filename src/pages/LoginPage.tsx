@@ -4,9 +4,11 @@ import login from "../assets/login.jpg";
 import Logo from "../assets/logo.png";
 import LoginForm from "../components/Login/LoginForm";
 import { RED } from "../constants";
+import resizeWindow from "../services/resizeWindow";
 const LoginPage = () => {
   document.dir = "lft";
   const navigate = useNavigate();
+  const { width } = resizeWindow();
   return (
     <Stack
       position="relative"
@@ -23,6 +25,7 @@ const LoginPage = () => {
           bgSize={"cover"}
           bgImage={login}
           boxSize={740}
+          h={"100%"}
           width={"100%"}
           zIndex={1}
           position="absolute"
@@ -42,19 +45,24 @@ const LoginPage = () => {
               onClick={() => navigate("/")}
             />
           </Tooltip>
-          <Box boxSize={500} mt={16} ml={16}>
+          <Box boxSize={{ md: 500, base: "70%" }} mt={16} ml={16}>
             <Text
               color={"white"}
               placeSelf={"center"}
               fontFamily="Noto"
               fontSize={18}
+              sx={{
+                direction: "ltr",
+                textAlign: "right",
+              }}
             >
               <b
                 style={{
                   fontSize: 50,
-                  marginLeft: 70,
+                  marginRight: width > 600 ? 60 : 2,
                   color: "white",
                   fontFamily: "Beiruti",
+                  lineHeight: width > 308 ? 1.5 : 1.1,
                 }}
               >
                 ! أهلا بعودتك
