@@ -3,7 +3,7 @@ import { Box, Input, Text } from "@chakra-ui/react";
 const AddoOtherExpenses = () => {
   return (
     <div>
-      <Box p={5} mt={8}>
+      <Box p={5} mt={7}>
         <Text mb={3}>اسم المصروف:</Text>
         <Input mb={5} placeholder="الاسم" />
         <Text mb={2}>القيمة:</Text>

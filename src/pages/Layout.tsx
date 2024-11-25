@@ -6,7 +6,7 @@ import resizeWindow from "../services/resizeWindow";
 
 export const Layout = () => {
   document.dir = "rtl";
-  const {height}=resizeWindow();
+  const { height, width } = resizeWindow();
   return (
     <Grid
       templateAreas={`
@@ -15,10 +15,7 @@ export const Layout = () => {
       `}
       bg={YALLOW}
     >
-      <GridItem 
-        area={"nav"} 
-        w={"100%"}
-      >
+      <GridItem area={"nav"} w={"100%"} overflow={"hidden"}>
         <NavBar />
       </GridItem>
 
@@ -26,7 +23,9 @@ export const Layout = () => {
         area={"main"}
         maxHeight={"100%"}
         overflowY={"hidden"}
-        height={height-100 }
+        overflowX={"hidden"}
+        height={height - 120}
+        w={width}
         borderTopRadius={60}
         bg={"white"}
       >

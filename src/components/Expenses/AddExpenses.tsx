@@ -85,9 +85,9 @@ const AddExpenses = ({ onClose = () => {} }: Props) => {
       <Collapse in={value != "1"} transition={{ enter: { delay: 0.2 } }}>
         <AddoOtherExpenses />
       </Collapse>
-      <Divider mt={8} mb={-1} />
+      <Divider mt={7} mb={-1} />
       <Button
-        mb={8}
+        mb={6}
         bgColor={"#228822"}
         _hover={{ bgColor: "#117711" }}
         color={"white"}
@@ -101,7 +101,7 @@ const AddExpenses = ({ onClose = () => {} }: Props) => {
         {"اضافة"}
       </Button>
       <Button
-        mb={8}
+        mb={6}
         _hover={{ bgColor: "#EEEEEE" }}
         width="30%"
         bgColor={"white"}

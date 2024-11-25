@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, Text } from "@chakra-ui/react";
+import { Button, FormControl, HStack, Input, Text } from "@chakra-ui/react";
 import { ErrorMessage, Field, Formik } from "formik";
 import { Form, useNavigate } from "react-router-dom";
 import User from "../../entities/user";
@@ -31,6 +31,18 @@ const LoginForm = () => {
     navigate("/dash");
     return <></>;
   }
+
+  const showAlert = () => {
+    swal({
+      text:
+        message?.message || "حدث خطأ اثناء تسجيل الدخول الرجاء المحاولة لاحقا",
+      icon: "error",
+    });
+  };
+
+  if (Login.error?.message.substring(32, 35) == "404") {
+    showAlert();
+  }
   return (
     <Formik
       initialValues={{
@@ -42,7 +54,6 @@ const LoginForm = () => {
     >
       {({ submitForm }) => (
         <Form>
-          <Text textColor={"red"}>{Login.isError ? message?.message : ""}</Text>
           <FormControl my={4} id="email">
             <Field
               pr={8}
@@ -62,7 +73,7 @@ const LoginForm = () => {
               {(msg) => <Text color="red.500">{msg}</Text>}
             </ErrorMessage>
           </FormControl>
-          <FormControl my={4} id="password">
+          <FormControl my={0} id="password">
             <Field
               pr={8}
               as={Input}
@@ -74,7 +85,7 @@ const LoginForm = () => {
               }}
               bgColor={"gray.100"}
               placeholder="كلمة السر"
-              mt={8}
+              mt={2}
             />
             <Text textColor={"red"} mb={15}>
               {Login.isError ? message?.password : ""}
@@ -83,19 +94,21 @@ const LoginForm = () => {
               {(msg) => <Text color="red.500">{msg}</Text>}
             </ErrorMessage>
           </FormControl>
-          <Button
-            mb={4}
-            bgColor={"#228822"}
-            _hover={{ bgColor: "#117711" }}
-            color={"white"}
-            width="30%"
-            boxShadow={"lg"}
-            onClick={submitForm}
-            marginTop={8}
-            borderRadius={"10"}
-          >
-            {Login.isPending ? "يتم التسجيل..." : "تسجيل الدخول"}
-          </Button>
+          <HStack placeContent={"center"}>
+            <Button
+              mb={4}
+              bgColor={"#228822"}
+              _hover={{ bgColor: "#117711" }}
+              color={"white"}
+              width="30%"
+              boxShadow={"lg"}
+              onClick={submitForm}
+              marginTop={8}
+              borderRadius={"10"}
+            >
+              {Login.isPending ? "يتم التسجيل..." : "تسجيل الدخول"}
+            </Button>
+          </HStack>
         </Form>
       )}
     </Formik>

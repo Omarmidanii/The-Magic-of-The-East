@@ -13,7 +13,6 @@ import { RxCross2 } from "react-icons/rx";
 import { HiOutlinePhotograph } from "react-icons/hi";
 import useGroupImagesStore from "../../stores/GroupImagesStore";
 import ItemsColorFilter from "./itemsColorFilter";
-import { colors } from "./ItemsFilter";
 import SizesTable from "./SizesTable";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
 import { useRef, useState } from "react";
@@ -113,7 +112,7 @@ const GroupForm = ({ group = undefined }: Props) => {
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />
-      <ItemsColorFilter colors={colors} filter={false} />
+      <ItemsColorFilter checkedColors={[1,2,4,6,7]} filter={false} />
 
       <Text fontSize={16} mt={20} mb={4}>
         + ادخل قطعة جديدة:

@@ -5,6 +5,12 @@ interface errorMessage {
   password: string;
   message: string;
   password_confirmation: string;
+  salary: string;
+  position: string;
+  lastname: string;
+  firstname: string;
+  phonenumber: string;
+  address: string;
 }
 
 interface ErrorStore {
