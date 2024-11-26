@@ -1,5 +1,4 @@
 import {
-  Box,
   Icon,
   Show,
   Stack,
@@ -18,6 +17,7 @@ import useFetchEmplyees from "../../hooks/useFetchEmplyees";
 import React from "react";
 import loading from "../../assets/loading.mp4";
 import ReactPlayer from "react-player";
+import { Error } from "../Error";
 
 export const data = [
   {
@@ -57,8 +57,11 @@ export const data = [
 const EmployersTabel = () => {
   const textAlign = "right";
 
-  const { data, refetch, error, isLoading, fetchNextPage, hasNextPage } =
+  const { data, refetch,error, fetchNextPage, hasNextPage } =
     useFetchEmplyees();
+
+  if (error) return <Error message={error.message} />;
+
   const fetchedBranchesCount =
     data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
 
@@ -80,11 +83,16 @@ const EmployersTabel = () => {
                 playing
                 loop
                 controls={false}
-                width="7%"
-                height="7%"
+                width="88px"
+                height="88px"
                 muted
               />{" "}
             </Stack>
+          }
+          endMessage={
+            <p style={{ textAlign: "center", marginBottom:20, marginTop:20 }}>
+              <b>لا يوجد موظفين اكثر للتحميل</b>
+            </p>
           }
           scrollableTarget="scrollableTable"
         >

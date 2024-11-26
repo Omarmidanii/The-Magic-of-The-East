@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  HStack,
   Icon,
   Input,
   Popover,
@@ -121,7 +122,7 @@ const EmployerInfo = ({ employer, fun }: Props) => {
                 />
               </Stack>
             ) : (
-              <Box>
+              <Box w={250} overflowX={"auto"}>
                 <Text pb={2}>
                   <Icon as={FaUser} ml={2} />
                   {employer.firstname}
@@ -134,10 +135,10 @@ const EmployerInfo = ({ employer, fun }: Props) => {
                   <Icon as={BsPhone} ml={2} />
                   {employer.phonenumber}
                 </Text>
-                <Text pb={2}>
+                <Box pb={2} w={250}>
                   <Icon as={MdLocationOn} ml={2} />
                   {employer.address}
-                </Text>
+                </Box>
                 <Text pb={2}>
                   <Icon as={PiRankingBold} ml={2} />
                   {employer.position}
@@ -151,7 +152,7 @@ const EmployerInfo = ({ employer, fun }: Props) => {
           </Box>
         </PopoverBody>
         <PopoverFooter>
-          <Box>
+          <HStack>
             <CustomDelete
               ID={employer.id || -1}
               refetch={fun}
@@ -165,14 +166,14 @@ const EmployerInfo = ({ employer, fun }: Props) => {
             ) : (
               <Button
                 onClick={() => setIsEditing(true)}
-                leftIcon={<FaEdit />}
+                leftIcon={<FaEdit size={17} />}
                 colorScheme="blue"
-                mr={2}
-              >
-                تعديل
-              </Button>
+                h={8}
+                px={-2}
+                pr={1}
+              />
             )}
-          </Box>
+          </HStack>
         </PopoverFooter>
       </PopoverContent>
     </Popover>

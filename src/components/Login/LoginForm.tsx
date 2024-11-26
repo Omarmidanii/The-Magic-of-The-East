@@ -26,8 +26,10 @@ const LoginForm = () => {
   };
 
   if (Login.isSuccess) {
-    if (Login.data.data.access_token)
+    if (Login.data.data.access_token) {
       localStorage.setItem("token", Login.data.data.access_token);
+      console.log(Login.data.data.access_token)
+    }
     navigate("/dash");
     return <></>;
   }

@@ -35,6 +35,17 @@ const GroupForm = ({ group = undefined }: Props) => {
   const refD = useRef<HTMLInputElement>(null);
   const refName = useRef<HTMLInputElement>(null);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData();
+    images?.forEach((image, index) => {
+      formData.append(`images[]`, image);
+    });
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+  };
+
   return (
     <div>
       <Stack>
@@ -112,7 +123,7 @@ const GroupForm = ({ group = undefined }: Props) => {
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />
-      <ItemsColorFilter checkedColors={[1,2,4,6,7]} filter={false} />
+      <ItemsColorFilter checkedColors={[1, 2, 4, 6, 7]} filter={false} />
 
       <Text fontSize={16} mt={20} mb={4}>
         + ادخل قطعة جديدة:
@@ -156,6 +167,7 @@ const GroupForm = ({ group = undefined }: Props) => {
         إضافة
       </Button>
       <SizesTable items={items} newItem={true} />
+      <Button onClick={handleSubmit} />
     </div>
   );
 };

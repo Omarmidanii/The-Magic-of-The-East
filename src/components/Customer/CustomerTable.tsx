@@ -2,6 +2,7 @@ import {
   Icon,
   Show,
   Spinner,
+  Stack,
   Table,
   TableContainer,
   Tbody,
@@ -20,6 +21,8 @@ import { TableSkeleton } from "../Skeleton/TableSkeleton";
 import { Error } from "../Error";
 import InfiniteScroll from "react-infinite-scroll-component";
 import React from "react";
+import loading from "../../assets/loading.mp4";
+import ReactPlayer from "react-player";
 
 export const customers = [
   {
@@ -31,7 +34,7 @@ export const customers = [
 ];
 
 const CustomerTable = () => {
-  const { data, isLoading, error, fetchNextPage, hasNextPage } =
+  const { data, isLoading, error, fetchNextPage, refetch, hasNextPage } =
     useIndex<customer>("customers");
 
   if (isLoading) return <TableSkeleton />;
@@ -48,9 +51,21 @@ const CustomerTable = () => {
         dataLength={fetchedBranchesCount}
         next={fetchNextPage}
         hasMore={hasNextPage}
-        loader={<Spinner />}
+        loader={
+          <Stack placeItems={"center"} my={5}>
+            <ReactPlayer
+              url={loading}
+              playing
+              loop
+              controls={false}
+              width="7%"
+              height="7%"
+              muted
+            />{" "}
+          </Stack>
+        }
         endMessage={
-          <p style={{ textAlign: "center" }}>
+          <p style={{ textAlign: "center", marginBottom:20, marginTop:20 }}>
             <b>لا يوجد زبائن اكثر للتحميل</b>
           </p>
         }
@@ -103,7 +118,7 @@ const CustomerTable = () => {
                       <Td textAlign={"center"}>{customer.address}</Td>
                     </Show>
                     <Td paddingX={4}>
-                      <CustomerItemsDrawer customer={customer} />
+                      <CustomerItemsDrawer customer={customer} fun={refetch} />
                     </Td>
                   </Tr>
                 ))}

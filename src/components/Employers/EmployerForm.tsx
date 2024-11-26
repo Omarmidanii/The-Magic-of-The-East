@@ -55,6 +55,7 @@ const EmployerForm = ({ onClose }: Props) => {
           : (message?.firstname && message?.firstname[0]) ||
             (message?.lastname && message?.lastname[0]) ||
             (message?.phonenumber && message?.phonenumber[0]) ||
+            (message?.address && message?.address[0]) ||
             (message?.position && message?.position[0]) ||
             (message?.salary && message?.salary[0]) ||
             "حدث خطأ اثناء اضافة الموظف الرجاء المحاولة لاحقا",
@@ -222,7 +223,6 @@ const EmployerForm = ({ onClose }: Props) => {
             borderColor={"gray.100"}
             boxShadow={"md"}
             mr={2}
-            type="submit"
             marginTop={8}
             borderRadius={"10"}
             onClick={() => onClose()}

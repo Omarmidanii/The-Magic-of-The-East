@@ -1,9 +1,4 @@
-import {
-  Box,
-  IconButton,
-  useColorMode,
-  useDisclosure
-} from "@chakra-ui/react";
+import { Box, IconButton, useColorMode, useDisclosure } from "@chakra-ui/react";
 import { FaArrowLeft } from "react-icons/fa";
 import customer from "../../entities/customer";
 import CustomDrawer from "../Drawer";
@@ -14,11 +9,13 @@ import CustomerItemsDrawerHeader from "./CustomerItemsDrawerHeader";
 
 interface Props {
   customer: customer;
+  fun: () => {};
 }
 
-const CustomerItemsDrawer = ({ customer }: Props) => {
+const CustomerItemsDrawer = ({ customer, fun }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: IsOpen, onClose: OnClose, onOpen: OnOpen } = useDisclosure();
+  console.log(customer);
 
   const { colorMode } = useColorMode();
   return (
@@ -40,7 +37,10 @@ const CustomerItemsDrawer = ({ customer }: Props) => {
         onClose={onClose}
         body={<CustomerItemIDrawerBody customer={customer} />}
         header={
-          <CustomerItemsDrawerHeader name={customer.firstname + " " + customer.lastname} OnOpen={OnOpen} />
+          <CustomerItemsDrawerHeader
+            name={customer.firstname + " " + customer.lastname}
+            OnOpen={OnOpen}
+          />
         }
       />
       <CustomModal
@@ -49,7 +49,13 @@ const CustomerItemsDrawer = ({ customer }: Props) => {
         onClose={OnClose}
         color={"gray.100"}
       >
-        <CustomerForm />
+        <CustomerForm
+          customer={customer}
+          onClose={() => {
+            fun();
+            OnClose();
+          }}
+        />
       </CustomModal>
     </Box>
   );

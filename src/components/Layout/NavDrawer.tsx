@@ -91,6 +91,7 @@ function NavDrawer() {
                         color={"white"}
                         className="button-hover"
                         textColor={"black"}
+                        onClick={onClose}
                       >
                         {t(name)}
                       </Button>
