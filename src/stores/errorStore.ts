@@ -4,6 +4,7 @@ interface errorMessage {
   email: string;
   password: string;
   message: string;
+  images: string;
   password_confirmation: string;
   salary: string;
   position: string;

@@ -17,6 +17,8 @@ import SizesTable from "./SizesTable";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
 import { useRef, useState } from "react";
 import Group from "../../entities/group";
+import useCreate from "../../hooks/useCreate";
+import useErrorStore from "../../stores/errorStore";
 
 interface Props {
   group?: Group | undefined;
@@ -35,8 +37,34 @@ const GroupForm = ({ group = undefined }: Props) => {
   const refD = useRef<HTMLInputElement>(null);
   const refName = useRef<HTMLInputElement>(null);
 
+  const { message } = useErrorStore();
+
+  const create = useCreate<Group, FormData>("groups");
+
+  const onSubmit = () => {
+    const data = new FormData();
+    images?.forEach((image) => {
+      data.append(`images[]`, image);
+    });
+    data.append("name", "omar");
+    data.append("description", "sanas");
+    data.append("colors[]", "1");
+    data.append("classification_id", "2");
+    items?.forEach((item, index) => {
+      data.append(`items[${index}][name]`, item.name);
+      data.append(`items[${index}][height]`, item.sizes["height"].toString());
+      data.append(`items[${index}][width]`, item.sizes["width"].toString());
+      data.append(`items[${index}][depth]`, item.sizes["depth"].toString());
+    });
+    console.log(data);
+    create.mutate(data);
+  };
+  if (create.isSuccess) {
+    console.log(create.data);
+  }
   return (
     <div>
+      {create.isError ? <Text color={"red"}>{message?.images}</Text> : ""}
       <Stack>
         {group?.images?.map((img, index) => (
           <HStack key={index}>
@@ -112,7 +140,7 @@ const GroupForm = ({ group = undefined }: Props) => {
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />
-      <ItemsColorFilter checkedColors={[1,2,4,6,7]} filter={false} />
+      <ItemsColorFilter checkedColors={[1, 2, 4, 6, 7]} filter={false} />
 
       <Text fontSize={16} mt={20} mb={4}>
         + ادخل قطعة جديدة:
@@ -146,9 +174,9 @@ const GroupForm = ({ group = undefined }: Props) => {
           setItems({
             name: refName.current?.value || "",
             sizes: {
-              الطول: Number(refH.current?.value) || 0,
-              العرض: Number(refW.current?.value) || 0,
-              العمق: Number(refD.current?.value) || 0,
+              height: Number(refH.current?.value) || 0,
+              width: Number(refW.current?.value) || 0,
+              depth: Number(refD.current?.value) || 0,
             },
           })
         }
@@ -156,6 +184,7 @@ const GroupForm = ({ group = undefined }: Props) => {
         إضافة
       </Button>
       <SizesTable items={items} newItem={true} />
+      <Button onClick={onSubmit}>Create</Button>
     </div>
   );
 };
