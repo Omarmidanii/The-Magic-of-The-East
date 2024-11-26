@@ -1,9 +1,8 @@
 import employer from "../entities/employer";
-import useCreate from "./useCreate"
+import useCreate from "./useCreate";
 
 const useCreateEmployee = () => {
-  return useCreate<employer, FormData>('employees');
+  return useCreate<employer, FormData>("employees");
+};
 
-}
-
-export default useCreateEmployee
+export default useCreateEmployee;

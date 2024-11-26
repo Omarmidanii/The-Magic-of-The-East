@@ -23,7 +23,8 @@ interface Props {
 const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
   const { message } = useErrorStore();
 
-  const form = customer? useUpdateCustomer(customer.id || -1)
+  const form = customer
+    ? useUpdateCustomer(customer.id || -1)
     : useCreateCustomer();
 
   const showAlert = (type: "suc" | "err") => {
@@ -48,15 +49,18 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
   };
 
   const onSubmit = (values: customer) => {
-    const data = new FormData();
-    if (values.firstname) data.append("firstname", values.firstname);
-    if (values.lastname) data.append("lastname", values.lastname);
-    if (values.phonenumber) data.append("phonenumber", values.phonenumber);
-    if (values.address) data.append("address", values.address);
-    for (let [key, value] of data.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-    form.mutate(data);
+    values.phonenumber == customer?.phonenumber
+      ? form.mutate({
+          firstname: values.firstname,
+          lastname: values.lastname,
+          address: values.address,
+        })
+      : form.mutate({
+          firstname: values.firstname,
+          lastname: values.lastname,
+          address: values.address,
+          phonenumber: values.phonenumber,
+        });
   };
 
   const Validation = yup.object().shape({
@@ -137,7 +141,7 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
               <Field
                 name="phonenumber"
                 as={Input}
-                type="text"
+                type="number"
                 placeholder="+963900000000"
                 _placeholder={{ color: "gray.600" }}
                 borderRadius={"10"}
@@ -179,7 +183,7 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
             borderRadius={"10"}
             onClick={submitForm}
           >
-            {"اضافة"}
+            {form.isPending ? "يتم الإضافة..." : " إضافة"}
           </Button>
           <Button
             mb={8}

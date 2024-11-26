@@ -1,7 +1,6 @@
 import {
   Icon,
   Show,
-  Spinner,
   Stack,
   Table,
   TableContainer,
@@ -24,11 +23,11 @@ import React from "react";
 import loading from "../../assets/loading.mp4";
 import ReactPlayer from "react-player";
 
-export const customers = [
+export const customers:customer[] = [
   {
     firstname: "عمر",
     lastname: "الميداني",
-    phone: "963938625359+",
+    phonenumber: "963938625359+",
     address: "ضاحية قدسيا",
   },
 ];

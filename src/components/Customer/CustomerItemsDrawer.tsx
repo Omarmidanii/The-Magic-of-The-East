@@ -38,6 +38,8 @@ const CustomerItemsDrawer = ({ customer, fun }: Props) => {
         body={<CustomerItemIDrawerBody customer={customer} />}
         header={
           <CustomerItemsDrawerHeader
+            id={customer.id || -1}
+            fun={fun}
             name={customer.firstname + " " + customer.lastname}
             OnOpen={OnOpen}
           />

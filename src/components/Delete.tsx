@@ -17,13 +17,19 @@ import useDelete from "../hooks/useDelete";
 
 interface Props {
   ID: number;
-  refetch?:()=>void;
+  refetch?: () => void;
   endpoint: string;
   type: string;
   showText?: boolean;
 }
 
-function CustomDelete({ ID,refetch=(()=>{}), endpoint, type, showText = true }: Props) {
+function CustomDelete({
+  ID,
+  refetch = () => {},
+  endpoint,
+  type,
+  showText = true,
+}: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = useRef(null);
@@ -47,14 +53,13 @@ function CustomDelete({ ID,refetch=(()=>{}), endpoint, type, showText = true }: 
   // }
 
   useEffect(() => {
-    
-    if(Delete.isSuccess){
+    if (Delete.isSuccess) {
       showAlert();
       onClose();
       refetch();
     }
   }, [Delete.isSuccess]);
-  
+
   return (
     <Box>
       {type === "Button" && (
@@ -103,8 +108,15 @@ function CustomDelete({ ID,refetch=(()=>{}), endpoint, type, showText = true }: 
               <Button ref={cancelRef} onClick={onClose}>
                 {"الغاء"}
               </Button>
-              <Button colorScheme="red" mr={3} onClick={()=>{handleDelete(); console.log('njkbjm')}}>
-                {"حذف"}
+              <Button
+                colorScheme="red"
+                mr={3}
+                onClick={() => {
+                  handleDelete();
+                  console.log("njkbjm");
+                }}
+              >
+                {Delete.isPending ? "جاري الحذف..." : "حذف"}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

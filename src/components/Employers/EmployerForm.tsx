@@ -132,7 +132,7 @@ const EmployerForm = ({ onClose }: Props) => {
               <Field
                 name="phonenumber"
                 as={Input}
-                type="text"
+                type="number"
                 placeholder="09XX XXX XXX"
                 _placeholder={{ color: "gray.500" }}
                 borderRadius={"10"}
@@ -189,7 +189,7 @@ const EmployerForm = ({ onClose }: Props) => {
                 fontFamily={"cursive"}
                 name="salary"
                 as={Input}
-                type="text"
+                type="number"
                 placeholder="الراتب"
                 _placeholder={{ color: "gray.500" }}
                 borderRadius={"10"}
@@ -212,7 +212,7 @@ const EmployerForm = ({ onClose }: Props) => {
             borderRadius={"10"}
             onClick={submitForm}
           >
-            {"اضافة"}
+            {create.isPending ? "يتم الإضافة..." : " إضافة"}
           </Button>
           <Button
             mb={4}

@@ -5,9 +5,11 @@ import CustomDelete from "../Delete";
 interface Props {
   OnOpen: () => void;
   name: string;
+  id?: number;
+  fun?: () => void;
 }
 
-const CustomerItemsDrawerHeader = ({ OnOpen, name }: Props) => {
+const CustomerItemsDrawerHeader = ({ OnOpen, name, fun, id }: Props) => {
   const handleEdit = () => {
     if (OnOpen) {
       OnOpen();
@@ -31,7 +33,13 @@ const CustomerItemsDrawerHeader = ({ OnOpen, name }: Props) => {
           textColor="white"
           _hover={{ bg: "blue.600" }}
         />
-        <CustomDelete ID={1} endpoint="2" type="Button" showText={false} />
+        <CustomDelete
+          ID={id || -1}
+          refetch={fun}
+          endpoint="customers"
+          type="Button"
+          showText={false}
+        />
       </HStack>
     </HStack>
   );
