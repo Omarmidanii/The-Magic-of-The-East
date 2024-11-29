@@ -1,7 +1,7 @@
 import { Box, Button, HStack, Icon, Stack, Text } from "@chakra-ui/react";
+import { FaMoneyBillWave } from "react-icons/fa";
+import { FaMoneyBillTrendUp, FaRegCalendarDays } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
-import { LiaMoneyBillWaveSolid } from "react-icons/lia";
-import { LuCalendarDays } from "react-icons/lu";
 import { PiArrowRightBold } from "react-icons/pi";
 
 interface Props {
@@ -34,26 +34,46 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
       </HStack>
       <br />
       <Box>
-        <Stack direction={{ sm: "row", base: "column" }} mb={3} mt={5} justifyContent={"space-evenly"}>
-          {" "}
-          <Text>
-            15/45/5126 <b>:التاريخ</b>
-            <Icon mx={1} mb={-0.5} as={LuCalendarDays} />
-          </Text>
-          <Text>
-            586654 <b>:رقم العملية #</b>
-          </Text>
-        </Stack>
-        <Stack direction={{ sm: "row", base: "column" }} mb={2} justifyContent={"space-evenly"}>
-          <Text>
-            {" "}
-            <b>القيمة:</b> 156,000,000
-            <Icon mx={1} mb={-1} boxSize={5} as={LiaMoneyBillWaveSolid} />
-          </Text>
+        <Stack
+          direction={{ sm: "row", base: "column" }}
+          mb={3}
+          mt={5}
+          justifyContent={"space-evenly"}
+        >
           <Text>
             {" "}
             <b>المشتري:</b> فلاني الفلاني
             <Icon mx={1} mb={-0.5} as={IoPerson} />
+          </Text>{" "}
+          <Text>
+            586654 <b>:رقم العملية #</b>
+          </Text>
+        </Stack>
+        <Stack
+          direction={{ sm: "row", base: "column" }}
+          mb={2}
+          justifyContent={"space-evenly"}
+        >
+          <Text>
+            {" "}
+            <b>إجمالي المبيع:</b> 156,000,000
+            <Icon mx={1} mb={-0.5} boxSize={4} as={FaMoneyBillTrendUp} />
+          </Text>
+          <Text>
+            {" "}
+            <b>إجمالي الشراء:</b> 156,000,000
+            <Icon mx={1} mb={-1} boxSize={4} as={FaMoneyBillWave} />
+          </Text>
+        </Stack>
+        <Stack
+          direction={{ sm: "row", base: "column" }}
+          mb={3}
+          mt={5}
+          justifyContent={"space-evenly"}
+        >
+          <Text>
+            15/45/5126 <b>:التاريخ</b>
+            <Icon mx={1} mb={-0.5} as={FaRegCalendarDays} />
           </Text>
         </Stack>
       </Box>

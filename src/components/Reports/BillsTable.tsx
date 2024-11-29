@@ -9,8 +9,10 @@ import {
   Td,
   Table,
   Show,
+  Icon,
 } from "@chakra-ui/react";
 import bill from "../../entities/bill";
+import { RxCross2 } from "react-icons/rx";
 
 interface Props {
   bills: bill[];
@@ -39,7 +41,8 @@ const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
     rightCell: {
       borderRightRadius: "10px",
       backgroundColor: "#EEEEEE",
-      padding: "20px",
+      paddingRight: "20px",
+      paddingLeft: "0px",
     },
   };
 
@@ -54,27 +57,59 @@ const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
             <Show above="sm">
               <Th isNumeric> رقم الفاتورة #</Th>
             </Show>
+            <Th w={2}></Th>
           </Tr>
         </Thead>
         <Tbody>
           {bills.map((val, index) => (
-            <Tr
-              cursor="pointer"
-              key={index}
-              onClick={() => {
-                onToggle();
-                setTimeout(onToggle2, 1000);
-              }}
-            >
-              <Td sx={styles.leftCell}>{val.date}</Td>
-              <Td sx={styles.midCell} isNumeric>
+            <Tr cursor="pointer" key={index}>
+              <Td
+                sx={styles.leftCell}
+                onClick={() => {
+                  onToggle();
+                  setTimeout(onToggle2, 1000);
+                }}
+              >
+                {val.date}
+              </Td>
+              <Td
+                sx={styles.midCell}
+                isNumeric
+                onClick={() => {
+                  onToggle();
+                  setTimeout(onToggle2, 1000);
+                }}
+              >
                 {val.customerName}
               </Td>
               <Show above="sm">
-                <Td sx={styles.rightCell} isNumeric>
+                <Td
+                  sx={styles.midCell}
+                  isNumeric
+                  onClick={() => {
+                    onToggle();
+                    setTimeout(onToggle2, 1000);
+                  }}
+                >
                   {val.id}
                 </Td>
               </Show>
+              <Td sx={styles.rightCell} w={0} isNumeric>
+                {" "}
+                <Icon
+                  as={RxCross2}
+                  borderRadius={20}
+                  p={0.5}
+                  mt={1}
+                  mb={-0.5}
+                  boxSize={5}
+                  _hover={{ bgColor: "red.600", color: "white" }}
+                  cursor="pointer"
+                  onClick={() => {
+                    console.log(index);
+                  }}
+                />
+              </Td>
             </Tr>
           ))}
         </Tbody>
