@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Rating from "../Rating";
-
+import noImage from "../../assets/noImage.jpeg";
 interface Props {
   name: string | undefined;
   images: string[];
@@ -49,7 +49,9 @@ const ItemCard = ({ name, images }: Props) => {
               rowSpan={5}
               area={"side"}
               bgPosition={"center"}
-              bgImage={images[0 % images.length]}
+              bgImage={
+                images[0 % images.length] ? images[0 % images.length] : noImage
+              }
               bgSize={"cover"}
             />
             {images.length >= 2 && (

@@ -17,18 +17,18 @@ import { RxCross2 } from "react-icons/rx";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
 
 interface Props {
-  items: { name: string; sizes: Record<string, number> }[] | undefined;
+  curItems?: { name: string; sizes: Record<string, number> }[] | undefined;
   newItem?: boolean;
 }
 
-const SizesTable = ({ items, newItem = false }: Props) => {
+const SizesTable = ({ curItems, newItem = false }: Props) => {
   const icons: { [key: string]: React.ComponentType } = {
     الطول: AiOutlineColumnHeight,
     العرض: AiOutlineColumnWidth,
     العمق: IoResizeSharp,
   };
 
-  const { removeItems } = useGroupItemsStore();
+  const { items, removeItems } = useGroupItemsStore();
 
   return (
     <TableContainer mt={5}>
@@ -59,7 +59,7 @@ const SizesTable = ({ items, newItem = false }: Props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {items?.map((val, ind) => (
+          {(curItems ? curItems : items)?.map((val, ind) => (
             <Tr key={ind}>
               <Th>
                 {newItem && (
@@ -67,7 +67,7 @@ const SizesTable = ({ items, newItem = false }: Props) => {
                     as={RxCross2}
                     borderRadius={20}
                     p={1}
-                    mb={-1.5} 
+                    mb={-1.5}
                     mr={-3}
                     boxSize={5}
                     _hover={{ bgColor: "red.600", color: "white" }}
@@ -77,9 +77,9 @@ const SizesTable = ({ items, newItem = false }: Props) => {
                 )}{" "}
                 {val.name}{" "}
               </Th>
-              <Th>{val.sizes["الطول"]}</Th>
-              <Th>{val.sizes["العرض"]}</Th>
-              <Th>{val.sizes["العمق"]}</Th>
+              <Th>{val.sizes["height"]}</Th>
+              <Th>{val.sizes["width"]}</Th>
+              <Th>{val.sizes["depth"]}</Th>
             </Tr>
           ))}
         </Tbody>

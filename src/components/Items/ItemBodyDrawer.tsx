@@ -2,19 +2,20 @@ import { Box, Divider, Icon, Stack, Text } from "@chakra-ui/react";
 import ItemsImagesSlider from "./ItemsImagesSlider";
 import resizeWindow from "../../services/resizeWindow";
 import { GiCheckMark } from "react-icons/gi";
-import group from "../../entities/group";
 import SizesTable from "./SizesTable";
+import colors from "../../services/colors";
+import Group from "../../entities/group";
 
 interface Props {
-  group: group;
+  group: Group | undefined;
 }
 
-const ItemDetailsDrawer = ({ group }: Props) => {
+const ItemBodysDrawer = ({ group }: Props) => {
   const { width } = resizeWindow();
 
   return (
     <div style={{ marginTop: 20 }}>
-      <ItemsImagesSlider images={group.images} />
+      <ItemsImagesSlider images={group?.images || []} />
       <Divider
         mt={10}
         borderColor={"gray"}
@@ -26,20 +27,20 @@ const ItemDetailsDrawer = ({ group }: Props) => {
         {" "}
         الوصف:
       </Text>
-      <Text color={"gray.500"}>{group.discription}</Text>
+      <Text color={"gray.500"}>{group?.description}</Text>
       <Text mt={5} mb={3} fontSize={22}>
         {" "}
         الألوان المتوفرة:
       </Text>
       <Box>
-        {group.colors.map((value, index) => (
+        {group?.colors.map((value, index) => (
           <Icon
             mx={1.5}
             key={index}
             boxSize={5}
-            color={value}
+            color={colors[Number(value)].base}
             p={1}
-            bgColor={value}
+            bgColor={colors[Number(value)].base}
             borderRadius={20}
             as={GiCheckMark}
           />
@@ -51,10 +52,10 @@ const ItemDetailsDrawer = ({ group }: Props) => {
         mb={20}
         mt={5}
       >
-        <SizesTable items={group.items} />
+        <SizesTable curItems={group?.items} />
       </Stack>
     </div>
   );
 };
 
-export default ItemDetailsDrawer;
+export default ItemBodysDrawer;

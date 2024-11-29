@@ -1,5 +1,6 @@
 import {
   Button,
+  Divider,
   HStack,
   Icon,
   Image,
@@ -17,19 +18,37 @@ import SizesTable from "./SizesTable";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
 import { useRef, useState } from "react";
 import Group from "../../entities/group";
-import useCreate from "../../hooks/useCreate";
 import useErrorStore from "../../stores/errorStore";
+import useFetchGroupDetails from "../../hooks/useFetchGroupDetails";
+import useCreateGroup from "../../hooks/useCreateGroup";
+import GategoriesSelector from "./GategoriesSelector";
+import useGroupcolorsStore from "../../stores/GroupColorsStore";
 
 interface Props {
-  group?: Group | undefined;
+  groupId?: number | undefined;
 }
 
-const GroupForm = ({ group = undefined }: Props) => {
+const GroupForm = ({ groupId = undefined }: Props) => {
+  const group = useFetchGroupDetails(groupId || 0);
+
   const { setImages, images, removeImage } = useGroupImagesStore();
   const { items, setItems } = useGroupItemsStore();
-  const [prevImages, setPrevImages] = useState(
-    group?.images ? [...group.images] : [""]
+  const { colors } = useGroupcolorsStore();
+  const [prevGroup, setPrevGroup] = useState<Group>(
+    group.data?.data
+      ? group.data?.data
+      : {
+          name: "",
+          description: "",
+          classification_id: NaN,
+          images: [],
+          colors: [],
+          items: [],
+        }
   );
+
+  // const groupcolors = useGroupcolorsStore();
+  // if (group.isSuccess) groupcolors.setColors(prevGroup?.colors || []);
 
   //refs
   const refH = useRef<HTMLInputElement>(null);
@@ -39,17 +58,47 @@ const GroupForm = ({ group = undefined }: Props) => {
 
   const { message } = useErrorStore();
 
-  const create = useCreate<Group, FormData>("groups");
+  const create = useCreateGroup();
+
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const newDescription = e.target.value;
+    setPrevGroup((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        description: newDescription,
+      };
+    });
+  };
+
+  const handlenameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = e.target.value;
+    setPrevGroup((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        name: newName,
+      };
+    });
+  };
+
+  const currentPathname = window.location.pathname;
 
   const onSubmit = () => {
     const data = new FormData();
     images?.forEach((image) => {
       data.append(`images[]`, image);
     });
-    data.append("name", "omar");
-    data.append("description", "sanas");
-    data.append("colors[]", "1");
-    data.append("classification_id", "2");
+    data.append("name", prevGroup?.name);
+    data.append("net_price", "2155161");
+    data.append("description", prevGroup?.description);
+    colors?.forEach((color) => {
+      data.append(`colors[]`, color.toString());
+    });
+    if (prevGroup?.classification_id)
+      data.append("classification_id", prevGroup?.classification_id.toString());
     items?.forEach((item, index) => {
       data.append(`items[${index}][name]`, item.name);
       data.append(`items[${index}][height]`, item.sizes["height"].toString());
@@ -57,7 +106,7 @@ const GroupForm = ({ group = undefined }: Props) => {
       data.append(`items[${index}][depth]`, item.sizes["depth"].toString());
     });
     console.log(data);
-    create.mutate(data);
+    if (currentPathname == "/dash/categories") create.mutate(data);
   };
   if (create.isSuccess) {
     console.log(create.data);
@@ -65,8 +114,35 @@ const GroupForm = ({ group = undefined }: Props) => {
   return (
     <div>
       {create.isError ? <Text color={"red"}>{message?.images}</Text> : ""}
+      {currentPathname == "/dash/categories" && (
+        <>
+          <HStack mb={5} spacing={10}>
+            <Input
+              value={prevGroup?.name}
+              onChange={handlenameChange}
+              placeholder="ادخل اسم المجموعة هنا!"
+              fontFamily={"Noto"}
+              fontSize={18}
+            />
+            <GategoriesSelector
+              selectIndex={(ind) => {
+                setPrevGroup((prev) => {
+                  if (!prev) return prev;
+                  return {
+                    ...prev,
+                    classification_id: ind,
+                  };
+                });
+                console.log(prevGroup.classification_id);
+              }}
+            />
+          </HStack>
+
+          <Divider mb={8} />
+        </>
+      )}
       <Stack>
-        {group?.images?.map((img, index) => (
+        {prevGroup?.images?.map((img, index) => (
           <HStack key={index}>
             <Icon
               as={RxCross2}
@@ -76,7 +152,13 @@ const GroupForm = ({ group = undefined }: Props) => {
               _hover={{ bgColor: "red.600", color: "white" }}
               cursor="pointer"
               onClick={() => {
-                prevImages?.filter((image) => img !== image);
+                setPrevGroup((prev) => {
+                  if (!prev) return prev;
+                  return {
+                    ...prev,
+                    images: prev.images.filter((image) => img !== image),
+                  };
+                });
               }}
             />
             <Image borderRadius={10} boxSize={10} src={img} />
@@ -136,11 +218,12 @@ const GroupForm = ({ group = undefined }: Props) => {
       </Button>
       <Textarea
         mb={8}
-        value={group?.discription && group?.discription}
+        value={prevGroup?.description}
+        onChange={handleDescriptionChange}
         placeholder="ادخل وصف المجموعة هنا!"
         fontFamily={"Noto"}
       />
-      <ItemsColorFilter checkedColors={[1, 2, 4, 6, 7]} filter={false} />
+      <ItemsColorFilter filter={false} />
 
       <Text fontSize={16} mt={20} mb={4}>
         + ادخل قطعة جديدة:
@@ -171,19 +254,22 @@ const GroupForm = ({ group = undefined }: Props) => {
         mt={2}
         mb={5}
         onClick={() =>
-          setItems({
-            name: refName.current?.value || "",
-            sizes: {
-              height: Number(refH.current?.value) || 0,
-              width: Number(refW.current?.value) || 0,
-              depth: Number(refD.current?.value) || 0,
+          setItems([
+            ...(items || []),
+            {
+              name: refName.current?.value || "",
+              sizes: {
+                height: Number(refH.current?.value) || 0,
+                width: Number(refW.current?.value) || 0,
+                depth: Number(refD.current?.value) || 0,
+              },
             },
-          })
+          ])
         }
       >
         إضافة
       </Button>
-      <SizesTable items={items} newItem={true} />
+      <SizesTable newItem={true} />
       <Button onClick={onSubmit}>Create</Button>
     </div>
   );

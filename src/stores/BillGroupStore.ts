@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import Group from "../entities/group";
+import { Card } from "../hooks/useFetchAllClassGroups";
 
 interface BillGroup {
-  groups: Group[] | undefined;
-  setGroups: (color: Group) => void;
-  removeGroup: (color: Group) => void;
+  groups: Card[] | undefined;
+  setGroups: (color: Card) => void;
+  removeGroup: (color: Card) => void;
 }
 
 const useBillGroupStore = create<BillGroup>()((set) => ({
