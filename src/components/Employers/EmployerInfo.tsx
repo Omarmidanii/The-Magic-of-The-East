@@ -101,7 +101,7 @@ const EmployerInfo = ({ employer, fun }: Props) => {
                   onChange={handleInputChange}
                 />
                 <Input
-                  type="number"
+                  type="text"
                   name="phonenumber"
                   value={formData.phonenumber}
                   onChange={handleInputChange}
@@ -162,7 +162,7 @@ const EmployerInfo = ({ employer, fun }: Props) => {
             />
             {isEditing ? (
               <Button onClick={handleSave} colorScheme="blue" mr={2}>
-              {Edit.isPending ? "يتم الحفظ..." : " حفظ"}
+                {Edit.isPending ? "يتم الحفظ..." : " حفظ"}
               </Button>
             ) : (
               <Button

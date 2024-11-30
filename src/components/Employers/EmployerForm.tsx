@@ -132,7 +132,7 @@ const EmployerForm = ({ onClose }: Props) => {
               <Field
                 name="phonenumber"
                 as={Input}
-                type="number"
+                type="text"
                 placeholder="09XX XXX XXX"
                 _placeholder={{ color: "gray.500" }}
                 borderRadius={"10"}
