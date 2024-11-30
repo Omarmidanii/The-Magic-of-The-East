@@ -1,17 +1,20 @@
 import { Select } from "@chakra-ui/react";
 export const categories = [
-  "غرف نوم ",
-  "طقوم مغلف",
-  "مجالس عربي خليجي",
-  "بواب عربي",
-  "مطابخ",
-  "ديكورات",
-  "طاولات سفرة",
-  "مكتبيات",
-  "فرشات",
+  { arName: "غرف نوم ", enName: "bedrooms" },
+  { arName: "طقوم مغلف", enName: "moghalaf" },
+  { arName: "مجالس عربي خليجي", enName: "Khaliji" },
+  { arName: "بواب عربي", enName: "arabianDoors" },
+  { arName: "مطابخ", enName: "kitchens" },
+  { arName: "ديكورات", enName: "decorations" },
+  { arName: "طاولات سفرة", enName: "dinningTables" },
+  { arName: "مكتبيات", enName: "desks" },
+  { arName: "فرشات", enName: "Mattresses" },
+  { arName: "مفردات", enName: "singles" },
 ];
-
-const GategoriesSelector = () => {
+interface Props {
+  selectIndex?: (index: number) => void;
+}
+const GategoriesSelector = ({ selectIndex }: Props) => {
   return (
     <Select
       variant="flushed"
@@ -23,9 +26,13 @@ const GategoriesSelector = () => {
       placeholder="جميع السلع"
       width={{ sm: 300 }}
       colorScheme="red"
+      onChange={(e) => {
+        console.log("hiiii");
+        if (selectIndex) selectIndex(Number(e.target.value) + 1);
+      }}
     >
       {categories.map((value, index) => (
-        <option value={index}>{value}</option>
+        <option value={index}>{value.arName}</option>
       ))}
     </Select>
   );

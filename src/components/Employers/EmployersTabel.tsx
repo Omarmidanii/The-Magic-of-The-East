@@ -57,91 +57,90 @@ export const data = [
 const EmployersTabel = () => {
   const textAlign = "right";
 
-  const { data, refetch,error, fetchNextPage, hasNextPage } =
+  const { data, refetch, error, fetchNextPage, hasNextPage } =
     useFetchEmplyees();
 
   if (error) return <Error message={error.message} />;
 
-  const fetchedBranchesCount =
+  const fetchedCount =
     data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
 
-
   return (
-      <TableContainer
-        id="scrollableTable"
-        overflowY={"auto"}
-        maxH={window.innerHeight / 1.36}
+    <TableContainer
+      id="scrollableTable"
+      overflowY={"auto"}
+      maxH={window.innerHeight / 1.36}
+    >
+      <InfiniteScroll
+        dataLength={fetchedCount}
+        hasMore={hasNextPage}
+        next={() => fetchNextPage()}
+        loader={
+          <Stack placeItems={"center"} my={5}>
+            <ReactPlayer
+              url={loading}
+              playing
+              loop
+              controls={false}
+              width="88px"
+              height="88px"
+              muted
+            />{" "}
+          </Stack>
+        }
+        endMessage={
+          <p style={{ textAlign: "center", marginBottom: 20, marginTop: 20 }}>
+            <b>لا يوجد موظفين اكثر للتحميل</b>
+          </p>
+        }
+        scrollableTarget="scrollableTable"
       >
-        <InfiniteScroll
-          dataLength={fetchedBranchesCount}
-          hasMore={hasNextPage}
-          next={() => fetchNextPage()}
-          loader={
-            <Stack placeItems={"center"} my={5}>
-              <ReactPlayer
-                url={loading}
-                playing
-                loop
-                controls={false}
-                width="88px"
-                height="88px"
-                muted
-              />{" "}
-            </Stack>
-          }
-          endMessage={
-            <p style={{ textAlign: "center", marginBottom:20, marginTop:20 }}>
-              <b>لا يوجد موظفين اكثر للتحميل</b>
-            </p>
-          }
-          scrollableTarget="scrollableTable"
-        >
-          <Table>
-            <Thead>
-              <Tr>
-                <Th fontSize={"medium"} textAlign={textAlign}>
-                  الاسم
+        <Table>
+          <Thead>
+            <Tr>
+              <Th fontSize={"medium"} textAlign={textAlign}>
+                الاسم
+              </Th>
+              <Show above="md">
+                <Th textAlign={textAlign} fontSize={"medium"}>
+                  الرقم
                 </Th>
-                <Show above="md">
-                  <Th textAlign={textAlign} fontSize={"medium"}>
-                    الرقم
-                  </Th>
-                </Show>
-                <Th fontSize={"medium"} textAlign={textAlign}>
-                  المزيد
-                </Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {data?.pages.map((page, ind) => (
-                <React.Fragment key={ind}>
-                  {page.data.map((employer, index) => (
-                    <Tr key={index}>
-                      <Td textAlign={textAlign}>
-                        <Icon as={FaUser} ml={2} />
-                        {employer.firstname} {employer.lastname}
+              </Show>
+              <Th fontSize={"medium"} textAlign={textAlign}>
+                المزيد
+              </Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {data?.pages.map((page, ind) => (
+              <React.Fragment key={ind}>
+                {page.data.map((employer, index) => (
+                  <Tr key={index}>
+                    <Td textAlign={textAlign}>
+                      <Icon as={FaUser} ml={2} />
+                      {employer.firstname} {employer.lastname}
+                    </Td>
+                    <Show above="md">
+                      <Td textAlign={textAlign} textColor={"blue.300"}>
+                        {employer.phonenumber}
                       </Td>
-                      <Show above="md">
-                        <Td textAlign={textAlign} textColor={"blue.300"}>
-                          {employer.phonenumber}
-                        </Td>
-                      </Show>
-                      <Td textAlign={textAlign}>
-                        <EmployerInfo
-                          employer={employer}
-                          fun={() => {
-                            refetch();
-                          }}
-                        />
-                      </Td>
-                    </Tr>
-                  ))}{" "}
-                </React.Fragment>
-              ))}
-            </Tbody>
-          </Table>
-        </InfiniteScroll>
-      </TableContainer>
+                    </Show>
+                    <Td textAlign={textAlign}>
+                      <EmployerInfo
+                        employer={employer}
+                        fun={() => {
+                          refetch();
+                        }}
+                      />
+                    </Td>
+                  </Tr>
+                ))}{" "}
+              </React.Fragment>
+            ))}
+          </Tbody>
+        </Table>
+      </InfiniteScroll>
+    </TableContainer>
   );
 };
 

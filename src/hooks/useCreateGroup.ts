@@ -1,11 +1,8 @@
-//import useCreate from "./useCreate";
+import Group from "../entities/group";
+import useCreate from "./useCreate";
 
 const useCreateGroup = () => {
-    // return useCreate<"">(
-    //     `/api/acceptCompanyExhibitionRequest/${id}/${Eid}`,
-    //   );
-}
+  return useCreate<Group, FormData>("groups");
+};
 
-export default useCreateGroup
-
-
+export default useCreateGroup;

@@ -1,13 +1,15 @@
 import { Box, Button, Collapse, Text, useDisclosure } from "@chakra-ui/react";
 import { categories } from "../components/Items/GategoriesSelector";
 import GategorySlider from "../components/Items/GategorySlider";
-import { items } from "../components/Items/ItemsGrid";
 import { useState } from "react";
 import resizeWindow from "../services/resizeWindow";
 import { RED } from "../constants";
 import AddButton from "../components/AddButton";
 import CustomModal from "../components/Modal";
 import GroupForm from "../components/Items/GroupForm";
+import useFetchAllClassGroups from "../hooks/useFetchAllClassGroups";
+import useGroupcolorsStore from "../stores/GroupColorsStore";
+import useGroupItemsStore from "../stores/GroupitemsStore";
 
 const GategoryPage = () => {
   const [show, setShow] = useState(false);
@@ -18,6 +20,11 @@ const GategoryPage = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const currentPathname = window.location.pathname;
+
+  const classGroups = useFetchAllClassGroups();
+
+  const { setItems } = useGroupItemsStore();
+  const { setColors } = useGroupcolorsStore();
 
   return (
     <div
@@ -32,7 +39,14 @@ const GategoryPage = () => {
       }}
     >
       {currentPathname == "/dash/categories" || currentPathname == "/dash" ? (
-        <AddButton onOpen={onOpen} label="اضافة سلعة" />
+        <AddButton
+          onOpen={() => {
+            setItems([]);
+            setColors([]);
+            onOpen();
+          }}
+          label="اضافة سلعة"
+        />
       ) : (
         <div style={{ marginTop: 150 }}></div>
       )}
@@ -68,9 +82,12 @@ const GategoryPage = () => {
             <div style={{ marginTop: index ? 48 : 30 }}>
               {" "}
               <Text fontStyle={"italic"} fontSize={24} mb={-4}>
-                {value}:
+                {value.arName}:
               </Text>
-              <GategorySlider items={items} />
+              <GategorySlider
+                items={classGroups.data ? classGroups.data[index].groups : []}
+                id={index}
+              />
             </div>
           </Box>
         ))}
