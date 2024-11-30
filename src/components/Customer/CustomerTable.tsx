@@ -23,7 +23,7 @@ import React from "react";
 import loading from "../../assets/loading.mp4";
 import ReactPlayer from "react-player";
 
-export const customers:customer[] = [
+export const customers: customer[] = [
   {
     firstname: "عمر",
     lastname: "الميداني",
@@ -64,8 +64,8 @@ const CustomerTable = () => {
           </Stack>
         }
         endMessage={
-          <p style={{ textAlign: "center", marginBottom:20, marginTop:20 }}>
-            <b>لا يوجد زبائن اكثر للتحميل</b>
+          <p style={{ textAlign: "center", marginBottom: 20, marginTop: 20 }}>
+            <b>لا يوجد زبائن اكثر للعرض</b>
           </p>
         }
         scrollableTarget="scrollableTable"

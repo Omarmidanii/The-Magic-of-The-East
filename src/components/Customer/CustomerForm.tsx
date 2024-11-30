@@ -68,7 +68,8 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
     lastname: yup.string().required("الاسم الثاني مطلوب"),
     phonenumber: yup
       .string()
-      .length(10, "الرقم يجب ان يتكون من 10 ارقام")
+      .length(10, "الرقم يجب أن يتكون من 10 أرقام")
+      .matches(/^\d{10}$/, "الرقم يجب ان يحتوي على ارقام فقط")
       .required("الرقم مطلوب"),
     address: yup.string().required("العنوان مطلوب"),
   });
@@ -141,7 +142,7 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
               <Field
                 name="phonenumber"
                 as={Input}
-                type="number"
+                type="text"
                 placeholder="+963900000000"
                 _placeholder={{ color: "gray.600" }}
                 borderRadius={"10"}
