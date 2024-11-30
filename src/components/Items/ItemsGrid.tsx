@@ -19,6 +19,7 @@ import ItemDrawer from "./ItemDrawer";
 interface Props {
   width: number;
   height: number;
+  customerId?: number;
 }
 
 export const itemss = [
@@ -54,7 +55,7 @@ export const itemss = [
   },
 ];
 
-const ItemsGrid = ({ width, height }: Props) => {
+const ItemsGrid = ({ width, height, customerId }: Props) => {
   const currentPathname = window.location.pathname;
 
   const id = Number(
@@ -64,8 +65,9 @@ const ItemsGrid = ({ width, height }: Props) => {
   );
   console.log(id);
 
-  const { data, fetchNextPage, hasNextPage } = useFetchGroups(
-    id ? id : undefined
+  const { data, fetchNextPage, hasNextPage, refetch } = useFetchGroups(
+    id ? id : undefined,
+    customerId ? customerId : undefined
   );
 
   const fetchedCount =
@@ -105,7 +107,14 @@ const ItemsGrid = ({ width, height }: Props) => {
           </Stack>
         }
         endMessage={
-          <p style={{ textAlign: "center", marginBottom: 70, marginTop: 0 }}>
+          <p
+            style={{
+              textAlign: "center",
+              marginBottom:
+                currentPathname.substring(0, 11) == "/dash/custo" ? 30 : 70,
+              marginTop: 0,
+            }}
+          >
             <b>لا يوجد سلع اكثر للتحميل</b>
           </p>
         }
@@ -118,6 +127,8 @@ const ItemsGrid = ({ width, height }: Props) => {
           height={
             currentPathname.substring(0, 11) == "/dash/items"
               ? height - 180
+              : currentPathname.substring(0, 11) == "/dash/custo"
+              ? height
               : height * (fetchedCount / 6.2)
           }
           overflowY={"auto"}
@@ -195,12 +206,14 @@ const ItemsGrid = ({ width, height }: Props) => {
           </SimpleGrid>
         </Box>
       </InfiniteScroll>
-      <ItemDrawer
-        groupId={currentIem.id}
-        isOpen={isOpen}
-        onClose={onClose}
-        onOpenEdit={onOpenEdit}
-      />
+      {currentIem.id && (
+        <ItemDrawer
+          groupId={currentIem.id}
+          isOpen={isOpen}
+          onClose={onClose}
+          onOpenEdit={onOpenEdit}
+        />
+      )}
       <CustomModal
         buttonLabel="اضافة مجموعة"
         isOpen={isOpenEdit}
@@ -215,7 +228,13 @@ const ItemsGrid = ({ width, height }: Props) => {
           style={{ scrollbarWidth: "thin" }}
           overflow={"auto"}
         >
-          <GroupForm groupId={currentIem.id} />{" "}
+          <GroupForm
+            onSuccess={() => {
+              refetch();
+              onCloseEdit();
+            }}
+            groupId={currentIem.id}
+          />{" "}
         </Box>
       </CustomModal>
     </Box>

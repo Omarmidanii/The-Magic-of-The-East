@@ -10,6 +10,7 @@ import GroupForm from "../components/Items/GroupForm";
 import useFetchAllClassGroups from "../hooks/useFetchAllClassGroups";
 import useGroupcolorsStore from "../stores/GroupColorsStore";
 import useGroupItemsStore from "../stores/GroupitemsStore";
+import useGroupImagesStore from "../stores/GroupImagesStore";
 
 const GategoryPage = () => {
   const [show, setShow] = useState(false);
@@ -23,6 +24,7 @@ const GategoryPage = () => {
 
   const classGroups = useFetchAllClassGroups();
 
+  const { setImages } = useGroupImagesStore();
   const { setItems } = useGroupItemsStore();
   const { setColors } = useGroupcolorsStore();
 
@@ -41,6 +43,7 @@ const GategoryPage = () => {
       {currentPathname == "/dash/categories" || currentPathname == "/dash" ? (
         <AddButton
           onOpen={() => {
+            setImages([]);
             setItems([]);
             setColors([]);
             onOpen();
@@ -65,7 +68,7 @@ const GategoryPage = () => {
           style={{ scrollbarWidth: "thin" }}
           overflow={"auto"}
         >
-          <GroupForm />{" "}
+          <GroupForm onSuccess={onClose} />{" "}
         </Box>
       </CustomModal>
 

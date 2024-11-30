@@ -16,7 +16,7 @@ import useGroupImagesStore from "../../stores/GroupImagesStore";
 import ItemsColorFilter from "./itemsColorFilter";
 import SizesTable from "./SizesTable";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Group from "../../entities/group";
 import useErrorStore from "../../stores/errorStore";
 import useFetchGroupDetails from "../../hooks/useFetchGroupDetails";
@@ -27,17 +27,27 @@ import useUpdateGroup from "../../hooks/useUpdateGroup";
 
 interface Props {
   groupId?: number | undefined;
+  onSuccess?: () => void;
 }
 
-const GroupForm = ({ groupId = undefined }: Props) => {
-  const group = useFetchGroupDetails(groupId || 0);
+const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
+  const group = groupId
+    ? useFetchGroupDetails(groupId).data?.data
+    : {
+        name: "",
+        description: "",
+        classification_id: NaN,
+        photos: [],
+        colors: [],
+        items: [],
+      };
 
   const { setImages, images, removeImage } = useGroupImagesStore();
   const { items, setItems } = useGroupItemsStore();
   const { colors } = useGroupcolorsStore();
   const [prevGroup, setPrevGroup] = useState<Group>(
-    group.data?.data
-      ? group.data?.data
+    group
+      ? group
       : {
           name: "",
           description: "",
@@ -124,9 +134,41 @@ const GroupForm = ({ groupId = undefined }: Props) => {
       ? create.mutate(data)
       : edit.mutate(data);
   };
-  if (create.isSuccess) {
-    console.log(create.data);
-  }
+
+  const showAlert = (type: "suc" | "err") => {
+    swal({
+      title:
+        (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
+        prevGroup.name,
+      text:
+        type == "suc"
+          ? " تمت " +
+            (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
+            "المجموعة بنجاح!"
+          : (message?.name && message?.name[0]) ||
+            (message?.description && message?.description[0]) ||
+            (message?.classification_id && message?.classification_id[0]) ||
+            (message?.photos && message?.photos[0]) ||
+            (message?.colors && message?.colors[0]) ||
+            (message?.items && message?.items[0]) ||
+            "حدث خطأ اثناء " +
+              (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
+              " الموظف الرجاء المحاولة لاحقا",
+      icon: type == "suc" ? "success" : "error",
+    });
+  };
+
+  useEffect(() => {
+    if (create.isSuccess || edit.isSuccess) {
+      setImages([]);
+      onSuccess();
+      showAlert("suc");
+    }
+    if (create.error || edit.error) {
+      showAlert("err");
+    }
+  }, [create.isSuccess, create.error, edit.error, edit.isSuccess]);
+
   return (
     <div>
       {create.isError ? <Text color={"red"}>{message?.images}</Text> : ""}
@@ -226,7 +268,7 @@ const GroupForm = ({ groupId = undefined }: Props) => {
             placeholder="speaker"
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
-                setImages(e.target.files[0]);
+                setImages([e.target.files[0]]);
               }
             }}
             border="hidden"

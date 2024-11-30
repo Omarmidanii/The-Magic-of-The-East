@@ -30,12 +30,13 @@ const CustomerItemIDrawerBody = ({ customer }: Props) => {
         </Box>
       </Show>
       <ItemsGrid
-        height={50}
+        customerId={customer.id}
+        height={490}
         width={
           width >= 992
-            ? 630
+            ? 620
             : width >= 768
-            ? 470
+            ? 460
             : width >= 478
             ? 409
             : width / 1.1

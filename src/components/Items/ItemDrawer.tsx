@@ -5,18 +5,20 @@ import ItemBodysDrawer from "./ItemBodyDrawer";
 import useFetchGroupDetails from "../../hooks/useFetchGroupDetails";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
 import useGroupcolorsStore from "../../stores/GroupColorsStore";
+import useGroupImagesStore from "../../stores/GroupImagesStore";
 
 interface Props {
-  groupId?: number;
+  groupId: number;
   isOpen: boolean;
   onClose: () => void;
   onOpenEdit: () => void;
 }
 
 const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
-  const group = useFetchGroupDetails(groupId || 0);
+  const group = useFetchGroupDetails(groupId);
   const currentPathname = window.location.pathname;
 
+  const { setImages} = useGroupImagesStore();
   const { setItems } = useGroupItemsStore();
   const { setColors } = useGroupcolorsStore();
 
@@ -24,6 +26,7 @@ const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
     <CustomDrawer
       isOpen={isOpen}
       onClose={() => {
+        setImages([]);
         setItems([]);
         setColors([]);
         onClose();
@@ -32,17 +35,18 @@ const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
       header={
         currentPathname.substring(0, 11) == "/dash/items" ? (
           <CustomerItemsDrawerHeader
-            name={"معلومات " + group.data?.data.name}
+            name={"معلومات " + group.data?.data?.name}
             OnOpen={() => {
-              setItems(group.data?.data.items || []);
-              setColors(group.data?.data.colors || []);
+              setImages([]);
+              setItems(group.data?.data?.items || []);
+              setColors(group.data?.data?.colors || []);
               onOpenEdit();
               onClose();
             }}
           />
         ) : (
           <Text textColor={"black"} mr={8} fontSize={24}>
-            معلومات {group.data?.data.name}
+            معلومات {group.data?.data?.name}
           </Text>
         )
       }

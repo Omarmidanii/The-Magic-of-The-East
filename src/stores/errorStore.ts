@@ -12,6 +12,12 @@ interface errorMessage {
   firstname: string;
   phonenumber: string;
   address: string;
+  name:string;
+  description:string;
+  classification_id:string;
+  photos:string;
+  colors:string;
+  items:string;
 }
 
 interface ErrorStore {
