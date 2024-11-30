@@ -27,9 +27,18 @@ class APIClient<T> {
   };
 
   put = async <D>(data: D) => {
+    const headers: Record<string, string> = {
+      "X-HTTP-Method-Override": "PUT",
+    };
+
+    if (!(data instanceof FormData)) {
+      headers["Content-Type"] = "application/json";
+    }
+
     const res = await axiosInstance.post<T>(this.endPoint, data, {
-      headers: { "X-HTTP-Method-Override": "PUT" },
+      headers: headers,
     });
+
     return res.data;
   };
 

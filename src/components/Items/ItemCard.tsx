@@ -50,9 +50,7 @@ const ItemCard = ({ name, images }: Props) => {
               area={"side"}
               bgPosition={"center"}
               bgImage={
-                images[0 % images.length]
-                  ? "http://localhost:8000/storage/images/e1Ecno8l3XzsbVqECblrU9xMhorTopLdvpK54cbH.jpg" //images[0 % images.length]
-                  : noImage
+                images[0 % images.length] ? images[0 % images.length] : noImage
               }
               bgSize={"cover"}
             />

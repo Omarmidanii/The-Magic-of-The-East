@@ -113,6 +113,7 @@ const GroupForm = ({ groupId = undefined }: Props) => {
     data.append("workshop_id", "1");
 
     items?.forEach((item, index) => {
+      if (item.id) data.append(`items[${index}][id]`, item.id.toString());
       data.append(`items[${index}][name]`, item.name);
       data.append(`items[${index}][height]`, item.sizes["height"].toString());
       data.append(`items[${index}][width]`, item.sizes["width"].toString());
@@ -176,7 +177,10 @@ const GroupForm = ({ groupId = undefined }: Props) => {
               }}
             />
             <Image borderRadius={10} boxSize={10} src={img.path} />
-            <Text>{img.path}</Text>
+            <Text>
+              {img.path.substring(42, 86)}
+              {img.path.length > 86 ? "..." : ""}
+            </Text>
           </HStack>
         ))}
         {images?.map((img, index) => (

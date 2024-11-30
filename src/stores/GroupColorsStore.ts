@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface GroupcolorsStore {
-  colors: number[] | undefined;
-  setColors: (color: number[]) => void;
+  colors: string[] | undefined;
+  setColors: (color: string[]) => void;
 }
 
 const useGroupcolorsStore = create<GroupcolorsStore>()((set) => ({

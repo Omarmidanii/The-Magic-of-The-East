@@ -1,8 +1,9 @@
 import { create } from "zustand";
+import Item from "../entities/Item";
 
 interface GroupItemsStore {
-  items: { name: string; sizes: Record<string, number> }[] | undefined;
-  setItems: (item: { name: string; sizes: Record<string, number> }[]) => void;
+  items: Item[] | undefined;
+  setItems: (item: Item[]) => void;
   removeItems: (ind: number) => void;
 }
 

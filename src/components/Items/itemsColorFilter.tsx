@@ -22,23 +22,23 @@ const ItemsColorFilter = ({ filter }: Props) => {
             key={index}
             mb={0}
             boxSize={5}
-            color={groupcolors.colors?.includes(index) ? "white" : value.base}
+            color={groupcolors.colors?.includes(index.toString()) ? "white" : value.base}
             p={1}
             bgColor={value.base}
             borderRadius={20}
             boxShadow={
-              groupcolors.colors?.includes(index)
+              groupcolors.colors?.includes(index.toString())
                 ? `0 0 5px 1.5px ${value.border}`
                 : ""
             }
             as={GiCheckMark}
             onClick={() => {
-              if (groupcolors.colors?.includes(index)) {
+              if (groupcolors.colors?.includes(index.toString())) {
                 groupcolors.setColors(
-                  groupcolors.colors.filter((num) => num !== index)
+                  groupcolors.colors.filter((num) => num !== index.toString())
                 );
               } else {
-                groupcolors.setColors([...(groupcolors.colors || []), index]);
+                groupcolors.setColors([...(groupcolors.colors || []), index.toString()]);
               }
             }}
           />
