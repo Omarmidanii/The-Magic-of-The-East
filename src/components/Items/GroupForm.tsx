@@ -23,6 +23,7 @@ import useFetchGroupDetails from "../../hooks/useFetchGroupDetails";
 import useCreateGroup from "../../hooks/useCreateGroup";
 import GategoriesSelector from "./GategoriesSelector";
 import useGroupcolorsStore from "../../stores/GroupColorsStore";
+import useUpdateGroup from "../../hooks/useUpdateGroup";
 
 interface Props {
   groupId?: number | undefined;
@@ -41,7 +42,7 @@ const GroupForm = ({ groupId = undefined }: Props) => {
           name: "",
           description: "",
           classification_id: NaN,
-          images: [],
+          photos: [],
           colors: [],
           items: [],
         }
@@ -59,6 +60,7 @@ const GroupForm = ({ groupId = undefined }: Props) => {
   const { message } = useErrorStore();
 
   const create = useCreateGroup();
+  const edit = useUpdateGroup(groupId || 0);
 
   const handleDescriptionChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -91,14 +93,25 @@ const GroupForm = ({ groupId = undefined }: Props) => {
     images?.forEach((image) => {
       data.append(`images[]`, image);
     });
+
+    prevGroup.photos?.forEach((image) => {
+      data.append(`old_images[]`, image.id.toString());
+    });
+
     data.append("name", prevGroup?.name);
     data.append("net_price", "2155161");
     data.append("description", prevGroup?.description);
     colors?.forEach((color) => {
       data.append(`colors[]`, color.toString());
     });
-    if (prevGroup?.classification_id)
-      data.append("classification_id", prevGroup?.classification_id.toString());
+
+    data.append(
+      "classification_id",
+      prevGroup?.classification_id?.toString() || "1"
+    );
+
+    data.append("workshop_id", "1");
+
     items?.forEach((item, index) => {
       data.append(`items[${index}][name]`, item.name);
       data.append(`items[${index}][height]`, item.sizes["height"].toString());
@@ -106,7 +119,9 @@ const GroupForm = ({ groupId = undefined }: Props) => {
       data.append(`items[${index}][depth]`, item.sizes["depth"].toString());
     });
     console.log(data);
-    if (currentPathname == "/dash/categories") create.mutate(data);
+    currentPathname == "/dash/categories"
+      ? create.mutate(data)
+      : edit.mutate(data);
   };
   if (create.isSuccess) {
     console.log(create.data);
@@ -133,7 +148,6 @@ const GroupForm = ({ groupId = undefined }: Props) => {
                     classification_id: ind,
                   };
                 });
-                console.log(prevGroup.classification_id);
               }}
             />
           </HStack>
@@ -142,7 +156,7 @@ const GroupForm = ({ groupId = undefined }: Props) => {
         </>
       )}
       <Stack>
-        {prevGroup?.images?.map((img, index) => (
+        {prevGroup?.photos?.map((img, index) => (
           <HStack key={index}>
             <Icon
               as={RxCross2}
@@ -156,13 +170,13 @@ const GroupForm = ({ groupId = undefined }: Props) => {
                   if (!prev) return prev;
                   return {
                     ...prev,
-                    images: prev.images.filter((image) => img !== image),
+                    photos: prev.photos.filter((image) => img !== image),
                   };
                 });
               }}
             />
-            <Image borderRadius={10} boxSize={10} src={img} />
-            <Text>{img}</Text>
+            <Image borderRadius={10} boxSize={10} src={img.path} />
+            <Text>{img.path}</Text>
           </HStack>
         ))}
         {images?.map((img, index) => (

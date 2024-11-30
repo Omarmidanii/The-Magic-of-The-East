@@ -1,14 +1,14 @@
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import item from "../../entities/group";
 import ItemCard from "../Items/ItemCard";
 import resizeWindow from "../../services/resizeWindow";
 import Lottie from "lottie-react";
 import scrollDown from "../../assets/scrollDown.json";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Card } from "../../hooks/useFetchAllClassGroups";
 
 interface Props {
-  items: item[];
+  items: Card[];
 }
 const ShowItems = ({ items }: Props) => {
   const { width } = resizeWindow();
@@ -45,7 +45,7 @@ const ShowItems = ({ items }: Props) => {
                 m={5}
                 borderRadius={20}
               >
-                <ItemCard images={image.images} name={image.name} />
+                <ItemCard images={image.photos} name={image.name} />
               </Box>
             )}
           </>

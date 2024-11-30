@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import resizeWindow from "../../services/resizeWindow";
 
 interface Props {
-  images: string[];
+  images: { id: number; path: string }[];
 }
 
 const ItemsImagesSlider = ({ images }: Props) => {
@@ -40,7 +40,7 @@ const ItemsImagesSlider = ({ images }: Props) => {
                 bgRepeat={"no-repeat"}
                 bgPosition={"center"}
                 bgSize={"cover"}
-                bgImg={image}
+                bgImg={image.path}
               ></Box>
             </div>
           ))}
@@ -55,7 +55,7 @@ const ItemsImagesSlider = ({ images }: Props) => {
           bgRepeat={"no-repeat"}
           bgPosition={"center"}
           bgSize={"cover"}
-          bgImg={images[0]}
+          bgImg={images[0]?.path}
         ></HStack>
       )}
     </Stack>

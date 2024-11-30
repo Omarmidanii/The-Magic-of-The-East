@@ -15,7 +15,7 @@ const ItemBodysDrawer = ({ group }: Props) => {
 
   return (
     <div style={{ marginTop: 20 }}>
-      <ItemsImagesSlider images={group?.images || []} />
+      <ItemsImagesSlider images={group?.photos || []} />
       <Divider
         mt={10}
         borderColor={"gray"}

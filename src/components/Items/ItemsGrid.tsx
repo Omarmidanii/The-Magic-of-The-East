@@ -23,52 +23,34 @@ interface Props {
 
 export const itemss = [
   {
+    id: 1,
     name: "غرفة ريفي بيج",
-    description:
-      "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln asjx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln        asjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
-    images: [OIP, OIP1, OIP2, OIP3, OIP4],
-    colors: [1, 5, 3, 5, 6, 8, 10],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP, OIP1, OIP2, OIP3, OIP4],
   },
   {
+    id: 1,
     name: "1غرفة نوم",
-    description:
-      "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln asjx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln        asjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
-    images: [OIP],
-    colors: [1, 5, 3, 5, 6, 8],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP],
   },
   {
+    id: 1,
     name: "2غرفة نوم",
-    description:
-      "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajs        xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
-    images: [OIP, OIP1, OIP3, OIP4, OIP2],
-    colors: [1, 5, 3, 8],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP, OIP1, OIP3, OIP4, OIP2],
   },
   {
+    id: 1,
     name: "غرفة نوم3",
-    description:
-      "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
-    images: [OIP, OIP1],
-    colors: [1, 5, 3, 5, 6, 13],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP, OIP1],
   },
   {
+    id: 1,
     name: "4غرفة نوم",
-    description:
-      " هايisd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa      ",
-    images: [OIP, OIP1, OIP2],
-    colors: [1, 5, 6, 8],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP, OIP1, OIP2],
   },
   {
+    id: 1,
     name: "5غرفة نوم",
-    description:
-      "isd cnsaldncsal nlasln asjx lasxsajl asl xlajs xaljsxjla xja xlas  xlsakxalx salj xa isd cnsaldncsal nlasln asjx lasxsajl asl xlajsxaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlasln ajx lasxsajl        asl xlajs xaljsxjla xja xlas xlsakxalx salj xaisd cnsaldncsal nlaslnasjx lasxsajl asl xlajs xaljsxjla xja xlas xlsakxalx salj xa",
-    images: [OIP, OIP4, OIP1, OIP2],
-    colors: [1, 5, 3, 5, 6, 8],
-    items: [{ name: "تخت", sizes: { الطول: 205, العرض: 100, العمق: 120 } }],
+    photos: [OIP, OIP4, OIP1, OIP2],
   },
 ];
 

@@ -3,7 +3,7 @@ export default interface Group {
   name: string;
   classification_id?: number;
   description: string;
-  images: string[];
+  photos: { id: number; path: string }[];
   colors: number[];
   items: { name: string; sizes: Record<string, number> }[];
 }

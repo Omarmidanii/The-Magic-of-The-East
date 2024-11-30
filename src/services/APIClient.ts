@@ -27,9 +27,12 @@ class APIClient<T> {
   };
 
   put = async <D>(data: D) => {
-    const res = await axiosInstance.put<T>(this.endPoint, data);
+    const res = await axiosInstance.post<T>(this.endPoint, data, {
+      headers: { "X-HTTP-Method-Override": "PUT" },
+    });
     return res.data;
   };
+
   delete = async () => {
     const res = await axiosInstance.delete<T>(this.endPoint);
     return res.data;
