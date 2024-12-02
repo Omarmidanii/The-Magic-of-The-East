@@ -12,13 +12,20 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onOpenEdit: () => void;
+  refetch: () => void;
 }
 
-const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
+const ItemDrawer = ({
+  groupId,
+  isOpen,
+  onClose,
+  onOpenEdit,
+  refetch,
+}: Props) => {
   const group = useFetchGroupDetails(groupId);
   const currentPathname = window.location.pathname;
 
-  const { setImages} = useGroupImagesStore();
+  const { resetImages } = useGroupImagesStore();
   const { setItems } = useGroupItemsStore();
   const { setColors } = useGroupcolorsStore();
 
@@ -26,7 +33,7 @@ const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
     <CustomDrawer
       isOpen={isOpen}
       onClose={() => {
-        setImages([]);
+        resetImages();
         setItems([]);
         setColors([]);
         onClose();
@@ -36,8 +43,13 @@ const ItemDrawer = ({ groupId, isOpen, onClose, onOpenEdit }: Props) => {
         currentPathname.substring(0, 11) == "/dash/items" ? (
           <CustomerItemsDrawerHeader
             name={"معلومات " + group.data?.data?.name}
+            id={groupId}
+            fun={() => {
+              refetch();
+              onClose();
+            }}
             OnOpen={() => {
-              setImages([]);
+              resetImages();
               setItems(group.data?.data?.items || []);
               setColors(group.data?.data?.colors || []);
               onOpenEdit();

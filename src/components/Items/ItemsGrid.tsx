@@ -208,6 +208,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
       </InfiniteScroll>
       {currentIem.id && (
         <ItemDrawer
+          refetch={refetch}
           groupId={currentIem.id}
           isOpen={isOpen}
           onClose={onClose}

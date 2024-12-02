@@ -10,6 +10,8 @@ interface Props {
 }
 
 const CustomerItemsDrawerHeader = ({ OnOpen, name, fun, id }: Props) => {
+  const currentPathname = window.location.pathname;
+
   const handleEdit = () => {
     if (OnOpen) {
       OnOpen();
@@ -36,7 +38,9 @@ const CustomerItemsDrawerHeader = ({ OnOpen, name, fun, id }: Props) => {
         <CustomDelete
           ID={id || -1}
           refetch={fun}
-          endpoint="customers"
+          endpoint={
+            currentPathname == "/dash/customers" ? "customers" : "groups"
+          }
           type="Button"
           showText={false}
         />

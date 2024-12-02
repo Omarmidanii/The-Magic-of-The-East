@@ -184,7 +184,13 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
             borderRadius={"10"}
             onClick={submitForm}
           >
-            {form.isPending ? "يتم الإضافة..." : " إضافة"}
+            {form.isPending
+              ? customer
+                ? "يتم التعديل..."
+                : "يتم الإضافة..."
+              : customer
+              ? "تعديل"
+              : " إضافة"}
           </Button>
           <Button
             mb={8}

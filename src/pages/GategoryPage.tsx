@@ -24,7 +24,7 @@ const GategoryPage = () => {
 
   const classGroups = useFetchAllClassGroups();
 
-  const { setImages } = useGroupImagesStore();
+  const { resetImages } = useGroupImagesStore();
   const { setItems } = useGroupItemsStore();
   const { setColors } = useGroupcolorsStore();
 
@@ -43,7 +43,7 @@ const GategoryPage = () => {
       {currentPathname == "/dash/categories" || currentPathname == "/dash" ? (
         <AddButton
           onOpen={() => {
-            setImages([]);
+            resetImages();
             setItems([]);
             setColors([]);
             onOpen();

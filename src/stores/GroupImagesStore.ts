@@ -4,6 +4,7 @@ interface GroupImagesStore {
   images: File[] | undefined;
   setImages: (image: File[]) => void;
   removeImage: (ind: string) => void;
+  resetImages: () => void;
 }
 
 const useGroupImagesStore = create<GroupImagesStore>()((set) => ({
@@ -15,6 +16,10 @@ const useGroupImagesStore = create<GroupImagesStore>()((set) => ({
   removeImage: (imageName) =>
     set((state) => ({
       images: state.images?.filter((img) => img.name !== imageName),
+    })),
+  resetImages: () =>
+    set(() => ({
+      images: [],
     })),
 }));
 

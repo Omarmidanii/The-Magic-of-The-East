@@ -330,7 +330,40 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
         إضافة
       </Button>
       <SizesTable newItem={true} />
-      <Button onClick={onSubmit}>Create</Button>
+      <Button
+        onClick={onSubmit}
+        mb={4}
+        bgColor={"#228822"}
+        _hover={{ bgColor: "#117711" }}
+        color={"white"}
+        width="30%"
+        boxShadow={"lg"}
+        marginTop={8}
+        borderRadius={"10"}
+      >
+        {groupId
+          ? edit.isPending
+            ? "يتم التعديل..."
+            : "التعديل"
+          : create.isPending
+          ? "يتم الإضافة..."
+          : " إضافة"}
+      </Button>
+      <Button
+        mb={4}
+        _hover={{ bgColor: "#EEEEEE" }}
+        width="30%"
+        bgColor={"white"}
+        borderWidth={"2px"}
+        borderColor={"gray.100"}
+        boxShadow={"md"}
+        mr={2}
+        marginTop={8}
+        borderRadius={"10"}
+        onClick={() => onSuccess()}
+      >
+        {"الغاء"}
+      </Button>
     </div>
   );
 };
