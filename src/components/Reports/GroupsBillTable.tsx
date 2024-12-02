@@ -10,13 +10,16 @@ import {
   Image,
   Text,
   HStack,
+  Input,
 } from "@chakra-ui/react";
 import { RxCross2 } from "react-icons/rx";
 import useBillGroupStore from "../../stores/BillGroupStore";
+import { number } from "yup";
 
 const GroupsBillTable = () => {
-  const { groups, removeGroup } = useBillGroupStore();
+  const { groups, removeGroup, changeCount } = useBillGroupStore();
 
+  console.log(groups);
   return (
     <TableContainer>
       <Table>
@@ -42,17 +45,30 @@ const GroupsBillTable = () => {
                   _hover={{ bgColor: "red.600", color: "white" }}
                   cursor="pointer"
                   onClick={() => {
-                    removeGroup(val);
+                    removeGroup(val.group);
                   }}
                 />
               </Td>
               <Td>
                 <HStack>
-                  <Image borderRadius={10} boxSize={8} mr={-8} src={val.photos[0]} />
-                  <Text>{val.name}</Text>
+                  <Image
+                    borderRadius={10}
+                    boxSize={8}
+                    mr={-8}
+                    src={val.group.photos[0]}
+                  />
+                  <Text>{val.group.name}</Text>
                 </HStack>
               </Td>
-              <Td>5</Td>
+              <Td>
+                <Input
+                  type="number"
+                  onChange={(e) => {
+                    changeCount(Number(e.target.value), val.group.id);
+                  }}
+                  value={val.count}
+                />
+              </Td>
             </Tr>
           ))}
         </Tbody>

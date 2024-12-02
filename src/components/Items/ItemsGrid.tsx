@@ -169,7 +169,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
                           borderRadius={50}
                           boxSize={7}
                           color={
-                            groups?.some((group) => group.name === info.name)
+                            groups?.some((group) => group.group.id === info.id)
                               ? "green.300"
                               : "white"
                           }
@@ -177,9 +177,10 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
                           borderWidth={"2px"}
                           borderColor={"gray.200"}
                           onClick={() => {
-                            groups?.some((group) => group.name === info.name)
+                            groups?.some((group) => group.group.id === info.id)
                               ? removeGroup(info)
                               : setGroups(info);
+                            console.log(groups);
                           }}
                         />
                       </span>
