@@ -15,6 +15,7 @@ import useFetchGroups from "../../hooks/useFetchGroups";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactPlayer from "react-player";
 import ItemDrawer from "./ItemDrawer";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   width: number;
@@ -56,6 +57,7 @@ export const itemss = [
 ];
 
 const ItemsGrid = ({ width, height, customerId }: Props) => {
+  const navigate = useNavigate();
   const currentPathname = window.location.pathname;
 
   const id = Number(
@@ -85,7 +87,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
     photos: [""],
   });
 
-  const { groups, setGroups, removeGroup } = useBillGroupStore();
+  const { groups, setGroups, removeGroup, pickOne } = useBillGroupStore();
 
   return (
     <Box>
@@ -179,8 +181,8 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
                           onClick={() => {
                             groups?.some((group) => group.group.id === info.id)
                               ? removeGroup(info)
-                              : setGroups(info);
-                            console.log(groups);
+                              : (setGroups(info),
+                                pickOne ? navigate("/dash/reports") : "");
                           }}
                         />
                       </span>

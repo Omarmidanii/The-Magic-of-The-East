@@ -6,15 +6,22 @@ import {
   PopoverContent,
   PopoverFooter,
   PopoverTrigger,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { RED } from "../../constants";
 import resizeWindow from "../../services/resizeWindow";
 import SearchPopoverBody from "./SearchPopoverBody";
+import useBillGroupStore from "../../stores/BillGroupStore";
 
-const SearchBy = () => {
+interface Props {
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+}
+
+const SearchBy = ({ isOpen, onClose, onToggle }: Props) => {
   const { width } = resizeWindow();
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  const { resetGroups } = useBillGroupStore();
+
   return (
     <Popover
       returnFocusOnClose={false}
@@ -26,7 +33,10 @@ const SearchBy = () => {
       <PopoverTrigger>
         <Button
           colorScheme="red"
-          onClick={onToggle}
+          onClick={() => {
+            resetGroups();
+            onToggle();
+          }}
           bgColor={RED}
           borderRadius={20}
         >

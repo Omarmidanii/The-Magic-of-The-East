@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 import { RxCross2 } from "react-icons/rx";
 import useBillGroupStore from "../../stores/BillGroupStore";
-import { number } from "yup";
 
 const GroupsBillTable = () => {
   const { groups, removeGroup, changeCount } = useBillGroupStore();

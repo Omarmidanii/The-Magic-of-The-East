@@ -18,6 +18,7 @@ import CustomerForm from "../Customer/CustomerForm";
 import CustomModal from "../Modal";
 import { Link } from "react-router-dom";
 import GroupsBillTable from "./GroupsBillTable";
+import useBillGroupStore from "../../stores/BillGroupStore";
 
 interface Props {
   onCloseAll?: () => void;
@@ -33,6 +34,8 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
       onCloseAll();
     });
   };
+
+  const { setPickone, pickOne } = useBillGroupStore();
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -85,7 +88,13 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
           <CustomerForm onClose={onClose} />
         </CustomModal>
 
-        <Link to={"/chooseGroup"}>
+        <Link
+          to={"/chooseGroup"}
+          onClick={() => {
+            setPickone(false);
+            console.log(pickOne);
+          }}
+        >
           <Button mt={5} mb={5}>
             <Icon as={LuSofa} mb={-1} ml={2} /> إضافة مجموعة للفاتورة
           </Button>

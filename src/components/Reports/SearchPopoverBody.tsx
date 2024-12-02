@@ -1,7 +1,12 @@
-import { Button, HStack, Input, Select, Text } from "@chakra-ui/react";
+import { Button, HStack, Image, Input, Select, Text } from "@chakra-ui/react";
 import { customers } from "../Customer/CustomerTable";
+import useBillGroupStore from "../../stores/BillGroupStore";
+import { Link } from "react-router-dom";
+import noImage from "../../assets/noImage.jpeg";
 
 const SearchPopoverBody = () => {
+  const { resetGroups, setPickone, pickOne, groups } = useBillGroupStore();
+
   return (
     <>
       <HStack mb={8} mt={1}>
@@ -22,7 +27,7 @@ const SearchPopoverBody = () => {
           textAlign: "right",
         }}
         placeholder="اختر زبون"
-        color={'gray.500'}
+        color={"gray.500"}
       >
         {customers.map((value, index) => (
           <option value={index}>
@@ -45,9 +50,32 @@ const SearchPopoverBody = () => {
       </HStack>
       <Text mt={12} mb={3}>
         حسب المجموعة:
-        <Button fontSize={14} mb={-1} mr={5}>
-          تصفح المجموعات
-        </Button>
+        <Link
+          to={"/chooseGroup"}
+          onClick={() => {
+            resetGroups();
+            setPickone(true);
+            console.log(pickOne);
+          }}
+        >
+          <Button fontSize={14} mb={-1} mr={5}>
+            تصفح المجموعات
+          </Button>
+        </Link>
+        {groups?.length ? (
+          <HStack mt={5}>
+            <Image
+              borderRadius={10}
+              boxSize={8}
+              src={
+                groups[0].group.photos[0] ? groups[0].group.photos[0] : noImage
+              }
+            />
+            <Text>{groups[0].group.name}</Text>
+          </HStack>
+        ) : (
+          ""
+        )}
       </Text>
     </>
   );

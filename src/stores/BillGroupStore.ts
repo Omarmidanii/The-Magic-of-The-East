@@ -3,13 +3,18 @@ import { Card } from "../hooks/useFetchAllClassGroups";
 
 interface BillGroup {
   groups: { group: Card; count: number }[] | undefined;
+  pickOne: boolean;
+  setPickone: (one: boolean) => void;
   setGroups: (group: Card) => void;
   changeCount: (newcount: number, index: number) => void;
   removeGroup: (Removedgroup: Card) => void;
+  resetGroups: () => void;
 }
 
 const useBillGroupStore = create<BillGroup>()((set) => ({
   groups: undefined,
+  pickOne: false,
+  setPickone: (one) => set(() => ({ pickOne: one })),
   setGroups: (group) =>
     set((state) => ({
       groups: state.groups
@@ -28,6 +33,10 @@ const useBillGroupStore = create<BillGroup>()((set) => ({
       groups: state.groups?.filter(
         (group) => group.group.id !== Removedgroup.id
       ),
+    })),
+  resetGroups: () =>
+    set(() => ({
+      groups: [],
     })),
 }));
 

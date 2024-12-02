@@ -35,16 +35,23 @@ const Bills = () => {
   const { isOpen: isOpen1, onToggle: onToggle1 } = useDisclosure();
   const { isOpen: isOpen2, onToggle: onToggle2 } = useDisclosure();
 
-  const { groups } = useBillGroupStore();
+  const { groups, resetGroups, pickOne } = useBillGroupStore();
   const {
     isOpen: isOpenAddBill,
     onClose: onCloseAddBill,
     onOpen: onOpenAddBill,
   } = useDisclosure();
 
+  const {
+    isOpen: isOpenSearchBy,
+    onClose: onCloseSearchBy,
+    onToggle: onToggleSearchBy,
+  } = useDisclosure();
+
   useEffect(() => {
-    if (groups?.length && groups?.length > 0 && !isOpenAddBill) {
-      onOpenAddBill();
+    if (groups?.length && groups?.length > 0) {
+      if (!isOpenAddBill && !pickOne) onOpenAddBill();
+      if (!isOpenSearchBy && pickOne) onToggleSearchBy();
     }
   }, []);
 
@@ -67,11 +74,18 @@ const Bills = () => {
             الفواتير:
           </Text>
           <HStack spacing={4} mt={{ base: 2, md: 0 }}>
-            <SearchBy />
+            <SearchBy
+              isOpen={isOpenSearchBy}
+              onClose={onCloseSearchBy}
+              onToggle={onToggleSearchBy}
+            />
             <Button
               colorScheme="green"
               borderRadius={20}
-              onClick={() => onOpenAddBill()}
+              onClick={() => {
+                resetGroups();
+                onOpenAddBill();
+              }}
             >
               إضافة فاتورة
             </Button>
