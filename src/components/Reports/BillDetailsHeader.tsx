@@ -1,4 +1,12 @@
-import { Box, Button, HStack, Icon, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  HStack,
+  Icon,
+  Stack,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FaMoneyBillTrendUp, FaRegCalendarDays } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
@@ -76,6 +84,20 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
             <Icon mx={1} mb={-0.5} as={FaRegCalendarDays} />
           </Text>
         </Stack>
+        <Box px={20} mt={12}>
+          : الملاحظات
+          <Textarea
+            mt={4}
+            textAlign="right"
+            contentEditable={false}
+            focusBorderColor="gray.200"
+            value={
+              "  م شسنمسشمن شسم سم شسنسشنسشنس سن مسشمن من سمن سمش ننمنسش سنس ن سسن نس"
+            }
+          >
+            {" "}
+          </Textarea>
+        </Box>
       </Box>
     </div>
   );

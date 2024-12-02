@@ -81,7 +81,13 @@ const GategoryPage = () => {
         }}
       >
         {categories.map((value, index) => (
-          <Box key={index} borderRight={"4px"} borderColor={RED} paddingX={5}>
+          <Box
+            key={index}
+            borderRight={"4px"}
+            borderColor={RED}
+            paddingX={5}
+            mb={index == 9 ? 20 : 'auto'}
+          >
             <div style={{ marginTop: index ? 48 : 30 }}>
               {" "}
               <Text fontStyle={"italic"} fontSize={24} mb={-4}>
