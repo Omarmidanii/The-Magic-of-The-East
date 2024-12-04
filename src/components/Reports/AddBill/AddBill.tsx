@@ -149,7 +149,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
               setTotal_Sell_Price(Number(e.target.value));
             }}
             placeholder={
-              total_sell_price ? `${total_sell_price}` : "000,000,000"
+              total_sell_price != 0 ? `${total_sell_price}` : "000,000,000"
             }
           />
         </HStack>

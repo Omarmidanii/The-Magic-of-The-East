@@ -31,16 +31,15 @@ const CustomerSelector = () => {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomer(undefined);
     setSearchQuery(e.target.value);
   };
 
   const { data, isLoading, error, fetchNextPage, hasNextPage } =
-    useFetchAllCustomers();
+    useFetchAllCustomers("?filter[name]=" + searchQuery);
 
   const fetchedBranchesCount =
     data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
-
-  if (isLoading) return <Spinner />;
 
   if (error) return <Error message={error.message} />;
 
@@ -52,11 +51,14 @@ const CustomerSelector = () => {
             ? `${customer.firstname} ${customer.lastname}`
             : "اختر الزبون"
         }
-        value={searchQuery}
+        value={
+          customer ? `${customer.firstname} ${customer.lastname}` : searchQuery
+        }
         onChange={handleSearchChange}
         onClick={toggleList}
       />
       <Collapse in={isOpen} animateOpacity>
+        {isLoading && <Spinner pr={2} />}
         <List maxH={"200px"} overflowY={"auto"} id="scroolableList">
           <InfiniteScroll
             dataLength={fetchedBranchesCount}

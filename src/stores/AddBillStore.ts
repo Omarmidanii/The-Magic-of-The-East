@@ -5,7 +5,7 @@ interface AddBillStore {
   notes: string;
   setNotes: (notes: string) => void;
   customer?: customer;
-  setCustomer: (customer: customer) => void;
+  setCustomer: (customer?: customer) => void;
   total_sell_price: number;
   setTotal_Sell_Price: (total_sell_price: number) => void;
   resetAddBill: () => void;
