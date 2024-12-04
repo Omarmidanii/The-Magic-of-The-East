@@ -23,7 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/chooseGroup",
-    element: <ChooseBillGroups />,
+    element: (
+      <PrivateRoute>
+        <ChooseBillGroups />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {

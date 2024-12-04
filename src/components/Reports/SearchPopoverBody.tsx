@@ -1,5 +1,5 @@
 import { Button, HStack, Image, Input, Select, Text } from "@chakra-ui/react";
-import { customers } from "../Customer/CustomerTable";
+//import { customers } from "../Customer/CustomerTable";
 import useBillGroupStore from "../../stores/BillGroupStore";
 import { Link } from "react-router-dom";
 import noImage from "../../assets/noImage.jpeg";
@@ -29,11 +29,11 @@ const SearchPopoverBody = () => {
         placeholder="اختر زبون"
         color={"gray.500"}
       >
-        {customers.map((value, index) => (
+        {/* {customers.map((value, index) => (
           <option value={index}>
             {value.firstname + " " + value.lastname}
           </option>
-        ))}
+        ))} */}
       </Select>
       <Text mt={8} mb={3}>
         حسب التاريخ:

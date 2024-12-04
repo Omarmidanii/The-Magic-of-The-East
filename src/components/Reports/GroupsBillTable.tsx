@@ -18,7 +18,6 @@ import useBillGroupStore from "../../stores/BillGroupStore";
 const GroupsBillTable = () => {
   const { groups, removeGroup, changeCount } = useBillGroupStore();
 
-  console.log(groups);
   return (
     <TableContainer>
       <Table>

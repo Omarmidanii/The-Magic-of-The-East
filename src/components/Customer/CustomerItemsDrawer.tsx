@@ -15,7 +15,6 @@ interface Props {
 const CustomerItemsDrawer = ({ customer, fun }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: IsOpen, onClose: OnClose, onOpen: OnOpen } = useDisclosure();
-  console.log(customer);
 
   const { colorMode } = useColorMode();
   return (
