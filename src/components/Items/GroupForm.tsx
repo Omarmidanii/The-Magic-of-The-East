@@ -172,7 +172,8 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
   return (
     <div>
       {create.isError ? <Text color={"red"}>{message?.images}</Text> : ""}
-      {currentPathname == "/dash/categories" && (
+      {(currentPathname == "/dash/categories" ||
+        currentPathname == "/dash") && (
         <>
           <HStack mb={5} spacing={10}>
             <Input
