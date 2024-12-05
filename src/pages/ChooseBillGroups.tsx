@@ -18,7 +18,7 @@ const ChooseBillGroups = () => {
           transform: "translateX(-50%)", // Center horizontally
         }}
       >
-        <Link to={'/dash/reports'}>
+        <Link to={"/dash/reports"}>
           <Button colorScheme="green">انتهيت من الاختيار</Button>
         </Link>
       </span>

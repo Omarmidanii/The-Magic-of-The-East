@@ -13,7 +13,7 @@ import bill from "../../entities/bill";
 import BillDetails from "./BillDetails";
 import SearchBy from "./SearchBy";
 import CustomModal from "../Modal";
-import AddBill from "./AddBill";
+import AddBill from "./AddBill/AddBill";
 import useBillGroupStore from "../../stores/BillGroupStore";
 import { useEffect } from "react";
 
@@ -127,7 +127,7 @@ const Bills = () => {
         </Collapse>
       </Box>
       <CustomModal
-        buttonLabel="اضافة مصروف للصالة"
+        buttonLabel="اضافة فاتورة"
         isOpen={isOpenAddBill}
         onClose={onCloseAddBill}
         color={"white"}

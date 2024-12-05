@@ -14,28 +14,17 @@ import { FaPhoneFlip } from "react-icons/fa6";
 import { MdLocationOn } from "react-icons/md";
 import CustomerItemsDrawer from "./CustomerItemsDrawer";
 import { PiBasketFill } from "react-icons/pi";
-import useIndex from "../../hooks/useIndex";
-import customer from "../../entities/customer";
 import { TableSkeleton } from "../Skeleton/TableSkeleton";
 import { Error } from "../Error";
 import InfiniteScroll from "react-infinite-scroll-component";
 import React from "react";
 import loading from "../../assets/loading.mp4";
 import ReactPlayer from "react-player";
-
-export const customers: customer[] = [
-  {
-    firstname: "عمر",
-    lastname: "الميداني",
-    phonenumber: "963938625359+",
-    address: "ضاحية قدسيا",
-  },
-];
+import useFetchAllCustomers from "../../hooks/useFetchAllCustomers";
 
 const CustomerTable = () => {
   const { data, isLoading, error, fetchNextPage, refetch, hasNextPage } =
-    useIndex<customer>("customers");
-
+    useFetchAllCustomers();
   if (isLoading) return <TableSkeleton />;
   if (error) return <Error message={error.message} />;
   const fetchedBranchesCount =

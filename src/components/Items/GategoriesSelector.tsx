@@ -27,12 +27,13 @@ const GategoriesSelector = ({ selectIndex }: Props) => {
       width={{ sm: 300 }}
       colorScheme="red"
       onChange={(e) => {
-        console.log("hiiii");
         if (selectIndex) selectIndex(Number(e.target.value) + 1);
       }}
     >
       {categories.map((value, index) => (
-        <option value={index}>{value.arName}</option>
+        <option key={index} value={index}>
+          {value.arName}
+        </option>
       ))}
     </Select>
   );
