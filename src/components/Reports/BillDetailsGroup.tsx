@@ -31,7 +31,6 @@ const BillDetailsGroup = () => {
       <Table variant="simple">
         <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
-          {" "}
           <Tr>
             <Th>اسم المجموعة</Th>
             <Th> العدد</Th>

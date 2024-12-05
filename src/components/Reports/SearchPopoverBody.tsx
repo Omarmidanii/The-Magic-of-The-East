@@ -30,7 +30,7 @@ const SearchPopoverBody = () => {
         color={"gray.500"}
       >
         {customers.map((value, index) => (
-          <option value={index}>
+          <option value={index} key={index}>
             {value.firstname + " " + value.lastname}
           </option>
         ))}

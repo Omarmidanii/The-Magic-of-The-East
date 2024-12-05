@@ -94,6 +94,7 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
             value={
               "  م شسنمسشمن شسم سم شسنسشنسشنس سن مسشمن من سمن سمش ننمنسش سنس ن سسن نس"
             }
+            onChange={() => {}}
           >
             {" "}
           </Textarea>
