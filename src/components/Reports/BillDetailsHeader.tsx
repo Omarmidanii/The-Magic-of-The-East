@@ -11,13 +11,15 @@ import { FaMoneyBillWave } from "react-icons/fa";
 import { FaMoneyBillTrendUp, FaRegCalendarDays } from "react-icons/fa6";
 import { IoPerson } from "react-icons/io5";
 import { PiArrowRightBold } from "react-icons/pi";
+import bill from "../../entities/bill";
 
 interface Props {
   onToggle: () => void;
   onToggle2: () => void;
+  bill: bill;
 }
 
-const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
+const BillDetailsHeader = ({ bill, onToggle, onToggle2 }: Props) => {
   return (
     <div>
       <HStack justifyContent={"space-between"}>
@@ -50,11 +52,12 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
         >
           <Text>
             {" "}
-            <b>المشتري:</b> فلاني الفلاني
+            <b>المشتري:</b>
+            {bill.customer}
             <Icon mx={1} mb={-0.5} as={IoPerson} />
           </Text>{" "}
           <Text>
-            586654 <b>:رقم العملية #</b>
+            {bill.id} <b>:رقم العملية #</b>
           </Text>
         </Stack>
         <Stack
@@ -64,12 +67,12 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
         >
           <Text>
             {" "}
-            <b>إجمالي المبيع:</b> 156,000,000
+            <b>إجمالي المبيع:</b> {bill.total_sell_price}
             <Icon mx={1} mb={-0.5} boxSize={4} as={FaMoneyBillTrendUp} />
           </Text>
           <Text>
             {" "}
-            <b>إجمالي الشراء:</b> 156,000,000
+            <b>إجمالي الشراء:</b> {bill.total_net_price}
             <Icon mx={1} mb={-1} boxSize={4} as={FaMoneyBillWave} />
           </Text>
         </Stack>
@@ -80,7 +83,7 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
           justifyContent={"space-evenly"}
         >
           <Text>
-            15/45/5126 <b>:التاريخ</b>
+            {bill.date} <b>:التاريخ</b>
             <Icon mx={1} mb={-0.5} as={FaRegCalendarDays} />
           </Text>
         </Stack>
@@ -91,9 +94,7 @@ const BillDetailsHeader = ({ onToggle, onToggle2 }: Props) => {
             textAlign="right"
             contentEditable={false}
             focusBorderColor="gray.200"
-            value={
-              "  م شسنمسشمن شسم سم شسنسشنسشنس سن مسشمن من سمن سمش ننمنسش سنس ن سسن نس"
-            }
+            value={bill.notes || ""}
             onChange={() => {}}
           >
             {" "}
