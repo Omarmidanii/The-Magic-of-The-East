@@ -13,7 +13,8 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-
+import { Months } from "../../constants";
+import useFetchLastYearEarnings from "../../hooks/usegetLastYearEarnings";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -28,28 +29,31 @@ ChartJS.register(
 );
 
 const LineChart = () => {
+  const currentDate = new Date();
+  const monthsArray: string[] = [];
+
+  for (let i = 0; i < 12; i++) {
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - i,
+      1
+    );
+    const monthName = Object.keys(Months).find(
+      (key) => Months[key] === date.getMonth() + 1
+    );
+    if (monthName) {
+      monthsArray.unshift(monthName);
+    }
+  }
+  const Earnings = useFetchLastYearEarnings();
+  const $data = Earnings.data?.slice().reverse();
+  console.log($data);
   const dataLine = {
-    labels: [
-      "يناير ",
-      "فبراير",
-      "مارس  ",
-      "أبريل ",
-      "مايو  ",
-      "يونيو ",
-      "يوليو ",
-      "أغسطس ",
-      "سبتمبر",
-      "أكتوبر",
-      "نوفمبر",
-      "ديسمبر",
-    ],
+    labels: monthsArray,
     datasets: [
       {
         label: "",
-        data: [
-          550000, 225000, 310000, 516516, 546513, 785484, 467215, 614632,
-          514862, 346321, 686214, 416324,
-        ],
+        data: $data,
         borderRadius: 10,
         borderColor: "#88DDDD",
         tension: 0.3,
