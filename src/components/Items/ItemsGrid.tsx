@@ -127,7 +127,8 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
           height={
             currentPathname.substring(0, 11) == "/dash/items"
               ? height - 180
-              : currentPathname.substring(0, 11) == "/dash/custo"
+              : currentPathname.substring(0, 11) == "/dash/custo" ||
+                currentPathname == "/chooseGroup"
               ? height
               : height * (fetchedCount / 6.2)
           }

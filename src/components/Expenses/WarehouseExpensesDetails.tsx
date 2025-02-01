@@ -1,19 +1,18 @@
-import { Box, Grid, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Collapse, Grid, Text, useColorModeValue } from "@chakra-ui/react";
 import CustomDelete from "../Delete";
-import { sampleData } from "./ExpensesTable";
+import useFetchExpenseDetails from "../../hooks/useFetchExpenseDetails";
 
 interface Props {
   name: string;
-  month: number;
+  month: string;
 }
 
 const WarehouseExpensesDetails = ({ name, month }: Props) => {
-  let items =
-    name == "expenses"
-      ? sampleData[month].expensesDetails
-      : name == "bills"
-      ? sampleData[month].billsDetails
-      : sampleData[month].rentDetails;
+  let tap =
+    name == "expenses" ? 1 : name == "bills" ? 3 : name == "rent" ? 2 : 0; //make sure
+  const details = tap
+    ? useFetchExpenseDetails(tap, month)
+    : { status: 0, data: [], message: "", isFetching: false };
 
   return (
     <Box mb={16} mr={16} ml={16}>
@@ -27,7 +26,12 @@ const WarehouseExpensesDetails = ({ name, month }: Props) => {
         textAlign={"center"}
         gap={6}
       >
-        {items.map((item, index) => (
+        {details.data?.length == 0 && (
+          <Collapse in={!details.isFetching}>
+            <Box>لا يوجد شيء لعرضه</Box>
+          </Collapse>
+        )}
+        {details.data?.map((item, index) => (
           <Box
             key={index}
             borderWidth={1}
@@ -41,7 +45,7 @@ const WarehouseExpensesDetails = ({ name, month }: Props) => {
             <Text fontWeight="bold" color={"gray.700"}>
               {item.name}
             </Text>
-            <Text color={"gray.600"}>{item.value} ل.س</Text>
+            <Text color={"gray.600"}>{item.cost} ل.س</Text>
           </Box>
         ))}
       </Grid>

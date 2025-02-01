@@ -9,26 +9,13 @@ import {
 } from "@chakra-ui/react";
 import resizeWindow from "../../services/resizeWindow";
 import BillsTable from "./BillsTable";
-import bill from "../../entities/bill";
 import BillDetails from "./BillDetails";
 import SearchBy from "./SearchBy";
 import CustomModal from "../Modal";
 import AddBill from "./AddBill/AddBill";
 import useBillGroupStore from "../../stores/BillGroupStore";
-import { useEffect } from "react";
-
-const bills: bill[] = [
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-  { id: 54546, customerName: "زلمة", date: "2025/10/20" },
-];
+import { useEffect, useState } from "react";
+import useFetchBills from "../../hooks/useFetchBills";
 
 const Bills = () => {
   const { height } = resizeWindow();
@@ -54,6 +41,9 @@ const Bills = () => {
       if (!isOpenSearchBy && pickOne) onToggleSearchBy();
     }
   }, []);
+
+  const bills = useFetchBills();
+  const [index, setIndex] = useState(0);
 
   return (
     <Box w={"98%"} h={Math.max(height - 130, 400)} mt={4} mr={4}>
@@ -96,7 +86,7 @@ const Bills = () => {
         px={5}
         mt={{ base: 12, md: 0 }}
         h={Math.max(height - 220, 300)}
-        overflow={"auto"}
+        overflow={isOpen1 ? "auto" : "hidden"}
         sx={{
           direction: "ltr",
           textAlign: "right",
@@ -114,7 +104,10 @@ const Bills = () => {
         >
           <BillsTable
             bills={bills}
-            onToggle={onToggle1}
+            onToggle={(id: number) => {
+              setIndex(id);
+              onToggle1();
+            }}
             onToggle2={onToggle2}
           />
         </Collapse>
@@ -123,7 +116,11 @@ const Bills = () => {
           animateOpacity
           transition={{ exit: { duration: 1 }, enter: { duration: 1 } }}
         >
-          <BillDetails onToggle={onToggle2} onToggle2={onToggle1} />
+          <BillDetails
+            BillId={index}
+            onToggle={onToggle2}
+            onToggle2={onToggle1}
+          />
         </Collapse>
       </Box>
       <CustomModal

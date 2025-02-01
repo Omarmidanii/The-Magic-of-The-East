@@ -8,18 +8,12 @@ import {
   Td,
   Table,
 } from "@chakra-ui/react";
+import { BillItem } from "../../entities/bill";
 
-export const billItem = [
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-  { name: "فرشة", workshop: 500000, count: 800000 },
-];
-
-const BillDetailsGroup = () => {
+interface Props {
+  billItems: BillItem[];
+}
+const BillDetailsGroup = ({ billItems }: Props) => {
   return (
     <TableContainer
       mt={20}
@@ -31,7 +25,6 @@ const BillDetailsGroup = () => {
       <Table variant="simple">
         <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
-          {" "}
           <Tr>
             <Th>اسم المجموعة</Th>
             <Th> العدد</Th>
@@ -39,10 +32,10 @@ const BillDetailsGroup = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {billItem.map((value, index) => (
+          {billItems.map((value, index) => (
             <Tr key={index}>
               <Td>{value.name}</Td>
-              <Td> {value.count}</Td>
+              <Td> {value.quantity}</Td>
               <Td>{value.workshop}</Td>
             </Tr>
           ))}

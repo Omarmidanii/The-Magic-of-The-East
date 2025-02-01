@@ -10,10 +10,12 @@ import {
   CloseButton,
   IconButton,
   Box,
+  Icon,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import useDelete from "../hooks/useDelete";
+import { RxCross2 } from "react-icons/rx";
 
 interface Props {
   ID: number;
@@ -76,7 +78,23 @@ function CustomDelete({
           {showText ? "حذف" : ""}
         </IconButton>
       )}
-      {type != "Button" && (
+      {type === "smallButton" && (
+        <Icon
+          as={RxCross2}
+          borderRadius={20}
+          p={0.5}
+          mt={1}
+          mb={-0.5}
+          boxSize={5}
+          _hover={{ bgColor: "red.600", color: "white" }}
+          cursor="pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen(true);
+          }}
+        />
+      )}
+      {type != "Button" && type != "smallButton" && (
         <CloseButton
           boxSize={2}
           _hover={{

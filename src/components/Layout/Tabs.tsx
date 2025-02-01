@@ -7,6 +7,7 @@ import { RiCustomerService2Fill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import { RED } from "../../constants";
 import { PiChartLineUpBold } from "react-icons/pi";
+import usePathStore from "../../stores/pathStore";
 
 interface valueofTab {
   enName: string;
@@ -24,6 +25,8 @@ export const Tab: Record<string, valueofTab> = {
 export const Tabs = () => {
   const { t } = useTranslation();
   const url = useLocation();
+  const { setPath } = usePathStore();
+
   return (
     <HStack>
       {Object.entries(Tab).map(([name, value], index) => (
@@ -36,6 +39,7 @@ export const Tabs = () => {
                   : "translateY(0) scale(1)",
               transition: "transform 0.4s ease-in-out",
             }}
+            onClick={() => setPath(`/${value.enName}`)}
           >
             <Link to={`/${value.enName}`}>
               <Button

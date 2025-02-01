@@ -3,21 +3,32 @@ import {
   TableCaption,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   Table,
   Show,
-  Icon,
+  Stack,
 } from "@chakra-ui/react";
-import bill from "../../entities/bill";
-import { RxCross2 } from "react-icons/rx";
+import React from "react";
+import loading from "../../assets/loading.mp4";
+import ReactPlayer from "react-player";
+import InfiniteScroll from "react-infinite-scroll-component";
+import resizeWindow from "../../services/resizeWindow";
+import { Error } from "../Error";
+import { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query";
+import indexResponse from "../../entities";
+import billInfo from "../../entities/billinfo";
+import CustomError from "../../entities/customeError";
+import CustomDelete from "../Delete";
 
 interface Props {
-  bills: bill[];
-  onToggle: () => void;
+  onToggle: (id: number) => void;
   onToggle2: () => void;
+  bills: UseInfiniteQueryResult<
+    InfiniteData<indexResponse<billInfo>, unknown>,
+    CustomError
+  >;
 }
 
 const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
@@ -46,83 +57,103 @@ const BillsTable = ({ bills, onToggle, onToggle2 }: Props) => {
     },
   };
 
+  if (bills.error) return <Error message={bills.error.message} />;
+
+  const fetchedCount =
+    bills.data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
+
+  const { height } = resizeWindow();
+
   return (
-    <TableContainer>
-      <Table sx={styles.table}>
-        <TableCaption>انتهت الفواتير</TableCaption>
-        <Thead>
-          <Tr>
-            <Th>التاريح</Th>
-            <Th isNumeric>المشتري</Th>
-            <Show above="sm">
-              <Th isNumeric> رقم الفاتورة #</Th>
-            </Show>
-            <Th w={2}></Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {bills.map((val, index) => (
-            <Tr cursor="pointer" key={index}>
-              <Td
-                sx={styles.leftCell}
-                onClick={() => {
-                  onToggle();
-                  setTimeout(onToggle2, 1000);
-                }}
-              >
-                {val.date}
-              </Td>
-              <Td
-                sx={styles.midCell}
-                isNumeric
-                onClick={() => {
-                  onToggle();
-                  setTimeout(onToggle2, 1000);
-                }}
-              >
-                {val.customerName}
-              </Td>
+    <TableContainer
+      id="scrollableTable"
+      overflowY={"auto"}
+      h={Math.max(height - 220, 300)}
+      sx={{ scrollbarWidth: "thin" }}
+    >
+      <InfiniteScroll
+        dataLength={fetchedCount}
+        hasMore={bills.hasNextPage}
+        next={() => bills.fetchNextPage()}
+        loader={
+          <Stack placeItems={"center"} my={5}>
+            <ReactPlayer
+              url={loading}
+              playing
+              loop
+              controls={false}
+              width="88px"
+              height="88px"
+              muted
+            />{" "}
+          </Stack>
+        }
+        scrollableTarget="scrollableTable"
+      >
+        <Table sx={styles.table}>
+          <TableCaption>انتهت الفواتير</TableCaption>
+          <Thead>
+            <Tr>
+              <Th>التاريح</Th>
+              <Th isNumeric>المشتري</Th>
               <Show above="sm">
-                <Td
-                  sx={styles.midCell}
-                  isNumeric
-                  onClick={() => {
-                    onToggle();
-                    setTimeout(onToggle2, 1000);
-                  }}
-                >
-                  {val.id}
-                </Td>
+                <Th isNumeric> رقم الفاتورة #</Th>
               </Show>
-              <Td sx={styles.rightCell} w={0} isNumeric>
-                {" "}
-                <Icon
-                  as={RxCross2}
-                  borderRadius={20}
-                  p={0.5}
-                  mt={1}
-                  mb={-0.5}
-                  boxSize={5}
-                  _hover={{ bgColor: "red.600", color: "white" }}
-                  cursor="pointer"
-                  onClick={() => {
-                    console.log(index);
-                  }}
-                />
-              </Td>
+              <Th w={2}></Th>
             </Tr>
-          ))}
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>التاريح</Th>
-            <Th isNumeric>المشتري</Th>
-            <Show above="sm">
-              <Th isNumeric>رقم الفاتورة</Th>
-            </Show>
-          </Tr>
-        </Tfoot>
-      </Table>
+          </Thead>
+          <Tbody>
+            {bills?.data?.pages?.map((page, ind) => (
+              <React.Fragment key={ind}>
+                {page.data.map((val, index) => (
+                  <Tr cursor="pointer" key={index}>
+                    <Td
+                      sx={styles.leftCell}
+                      onClick={() => {
+                        onToggle(val.id);
+                        setTimeout(onToggle2, 1000);
+                      }}
+                    >
+                      {val.date}
+                    </Td>
+                    <Td
+                      sx={styles.midCell}
+                      isNumeric
+                      onClick={() => {
+                        onToggle(val.id);
+                        setTimeout(onToggle2, 1000);
+                      }}
+                    >
+                      {val.customer}
+                    </Td>
+                    <Show above="sm">
+                      <Td
+                        sx={styles.midCell}
+                        isNumeric
+                        onClick={() => {
+                          onToggle(val.id);
+                          setTimeout(onToggle2, 1000);
+                        }}
+                      >
+                        {val.id}
+                      </Td>
+                    </Show>
+                    <Td sx={styles.rightCell} w={0} isNumeric>
+                      {" "}
+                      <CustomDelete
+                        ID={val.id || -1}
+                        refetch={bills.refetch}
+                        endpoint="invoices"
+                        type="smallButton"
+                      />
+                    </Td>
+                  </Tr>
+                ))}
+              </React.Fragment>
+            ))}
+          </Tbody>
+        </Table>
+      </InfiniteScroll>
     </TableContainer>
   );
 };

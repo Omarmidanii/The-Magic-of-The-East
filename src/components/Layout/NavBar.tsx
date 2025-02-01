@@ -11,9 +11,11 @@ import YALLOW from "../../constants";
 import NavDrawer from "./NavDrawer";
 import { SearchInput } from "../SearchInput";
 import { Tabs } from "./Tabs";
+import usePathStore from "../../stores/pathStore";
 
 export const NavBar = () => {
   const showTabs = useBreakpointValue({ base: false, lg: true });
+  const { path } = usePathStore();
 
   return (
     <HStack justifyContent="space-between" p={2} paddingX={5} bgColor={YALLOW}>
@@ -27,7 +29,10 @@ export const NavBar = () => {
       </Link>
       {showTabs && <Tabs />}
       <HStack spacing={4}>
-        <SearchInput />
+        {(path == "/dash/customers" || path == "/dash/employers") && (
+          <SearchInput />
+        )}
+        
         <Link to="/settings">
           <IconButton
             aria-label=""
