@@ -10,14 +10,12 @@ interface TRes<T> {
 }
 
 const useFetchData = <T>(endPoint: string, fun: () => void = () => {}) => {
-  let backStatus;
   const apiClient = new APIClient<TRes<T>>(`/${endPoint}`);
   const navigate = useNavigate();
   setAuthToken();
 
   const fetchData = () =>
     apiClient.get({}).then((res) => {
-      backStatus = res.status;
       fun();
       return res.data;
     });

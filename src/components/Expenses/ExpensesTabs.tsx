@@ -17,6 +17,12 @@ import { BsReceiptCutoff } from "react-icons/bs";
 
 const MotionBox = motion(Box);
 
+/*WareHouseExpense = 1;
+    case WareHouseRent = 2;
+    case tax = 3;
+
+    case EmployerExpense = 4; */
+
 const ExpensesTabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
   const { setTab } = useExpensesTab();

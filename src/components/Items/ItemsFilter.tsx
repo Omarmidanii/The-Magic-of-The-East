@@ -44,7 +44,7 @@ const ItemsFilter = () => {
       </PopoverTrigger>
       <PopoverContent mr={2} shadow={"xl"}>
         <PopoverBody m={2}>
-          <ItemsColorFilter checkedColors={[2,4,5,7]} filter={true} />
+          <ItemsColorFilter filter={true} />
           <br />
           <ItemsSizesFilter name="الطول :" max={400} />
           <ItemsSizesFilter name="العرض :" max={200} />
