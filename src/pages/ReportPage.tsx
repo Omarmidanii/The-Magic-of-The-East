@@ -1,10 +1,10 @@
-import { Box, Grid, GridItem, HStack, Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import StatisticsCharts from "../components/Reports/StatisticsCharts";
 import Bills from "../components/Reports/Bills";
 import resizeWindow from "../services/resizeWindow";
 
 const ReportPage = () => {
-  const { width, height } = resizeWindow();
+  const { height } = resizeWindow();
   return (
     <Stack
       direction={{ lg: "row", base: "column" }}

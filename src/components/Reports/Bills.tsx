@@ -123,7 +123,7 @@ const Bills = () => {
           animateOpacity
           transition={{ exit: { duration: 1 }, enter: { duration: 1 } }}
         >
-          <BillDetails BillId={2} onToggle={onToggle2} onToggle2={onToggle1} />
+          <BillDetails onToggle={onToggle2} onToggle2={onToggle1} />
         </Collapse>
       </Box>
       <CustomModal

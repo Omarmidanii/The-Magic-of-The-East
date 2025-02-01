@@ -14,7 +14,6 @@ import ItemsColorFilter from "./itemsColorFilter";
 import ItemsSizesFilter from "./ItemsSizesFilter";
 import resizeWindow from "../../services/resizeWindow";
 
-
 const ItemsFilter = () => {
   const { width } = resizeWindow();
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -36,7 +35,7 @@ const ItemsFilter = () => {
             textColor: "black",
             bgColor: "gray.200",
           }}
-          boxShadow={'lg'}
+          boxShadow={"lg"}
           onClick={onToggle}
         >
           فلترة النتائج
@@ -44,7 +43,7 @@ const ItemsFilter = () => {
       </PopoverTrigger>
       <PopoverContent mr={2} shadow={"xl"}>
         <PopoverBody m={2}>
-          <ItemsColorFilter checkedColors={[2,4,5,7]} filter={true} />
+          <ItemsColorFilter filter={true} />
           <br />
           <ItemsSizesFilter name="الطول :" max={400} />
           <ItemsSizesFilter name="العرض :" max={200} />

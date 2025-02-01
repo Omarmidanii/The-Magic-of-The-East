@@ -22,7 +22,11 @@ const ItemsColorFilter = ({ filter }: Props) => {
             key={index}
             mb={0}
             boxSize={5}
-            color={groupcolors.colors?.includes(index.toString()) ? "white" : value.base}
+            color={
+              groupcolors.colors?.includes(index.toString())
+                ? "white"
+                : value.base
+            }
             p={1}
             bgColor={value.base}
             borderRadius={20}
@@ -38,7 +42,10 @@ const ItemsColorFilter = ({ filter }: Props) => {
                   groupcolors.colors.filter((num) => num !== index.toString())
                 );
               } else {
-                groupcolors.setColors([...(groupcolors.colors || []), index.toString()]);
+                groupcolors.setColors([
+                  ...(groupcolors.colors || []),
+                  index.toString(),
+                ]);
               }
             }}
           />

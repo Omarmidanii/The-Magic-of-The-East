@@ -3,16 +3,15 @@ import BillDetailsHeader from "./BillDetailsHeader";
 import BillDetailsGroup from "./BillDetailsGroup";
 
 interface Props {
-  BillId: number;
   onToggle: () => void;
   onToggle2: () => void;
 }
 
-const BillDetails = ({ BillId, onToggle, onToggle2 }: Props) => {
+const BillDetails = ({ onToggle, onToggle2 }: Props) => {
   return (
     <Box px={5} py={5}>
       <BillDetailsHeader onToggle={onToggle} onToggle2={onToggle2} />
-      <BillDetailsGroup/>
+      <BillDetailsGroup />
     </Box>
   );
 };
