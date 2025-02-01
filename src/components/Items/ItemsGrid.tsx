@@ -30,36 +30,42 @@ export const itemss = [
     name: "غرفة ريفي بيج",
     photos: [OIP, OIP1, OIP2, OIP3, OIP4],
     state: "1",
+    classification_id: "hi",
   },
   {
     id: 1,
     name: "1غرفة نوم",
     photos: [OIP],
     state: "1",
+    classification_id: "hi",
   },
   {
     id: 1,
     name: "2غرفة نوم",
     photos: [OIP, OIP1, OIP3, OIP4, OIP2],
     state: "1",
+    classification_id: "hi",
   },
   {
     id: 1,
     name: "غرفة نوم3",
     photos: [OIP, OIP1],
     state: "1",
+    classification_id: "hi",
   },
   {
     id: 1,
     name: "4غرفة نوم",
     photos: [OIP, OIP1, OIP2],
     state: "1",
+    classification_id: "hi",
   },
   {
     id: 1,
     name: "5غرفة نوم",
     photos: [OIP, OIP4, OIP1, OIP2],
     state: "1",
+    classification_id: "hi",
   },
 ];
 
@@ -91,6 +97,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
     name: "",
     photos: [""],
     state: "1",
+    classification_id:""
   });
 
   const { groups, setGroups, removeGroup, pickOne } = useBillGroupStore();
@@ -211,6 +218,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
                         images={info.photos}
                         name={info.name}
                         badge={info.state}
+                        gat={info.classification_id}
                       />
                     </Box>
                   </Box>

@@ -20,7 +20,12 @@ const GategorySlider = ({ items, id }: Props) => {
           {index <
             (width > 1400 ? 4 : width > 1080 ? 3 : width > 770 ? 2 : 1) && (
             <Box boxSize={300} height={320} padding={5}>
-              <ItemCard images={image.photos} name={image.name} badge={image.state} />
+              <ItemCard
+                images={image.photos}
+                name={image.name}
+                badge={image.state}
+                gat={image.classification_id}
+              />
             </Box>
           )}
         </div>
@@ -29,8 +34,8 @@ const GategorySlider = ({ items, id }: Props) => {
         <Link
           to={
             currentPathname == "/dash/categories" || currentPathname == "/dash"
-              ? `/dash/items/${id+1}`
-              : `/items/${id+1}`
+              ? `/dash/items/${id + 1}`
+              : `/items/${id + 1}`
           }
         >
           <IconButton

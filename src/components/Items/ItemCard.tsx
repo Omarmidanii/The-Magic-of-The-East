@@ -14,9 +14,10 @@ interface Props {
   name: string | undefined;
   images: string[];
   badge: string;
+  gat:string;
 }
 
-const ItemCard = ({ name, images, badge }: Props) => {
+const ItemCard = ({ name, images, badge, gat }: Props) => {
   return (
     <Card
       p={2}
@@ -86,7 +87,7 @@ const ItemCard = ({ name, images, badge }: Props) => {
         <CardBody>
           <Heading size="sm" marginBottom="5px" marginTop={-2} padding="1px">
             <Text color={"gray.500"} fontSize={13} mt={-2} mb={1}>
-              غرفة نوم
+              {gat}
               <Badge
                 borderRadius={3}
                 px={1.5}
