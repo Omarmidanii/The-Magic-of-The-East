@@ -11,6 +11,7 @@ interface Props {
 }
 
 const ItemBodysDrawer = ({ group }: Props) => {
+  const currentPathname = window.location.pathname;
   const { width } = resizeWindow();
 
   return (
@@ -23,7 +24,8 @@ const ItemBodysDrawer = ({ group }: Props) => {
         alignSelf={"center"}
         mr={width > 990 ? 28 : width > 767 ? 10 : width > 470 ? 24 : 16}
       />
-      <Text mt={5} mb={2} fontSize={22}>
+
+      <Text mt={2} mb={2} fontSize={22}>
         {" "}
         الوصف:
       </Text>
@@ -54,6 +56,15 @@ const ItemBodysDrawer = ({ group }: Props) => {
       >
         <SizesTable curItems={group?.items} />
       </Stack>
+      {currentPathname.substring(0, 11) == "/dash/items" && (
+        <>
+          <Text mt={2} mb={2} fontSize={22}>
+            {" "}
+            اجمالي الشراء:
+          </Text>
+          <Text mb={10} color={"gray.500"}>{group?.net_price}</Text>
+        </>
+      )}
     </div>
   );
 };

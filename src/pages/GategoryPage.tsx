@@ -86,7 +86,7 @@ const GategoryPage = () => {
             borderRight={"4px"}
             borderColor={RED}
             paddingX={5}
-            mb={index == 9 ? 20 : 'auto'}
+            mb={index == 9 ? 20 : "auto"}
           >
             <div style={{ marginTop: index ? 48 : 30 }}>
               {" "}

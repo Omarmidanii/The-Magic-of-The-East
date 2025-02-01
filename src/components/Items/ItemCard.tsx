@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Card,
   CardBody,
@@ -8,14 +9,14 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Rating from "../Rating";
 import noImage from "../../assets/noImage.jpeg";
 interface Props {
   name: string | undefined;
   images: string[];
+  badge: string;
 }
 
-const ItemCard = ({ name, images }: Props) => {
+const ItemCard = ({ name, images, badge }: Props) => {
   return (
     <Card
       p={2}
@@ -86,10 +87,20 @@ const ItemCard = ({ name, images }: Props) => {
           <Heading size="sm" marginBottom="5px" marginTop={-2} padding="1px">
             <Text color={"gray.500"} fontSize={13} mt={-2} mb={1}>
               غرفة نوم
+              <Badge
+                borderRadius={3}
+                px={1.5}
+                mr={3}
+                variant="solid"
+                fontSize="0.7em"
+                colorScheme={badge == "1" ? "green" : "red"}
+              >
+                {badge == "1" ? "متاح" : "مباع"}
+              </Badge>
             </Text>
             {name}
           </Heading>
-          <Rating rate={75} />
+          {/*<Rating rate={75} />*/}
         </CardBody>
       </Stack>
     </Card>

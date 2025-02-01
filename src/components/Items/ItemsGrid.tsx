@@ -16,6 +16,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ReactPlayer from "react-player";
 import ItemDrawer from "./ItemDrawer";
 import { useNavigate } from "react-router-dom";
+import { Card } from "../../hooks/useFetchAllClassGroups";
 
 interface Props {
   width: number;
@@ -28,31 +29,37 @@ export const itemss = [
     id: 1,
     name: "غرفة ريفي بيج",
     photos: [OIP, OIP1, OIP2, OIP3, OIP4],
+    state: "1",
   },
   {
     id: 1,
     name: "1غرفة نوم",
     photos: [OIP],
+    state: "1",
   },
   {
     id: 1,
     name: "2غرفة نوم",
     photos: [OIP, OIP1, OIP3, OIP4, OIP2],
+    state: "1",
   },
   {
     id: 1,
     name: "غرفة نوم3",
     photos: [OIP, OIP1],
+    state: "1",
   },
   {
     id: 1,
     name: "4غرفة نوم",
     photos: [OIP, OIP1, OIP2],
+    state: "1",
   },
   {
     id: 1,
     name: "5غرفة نوم",
     photos: [OIP, OIP4, OIP1, OIP2],
+    state: "1",
   },
 ];
 
@@ -81,10 +88,11 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
     onOpen: onOpenEdit,
     onClose: onCloseEdit,
   } = useDisclosure();
-  const [currentIem, setCurrentItem] = useState({
+  const [currentIem, setCurrentItem] = useState<Card>({
     id: 0,
     name: "",
     photos: [""],
+    state: "1",
   });
 
   const { groups, setGroups, removeGroup, pickOne } = useBillGroupStore();
@@ -201,7 +209,11 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
                         setCurrentItem(info);
                       }}
                     >
-                      <ItemCard images={info.photos} name={info.name} />
+                      <ItemCard
+                        images={info.photos}
+                        name={info.name}
+                        badge={info.state}
+                      />
                     </Box>
                   </Box>
                 ))}
@@ -220,7 +232,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
         />
       )}
       <CustomModal
-        buttonLabel="اضافة مجموعة"
+        buttonLabel="تعديل مجموعة"
         isOpen={isOpenEdit}
         onClose={onCloseEdit}
         color={"white"}

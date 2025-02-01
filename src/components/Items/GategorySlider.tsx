@@ -20,7 +20,7 @@ const GategorySlider = ({ items, id }: Props) => {
           {index <
             (width > 1400 ? 4 : width > 1080 ? 3 : width > 770 ? 2 : 1) && (
             <Box boxSize={300} height={320} padding={5}>
-              <ItemCard images={image.photos} name={image.name} />
+              <ItemCard images={image.photos} name={image.name} badge={image.state} />
             </Box>
           )}
         </div>

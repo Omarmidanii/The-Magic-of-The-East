@@ -42,6 +42,7 @@ const ItemDrawer = ({
       header={
         currentPathname.substring(0, 11) == "/dash/items" ? (
           <CustomerItemsDrawerHeader
+            badge={group.data?.data.state}
             name={"معلومات " + group.data?.data?.name}
             id={groupId}
             fun={() => {

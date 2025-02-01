@@ -6,6 +6,8 @@ import {
   Image,
   Input,
   InputGroup,
+  Radio,
+  RadioGroup,
   Stack,
   Text,
   Textarea,
@@ -34,6 +36,8 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
   const group = groupId
     ? useFetchGroupDetails(groupId).data?.data
     : {
+        state: "1",
+        net_price: "",
         name: "",
         description: "",
         classification_id: NaN,
@@ -49,6 +53,8 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
     group
       ? group
       : {
+          state: "1",
+          net_price: "",
           name: "",
           description: "",
           classification_id: NaN,
@@ -96,6 +102,28 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
     });
   };
 
+  const handleStateChange = (state: string) => {
+    setPrevGroup((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        state: state,
+      };
+    });
+  };
+
+  const handlenetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const net = e.target.value;
+    if (prevGroup.net_price.length != 0 || net != "0")
+      setPrevGroup((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          net_price: net,
+        };
+      });
+  };
+
   const currentPathname = window.location.pathname;
 
   const onSubmit = () => {
@@ -109,7 +137,8 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
     });
 
     data.append("name", prevGroup?.name);
-    data.append("net_price", "2155161");
+    data.append("net_price", prevGroup?.net_price);
+    data.append("state", prevGroup?.state);
     data.append("description", prevGroup?.description);
     colors?.forEach((color) => {
       data.append(`colors[]`, color.toString());
@@ -130,7 +159,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
       data.append(`items[${index}][depth]`, item.sizes["depth"].toString());
     });
     console.log(data);
-    currentPathname == "/dash/categories"
+    currentPathname == "/dash/categories" || currentPathname == "/dash"
       ? create.mutate(data)
       : edit.mutate(data);
   };
@@ -138,12 +167,15 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
   const showAlert = (type: "suc" | "err") => {
     swal({
       title:
-        (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
-        prevGroup.name,
+        (currentPathname == "/dash/categories" || currentPathname == "/dash"
+          ? "اضافة"
+          : "تعديل") + prevGroup.name,
       text:
         type == "suc"
           ? " تمت " +
-            (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
+            (currentPathname == "/dash/categories" || currentPathname == "/dash"
+              ? "اضافة"
+              : "تعديل") +
             "المجموعة بنجاح!"
           : (message?.name && message?.name[0]) ||
             (message?.description && message?.description[0]) ||
@@ -152,8 +184,11 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
             (message?.colors && message?.colors[0]) ||
             (message?.items && message?.items[0]) ||
             "حدث خطأ اثناء " +
-              (currentPathname == "/dash/categories" ? "اضافة" : "تعديل") +
-              " الموظف الرجاء المحاولة لاحقا",
+              (currentPathname == "/dash/categories" ||
+              currentPathname == "/dash"
+                ? "اضافة"
+                : "تعديل") +
+              " المجموعة, الرجاء المحاولة لاحقا",
       icon: type == "suc" ? "success" : "error",
     });
   };
@@ -172,8 +207,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
   return (
     <div>
       {create.isError ? <Text color={"red"}>{message?.images}</Text> : ""}
-      {(currentPathname == "/dash/categories" ||
-        currentPathname == "/dash") && (
+      {currentPathname == "/dash/categories" || currentPathname == "/dash" ? (
         <>
           <HStack mb={5} spacing={10}>
             <Input
@@ -198,6 +232,21 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
 
           <Divider mb={8} />
         </>
+      ) : (
+        <HStack mb={8}>
+          <text>الحالة:</text>
+          <RadioGroup
+            onChange={handleStateChange}
+            defaultValue={prevGroup.state}
+          >
+            <Radio px={5} value="1" colorScheme="green">
+              متاح
+            </Radio>
+            <Radio px={2} value="2" colorScheme="red">
+              مباع
+            </Radio>
+          </RadioGroup>
+        </HStack>
       )}
       <Stack>
         {prevGroup?.photos?.map((img, index) => (
@@ -331,6 +380,22 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
         إضافة
       </Button>
       <SizesTable newItem={true} />
+      {(currentPathname == "/dash/categories" ||
+        currentPathname == "/dash") && (
+        <HStack my={10}>
+          <Input
+            type="number"
+            onChange={handlenetChange}
+            value={prevGroup?.net_price}
+            fontFamily={"Noto"}
+            mt={5}
+            placeholder="سعر الشراء الكلي "
+            width={300}
+          />
+        </HStack>
+      )}
+
+      <Divider />
       <Button
         onClick={onSubmit}
         mb={4}

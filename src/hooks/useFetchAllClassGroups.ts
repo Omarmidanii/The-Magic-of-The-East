@@ -11,6 +11,7 @@ export interface Card {
   id: number;
   name: string;
   photos: string[];
+  state:string;
 }
 
 const useFetchAllClassGroups = () => {
