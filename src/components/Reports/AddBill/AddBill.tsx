@@ -48,7 +48,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
 
   const create = useCreateBill();
 
-  const { setPickone, pickOne, groups, resetGroups } = useBillGroupStore();
+  const { setPickone, groups, resetGroups } = useBillGroupStore();
 
   const {
     customer,
@@ -74,7 +74,6 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
     }
     data.append("total_sell_price", `${total_sell_price}`);
     if (customer) data.append("customer_id", `${customer.id}`);
-    data.forEach((element) => console.log(element));
     create.mutate(data);
   };
   useEffect(() => {
@@ -132,7 +131,6 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
           to={"/chooseGroup"}
           onClick={() => {
             setPickone(false);
-            console.log(pickOne);
           }}
         >
           <Button mt={5} mb={5}>
@@ -167,7 +165,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
         borderRadius={"10"}
         onClick={onSubmit}
       >
-        {"اضافة"}
+        {create.isPending ? "يتم الاضافة..." : "اضافة"}
       </Button>
       <Button
         mb={8}

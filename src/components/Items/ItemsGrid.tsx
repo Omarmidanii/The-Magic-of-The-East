@@ -72,8 +72,6 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
       currentPathname.substring(0, 11) == "/dash/items" ? 12 : 7
     )
   );
-  console.log(id);
-
   const { data, fetchNextPage, hasNextPage, refetch } = useFetchGroups(
     id ? id : undefined,
     customerId ? customerId : undefined

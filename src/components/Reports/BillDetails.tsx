@@ -4,7 +4,6 @@ import BillDetailsGroup from "./BillDetailsGroup";
 import usefetchbilldetails from "../../hooks/usefetchbilldetails";
 
 interface Props {
-  BillId: number;
   onToggle: () => void;
   onToggle2: () => void;
 }

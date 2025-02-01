@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "proxy": "http://sehr-alsharq.sy",
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",

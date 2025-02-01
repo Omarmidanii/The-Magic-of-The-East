@@ -14,7 +14,6 @@ import ItemsColorFilter from "./itemsColorFilter";
 import ItemsSizesFilter from "./ItemsSizesFilter";
 import resizeWindow from "../../services/resizeWindow";
 
-
 const ItemsFilter = () => {
   const { width } = resizeWindow();
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -36,7 +35,7 @@ const ItemsFilter = () => {
             textColor: "black",
             bgColor: "gray.200",
           }}
-          boxShadow={'lg'}
+          boxShadow={"lg"}
           onClick={onToggle}
         >
           فلترة النتائج
