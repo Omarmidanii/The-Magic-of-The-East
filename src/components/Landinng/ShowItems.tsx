@@ -41,7 +41,7 @@ const ShowItems = ({ items }: Props) => {
                 boxShadow={`0px 5px 20px 1px white`}
                 key={index}
                 boxSize={300}
-                height={305}
+                height={280}
                 m={5}
                 borderRadius={20}
               >

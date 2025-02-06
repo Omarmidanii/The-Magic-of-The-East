@@ -6,6 +6,7 @@ import usefetchbilldetails from "../../hooks/usefetchbilldetails";
 interface Props {
   onToggle: () => void;
   onToggle2: () => void;
+  BillId: number;
 }
 
 const BillDetails = ({ BillId, onToggle, onToggle2 }: Props) => {

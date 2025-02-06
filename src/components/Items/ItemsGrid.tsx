@@ -97,7 +97,7 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
     name: "",
     photos: [""],
     state: "1",
-    classification_id:""
+    classification_id: "",
   });
 
   const { groups, setGroups, removeGroup, pickOne } = useBillGroupStore();
@@ -145,7 +145,30 @@ const ItemsGrid = ({ width, height, customerId }: Props) => {
               : currentPathname.substring(0, 11) == "/dash/custo" ||
                 currentPathname == "/chooseGroup"
               ? height
-              : height * (fetchedCount / 6.2)
+              : 380 *
+                (fetchedCount /
+                  (width >= 1400
+                    ? 5
+                    : width >= 1180
+                    ? 4
+                    : width >= 850
+                    ? 3
+                    : width >= 560
+                    ? 2
+                    : 1) +
+                  (fetchedCount %
+                    (width >= 1400
+                      ? 5
+                      : width >= 1180
+                      ? 4
+                      : width >= 850
+                      ? 3
+                      : width >= 560
+                      ? 2
+                      : 1) >
+                  0
+                    ? 1
+                    : 0))
           }
           overflowY={"auto"}
           id="k"
