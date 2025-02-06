@@ -12,6 +12,7 @@ import {
 
 import { AiOutlineColumnHeight } from "react-icons/ai";
 import { AiOutlineColumnWidth } from "react-icons/ai";
+import { CiLineHeight } from "react-icons/ci";
 import { IoResizeSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import useGroupItemsStore from "../../stores/GroupitemsStore";
@@ -26,6 +27,7 @@ const SizesTable = ({ curItems, newItem = false }: Props) => {
     الطول: AiOutlineColumnHeight,
     العرض: AiOutlineColumnWidth,
     العمق: IoResizeSharp,
+    ارتفاع: CiLineHeight,
   };
 
   const { items, removeItems } = useGroupItemsStore();
@@ -56,6 +58,12 @@ const SizesTable = ({ curItems, newItem = false }: Props) => {
                 العمق
               </Text>
             </Th>
+            <Th>
+              <Text mr={-5} ml={5} fontSize={14}>
+                <Icon as={icons["ارتفاع"]} mb={-1} ml={2} />
+                الارتفاع
+              </Text>
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -77,9 +85,10 @@ const SizesTable = ({ curItems, newItem = false }: Props) => {
                 )}{" "}
                 {val.name}{" "}
               </Th>
-              <Th>{val.sizes["height"]}</Th>
+              <Th>{val.sizes["length"]}</Th>
               <Th>{val.sizes["width"]}</Th>
               <Th>{val.sizes["depth"]}</Th>
+              <Th>{val.sizes["height"]}</Th>
             </Tr>
           ))}
         </Tbody>

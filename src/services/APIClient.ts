@@ -43,7 +43,9 @@ class APIClient<T> {
   };
 
   delete = async () => {
-    const res = await axiosInstance.delete<T>(this.endPoint);
+    const res = await axiosInstance.post<T>(this.endPoint, {
+      _method: "DELETE",
+    });
     return res.data;
   };
   getWithId = async (id: number | undefined) => {
