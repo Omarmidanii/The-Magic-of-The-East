@@ -210,6 +210,7 @@ const EmployerForm = ({ onClose }: Props) => {
             mb={4}
             bgColor={"#228822"}
             _hover={{ bgColor: "#117711" }}
+            isDisabled={create.isPending}
             color={"white"}
             width="30%"
             boxShadow={"lg"}

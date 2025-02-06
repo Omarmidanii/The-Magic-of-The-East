@@ -158,6 +158,7 @@ const AddBill = ({ onCloseAll = () => {} }: Props) => {
         bgColor={"#228822"}
         _hover={{ bgColor: "#117711" }}
         color={"white"}
+        isDisabled={create.isPending}
         width="30%"
         boxShadow={"md"}
         type="submit"

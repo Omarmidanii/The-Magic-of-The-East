@@ -70,9 +70,12 @@ function CustomDelete({
           boxSize={8}
           icon={<FaTrash />}
           colorScheme="red"
+          isDisabled={Delete.isPending}
           onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(true);
+            if (!Delete.isPending) {
+              e.stopPropagation();
+              setIsOpen(true);
+            }
           }}
         >
           {showText ? "حذف" : ""}
@@ -86,11 +89,16 @@ function CustomDelete({
           mt={1}
           mb={-0.5}
           boxSize={5}
-          _hover={{ bgColor: "red.600", color: "white" }}
+          _hover={{
+            bgColor: Delete.isPending ? "red.300" : "red.600",
+            color: "white",
+          }}
           cursor="pointer"
           onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(true);
+            if (!Delete.isPending) {
+              e.stopPropagation();
+              setIsOpen(true);
+            }
           }}
         />
       )}
@@ -129,6 +137,7 @@ function CustomDelete({
               <Button
                 colorScheme="red"
                 mr={3}
+                isDisabled={Delete.isPending}
                 onClick={() => {
                   handleDelete();
                   console.log("njkbjm");

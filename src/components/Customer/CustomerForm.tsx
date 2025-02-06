@@ -179,6 +179,7 @@ const CustomerForm = ({ onClose = () => {}, customer }: Props) => {
             _hover={{ bgColor: "#117711" }}
             color={"white"}
             width="30%"
+            isDisabled={form.isPending}
             boxShadow={"md"}
             marginTop={8}
             borderRadius={"10"}

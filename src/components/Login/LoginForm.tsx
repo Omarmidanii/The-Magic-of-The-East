@@ -105,6 +105,7 @@ const LoginForm = () => {
               width="30%"
               boxShadow={"lg"}
               onClick={submitForm}
+              isDisabled={Login.isPending}
               marginTop={8}
               borderRadius={"10"}
             >

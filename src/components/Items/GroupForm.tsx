@@ -413,6 +413,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
         color={"white"}
         width="30%"
         boxShadow={"lg"}
+        isDisabled={create.isPending || edit.isPending}
         marginTop={8}
         borderRadius={"10"}
       >
