@@ -31,6 +31,7 @@ const useFetchData = <T>(endPoint: string, fun: () => void = () => {}) => {
     if (err.response) {
       const statusCode = err.response.status;
       if (statusCode === 401) {
+        localStorage.removeItem("token");
         navigate("/login");
       }
     }

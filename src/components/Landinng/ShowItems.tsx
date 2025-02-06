@@ -45,7 +45,7 @@ const ShowItems = ({ items }: Props) => {
                 m={5}
                 borderRadius={20}
               >
-                <ItemCard images={image.photos} name={image.name} />
+                <ItemCard badge="2" images={image.photos} name={image.name} />
               </Box>
             )}
           </>

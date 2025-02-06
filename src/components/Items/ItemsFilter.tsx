@@ -48,13 +48,14 @@ const ItemsFilter = () => {
           <ItemsSizesFilter name="الطول :" max={400} />
           <ItemsSizesFilter name="العرض :" max={200} />
           <ItemsSizesFilter name="الارتفاع :" max={300} />
+          <ItemsSizesFilter name="العمق :" max={300} />
         </PopoverBody>
         <PopoverFooter display="flex" justifyContent="flex-end">
           <ButtonGroup size="sm">
             <Button variant="outline" onClick={onClose}>
-              Cancel
+              الغاء
             </Button>
-            <Button colorScheme="green">Apply</Button>
+            <Button colorScheme="green">بحث</Button>
           </ButtonGroup>
         </PopoverFooter>
       </PopoverContent>

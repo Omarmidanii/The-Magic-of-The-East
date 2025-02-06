@@ -45,7 +45,6 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
         colors: [],
         items: [],
       };
-
   const { setImages, images, removeImage } = useGroupImagesStore();
   const { items, setItems } = useGroupItemsStore();
   const { colors } = useGroupcolorsStore();
@@ -71,6 +70,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
   const refH = useRef<HTMLInputElement>(null);
   const refW = useRef<HTMLInputElement>(null);
   const refD = useRef<HTMLInputElement>(null);
+  const refL = useRef<HTMLInputElement>(null);
   const refName = useRef<HTMLInputElement>(null);
 
   const { message } = useErrorStore();
@@ -128,6 +128,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
 
   const onSubmit = () => {
     const data = new FormData();
+    console.log(prevGroup);
     images?.forEach((image) => {
       data.append(`images[]`, image);
     });
@@ -157,6 +158,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
       data.append(`items[${index}][height]`, item.sizes["height"].toString());
       data.append(`items[${index}][width]`, item.sizes["width"].toString());
       data.append(`items[${index}][depth]`, item.sizes["depth"].toString());
+      data.append(`items[${index}][length]`, item.sizes["length"].toString());
     });
     console.log(data);
     currentPathname == "/dash/categories" || currentPathname == "/dash"
@@ -175,7 +177,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
           ? " تمت " +
             (currentPathname == "/dash/categories" || currentPathname == "/dash"
               ? "اضافة"
-              : "تعديل") +
+              : "تعديل ") +
             "المجموعة بنجاح!"
           : (message?.name && message?.name[0]) ||
             (message?.description && message?.description[0]) ||
@@ -187,7 +189,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
               (currentPathname == "/dash/categories" ||
               currentPathname == "/dash"
                 ? "اضافة"
-                : "تعديل") +
+                : "تعديل ") +
               " المجموعة, الرجاء المحاولة لاحقا",
       icon: type == "suc" ? "success" : "error",
     });
@@ -344,7 +346,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
         <Input
           placeholder="الطول"
           fontFamily={"Noto"}
-          ref={refH}
+          ref={refL}
           type="number"
         />
         <Input
@@ -357,6 +359,12 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
           placeholder="العمق"
           fontFamily={"Noto"}
           ref={refD}
+          type="number"
+        />
+        <Input
+          placeholder="ارتفاع"
+          fontFamily={"Noto"}
+          ref={refH}
           type="number"
         />
       </HStack>
@@ -372,6 +380,7 @@ const GroupForm = ({ groupId = undefined, onSuccess = () => {} }: Props) => {
                 height: Number(refH.current?.value) || 0,
                 width: Number(refW.current?.value) || 0,
                 depth: Number(refD.current?.value) || 0,
+                length: Number(refL.current?.value) || 0,
               },
             },
           ])

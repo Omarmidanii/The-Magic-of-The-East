@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { localurl, serverurl } from "../constants";
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: localurl,
   headers: {
     Accept: "application/json",
   },
@@ -43,7 +44,9 @@ class APIClient<T> {
   };
 
   delete = async () => {
-    const res = await axiosInstance.delete<T>(this.endPoint);
+    const res = await axiosInstance.post<T>(this.endPoint, {
+      _method: "DELETE",
+    });
     return res.data;
   };
   getWithId = async (id: number | undefined) => {

@@ -12,7 +12,7 @@ import swal from "sweetalert";
 import employer from "../../entities/employer";
 import useCreateEmployee from "../../hooks/useCreateEmployee";
 import * as yup from "yup";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useErrorStore from "../../stores/errorStore";
 
 interface Props {
@@ -23,9 +23,14 @@ const EmployerForm = ({ onClose }: Props) => {
   const create = useCreateEmployee();
   const { message } = useErrorStore();
 
+  const [name, setName] = useState("");
+
   const onSubmit = (values: employer) => {
     const data = new FormData();
-    if (values.firstname) data.append("firstname", values.firstname);
+    if (values.firstname) {
+      data.append("firstname", values.firstname);
+      setName(values.firstname);
+    }
     if (values.lastname) data.append("lastname", values.lastname);
     if (values.phonenumber) data.append("phonenumber", values.phonenumber);
     if (values.address) data.append("address", values.address);
@@ -48,7 +53,7 @@ const EmployerForm = ({ onClose }: Props) => {
 
   const showAlert = (type: "suc" | "err") => {
     swal({
-      title: "اضافة" + create.data?.data.firstname,
+      title: "اضافة" + name,
       text:
         type == "suc"
           ? " تمت اضافة  الموظف بنجاح! قم باعادة تحميل الصفحة"

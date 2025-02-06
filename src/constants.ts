@@ -21,3 +21,6 @@ export const Months: MonthsType = {
   نوفمبر: 11,
   ديسمبر: 12,
 };
+
+export const localurl = "http://localhost:8000/api";
+export const serverurl = "https://sehr-alsharq.sy/api";

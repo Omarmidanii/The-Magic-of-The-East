@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ChooseBillGroups from "./pages/ChooseBillGroups";
 import PrivateRoute from "./services/AuthenticationCheck";
+import ClientErrorPage from "./pages/ClientErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -28,12 +29,16 @@ const router = createBrowserRouter([
         <ChooseBillGroups />
       </PrivateRoute>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: (
+      <PrivateRoute>
+        <ErrorPage />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/",
     element: <HomePage />,
-    errorElement: <ErrorPage />,
+    errorElement: <ClientErrorPage />,
     children: [
       {
         path: "",
@@ -56,7 +61,11 @@ const router = createBrowserRouter([
         <Layout />
       </PrivateRoute>
     ),
-    errorElement: <ErrorPage />,
+    errorElement: (
+      <PrivateRoute>
+        <ErrorPage />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "",
