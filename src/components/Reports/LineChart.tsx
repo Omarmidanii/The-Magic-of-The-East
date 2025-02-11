@@ -47,7 +47,6 @@ const LineChart = () => {
   }
   const Earnings = useFetchLastYearEarnings();
   const $data = Earnings.data?.slice().reverse();
-  console.log($data);
   const dataLine = {
     labels: monthsArray,
     datasets: [

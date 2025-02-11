@@ -2,12 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import APIClient, { setAuthToken } from "../services/APIClient";
 import CustomError from "../entities/customeError";
 import { useNavigate } from "react-router-dom";
-
-interface TRes<T> {
-  status: number;
-  data: T[];
-  message: string;
-}
+import TRes from "../entities/TRes";
 
 const useFetchData = <T>(endPoint: string, fun: () => void = () => {}) => {
   const apiClient = new APIClient<TRes<T>>(`/${endPoint}`);
@@ -20,7 +15,7 @@ const useFetchData = <T>(endPoint: string, fun: () => void = () => {}) => {
       return res.data;
     });
 
-  const query = useQuery<T[], Error>({
+  const query = useQuery<T, Error>({
     queryKey: [endPoint],
     queryFn: fetchData,
     staleTime: 10 * 1000,

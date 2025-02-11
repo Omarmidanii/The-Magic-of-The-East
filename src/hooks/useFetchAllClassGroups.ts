@@ -1,22 +1,8 @@
-import { Card } from "@chakra-ui/react";
+import classGroups from "../entities/classGroups";
 import useFetchData from "./useFetchWithoutPaj";
 
-interface classGroups {
-  classification_id: number;
-  classification_name: string;
-  groups: Card[];
-}
-
-export interface Card {
-  id: number;
-  name: string;
-  photos: string[];
-  state:string;
-  classification_id:string;
-}
-
 const useFetchAllClassGroups = () => {
-  return useFetchData<classGroups>("classifications/getgroups");
+  return useFetchData<classGroups[]>("classifications/getgroups");
 };
 
 export default useFetchAllClassGroups;
