@@ -3,7 +3,7 @@ import ItemCard from "./ItemCard";
 import { BsArrowLeftCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import resizeWindow from "../../services/resizeWindow";
-import { Card } from "../../hooks/useFetchAllClassGroups";
+import { Card } from "../../entities/classGroups";
 interface Props {
   items: Card[];
   id: number;

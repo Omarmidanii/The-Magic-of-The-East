@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 import scrollDown from "../../assets/scrollDown.json";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Card } from "../../hooks/useFetchAllClassGroups";
+import { Card } from "../../entities/classGroups";
 
 interface Props {
   items: Card[];
@@ -18,16 +18,21 @@ const ShowItems = ({ items }: Props) => {
       bgGradient={`linear(10deg,#AA3344,#992233 )`}
       pt={20}
       mb={48}
-      mt={10}
+      mt={52}
     >
       <Text
         placeSelf={"center"}
+        textAlign={"center"}
         borderBottom={"2px"}
         borderColor={"yellow.400"}
         fontFamily="Khebrat"
+        lineHeight={1.4}
         mb={20}
+        mx={6}
+        px={5}
+        pb={3}
         fontSize={32}
-        color={"yellow.300"}
+        color={"white"}
       >
         {" "}
         تفقد أخر منتجاتنا المصنعة باحترافية عالية!
@@ -36,9 +41,17 @@ const ShowItems = ({ items }: Props) => {
         {items?.map((image, index) => (
           <>
             {index <
-              (width > 1400 ? 5 : width > 1080 ? 4 : width > 770 ? 3 : 1) && (
+              (width > 1400
+                ? 5
+                : width > 1080
+                ? 4
+                : width > 950
+                ? 3
+                : width > 640
+                ? 2
+                : 1) && (
               <Box
-                boxShadow={`0px 5px 20px 1px white`}
+                boxShadow={`0px 15px 18px 0px rgba(205, 196, 149, 0.81)`}
                 key={index}
                 boxSize={300}
                 height={280}
@@ -60,7 +73,6 @@ const ShowItems = ({ items }: Props) => {
         style={{
           width: 60,
           height: 60,
-          marginRight: -100,
           placeSelf: "center",
         }}
       >

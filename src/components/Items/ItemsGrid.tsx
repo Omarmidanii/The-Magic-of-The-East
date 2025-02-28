@@ -16,7 +16,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ReactPlayer from "react-player";
 import ItemDrawer from "./ItemDrawer";
 import { useNavigate } from "react-router-dom";
-import { Card } from "../../hooks/useFetchAllClassGroups";
+import { Card } from "../../entities/classGroups";
 
 interface Props {
   width: number;

@@ -1,16 +1,30 @@
-import { Box, HStack, Image, Tab, TabList, Tabs, Text } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Icon,
+  Image,
+  Tab,
+  TabList,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
 import home3 from "../../assets/home3.jpg";
 import logo from "../../assets/logo.png";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import resizeWindow from "../../services/resizeWindow";
+import { HiHome } from "react-icons/hi";
+import { GiSofa } from "react-icons/gi";
+import { IoLogIn } from "react-icons/io5";
 
 const LandingNav = () => {
   const navigate = useNavigate();
+  const { width } = resizeWindow();
 
   return (
     <Box
       bgImg={home3}
-      bgPosition={"center"}
+      bgPosition={"right"}
       bgSize={"cover"}
       width={"inherit"}
       height={600}
@@ -18,30 +32,43 @@ const LandingNav = () => {
       pt={5}
     >
       <HStack justifyContent={"space-between"}>
-        <Box></Box>
+        {width >= 700 && <Box></Box>}
 
         <Tabs marginLeft={-40} variant="soft-rounded" colorScheme="yellow">
           <TabList>
             <Tab
-              marginX={2}
+              marginRight={width >= 700 ? 2 : 5}
+              ml={width >= 700 ? 2 : -1}
               fontFamily="Beiruti"
               fontSize={20}
               onClick={() => navigate("/")}
             >
               <motion.div whileHover={{ rotate: -6 }}>
-                الصفحة الرئيسية
+                {width >= 700 && "الصفحة الرئيسية"}
+                {width < 700 && <Icon boxSize={6} mb={-1.5} as={HiHome} />}
               </motion.div>
             </Tab>
             <Tab
-              marginX={2}
+              marginX={width >= 700 ? 2 : -1}
               fontFamily="Beiruti"
               fontSize={20}
               onClick={() => navigate("/categories")}
             >
-              <motion.div whileHover={{ rotate: -6 }}>المفروشات</motion.div>
+              <motion.div whileHover={{ rotate: -6 }}>
+                {width >= 700 && "المفروشات"}
+                {width < 700 && <Icon boxSize={6} mb={-1.5} as={GiSofa} />}
+              </motion.div>
             </Tab>
-            <Tab marginX={2} fontFamily="Beiruti" fontSize={20} onClick={() => navigate("/login")}>
-              <motion.div whileHover={{ rotate: -6 }}>تسجيل الدخول</motion.div>
+            <Tab
+              marginX={width >= 700 ? 2 : -1}
+              fontFamily="Beiruti"
+              fontSize={20}
+              onClick={() => navigate("/login")}
+            >
+              <motion.div whileHover={{ rotate: -6 }}>
+                {width >= 700 && "تسجيل الدخول"}
+                {width < 700 && <Icon boxSize={6} mb={-1.5} as={IoLogIn} />}
+              </motion.div>
             </Tab>
           </TabList>
         </Tabs>
