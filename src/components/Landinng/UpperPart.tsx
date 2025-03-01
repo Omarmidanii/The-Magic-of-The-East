@@ -29,6 +29,7 @@ const UpperPart = () => {
         </>
       )}
       <Text
+        p={3}
         textAlign={"center"}
         color={"gray.600"}
         fontSize={26}
@@ -43,6 +44,7 @@ const UpperPart = () => {
         نفخر بتقديم مجموعة واسعة
       </Text>
       <Text
+        p={3}
         lineHeight={1.4}
         textAlign={"center"}
         color={"gray.600"}
@@ -53,6 +55,7 @@ const UpperPart = () => {
         من المفروشات الفاخرة التي تجمع بين الأناقة والراحة
       </Text>
       <Text
+        p={3}
         mb={20}
         lineHeight={1.4}
         textAlign={"center"}
@@ -147,19 +150,19 @@ const UpperPart = () => {
           mt={16}
         >
           {width >= 700 && <Box width={width / 6}></Box>}
-          <Stack>
+          <Stack placeItems={'center'}>
             <HStack mr={width >= 700 ? -96 : 5}>
               <Box
                 bgColor={"gray.200"}
                 bgGradient={`linear(90deg,#BBBBBB,#DDDDDD )`} // blanchedalmond, honeydew
-                px={width >= 700 ? 180 : 155}
+                px={width >= 700 ? 180 : width > 500 ? 155 : width / 2.6}
                 boxSize={200}
                 borderRadius={20}
               />
 
               <Text
                 fontFamily={"Khebrat"}
-                mr={width >= 700 ? -96 : -80}
+                mr={width >= 700 ? -96 : width<400?-72:-80}
                 ml={width >= 700 ? 5 : 8}
                 pr={width >= 700 ? 8 : 5}
                 fontSize={width >= 700 ? 40 : 32}
@@ -181,24 +184,24 @@ const UpperPart = () => {
               <Image
                 boxSize={width >= 700 ? 250 : 180}
                 mr={-6}
-                ml={width >= 700 ? 12 : 5}
+                ml={width >= 700 ? 12 : width<400?3:5}
                 h={280}
                 mt={-5}
-                w={width >= 700 ? 350 : 280}
+                w={width >= 700 ? 350 : width<400?250:280}
                 src={redbed}
               />
             </HStack>
             <HStack mr={width >= 700 ? -80 : 10} mt={-24}>
               <Box
-                px={width >= 700 ? 190 : 170}
+                px={width >= 700 ? 190 : width >= 500 ? 170 : width / 2.5}
                 bgGradient={`linear(90deg,#990000,#770000 )`} // blanchedalmond, honeydew
                 boxSize={200}
                 borderRadius={20}
               />
               <Image
-                boxSize={width >= 700 ? 320 : 260}
+                boxSize={width >= 700 ? 320 :width<400?240: 260}
                 height={480}
-                mr={width >= 700 ? -480 : -390}
+                mr={width >= 700 ? -480 : width<400?-370:-390}
                 src={whitebed}
               />
               <Text

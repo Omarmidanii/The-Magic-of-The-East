@@ -77,6 +77,7 @@ const LandingFooter = () => {
             mb={-4}
           >
             <HStack
+              w={width < 700 ? width : "auto"}
               //ml={-32} mr={28}
               mt={width < 900 ? -52 : 0}
             >
@@ -97,7 +98,11 @@ const LandingFooter = () => {
                 </a>
               </Link>
             </HStack>
-            <HStack mt={width < 900 ? -64 : 0} mb={-1}>
+            <HStack
+              mt={width < 900 ? -64 : 0}
+              mb={-1}
+              w={width < 700 ? width : "auto"}
+            >
               <ReactPlayer
                 url={whatsapp}
                 playing
@@ -127,6 +132,7 @@ const LandingFooter = () => {
             <HStack
               mb={-1}
               //ml={-32} mr={28}
+              w={width < 700 ? width : "auto"}
               mt={width < 900 ? -60 : 0}
             >
               <ReactPlayer
