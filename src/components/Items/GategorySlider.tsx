@@ -19,7 +19,12 @@ const GategorySlider = ({ items, id }: Props) => {
         <div key={index}>
           {index <
             (width > 1400 ? 4 : width > 1080 ? 3 : width > 770 ? 2 : 1) && (
-            <Box boxSize={300} height={320} padding={5}>
+            <Box
+              boxSize={width < 500 ? 260 : 300}
+              height={320}
+              padding={5}
+              mr={width < 500 ? -5 : "auto"}
+            >
               <ItemCard
                 images={image.photos}
                 name={image.name}

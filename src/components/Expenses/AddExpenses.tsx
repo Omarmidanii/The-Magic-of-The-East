@@ -7,27 +7,45 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import swal from "sweetalert";
 import AddEmplyoeeExpense from "./AddEmplyoeeExpense";
 import AddoOtherExpenses from "./AddoOtherExpenses";
+import useAddExpense from "../../hooks/useAddExpense";
 
 interface Props {
   onClose?: () => void;
 }
 
 const AddExpenses = ({ onClose = () => {} }: Props) => {
-  const showAlert = () => {
+  const [value, setValue] = useState("1");
+  const [name, setName] = useState("");
+  const [cost, setCost] = useState(0);
+  const [employee, setEmployee] = useState(0);
+  const [bouns, setBouns] = useState("1");
+
+  const add = useAddExpense(value);
+
+  const showAlert = (type: "suc" | "err") => {
     swal({
-      title: "Hello!",
-      text: "This is a SweetAlert2 alert",
-      icon: "success",
-    }).then(() => {
-      onClose();
+      title: "اضافة" + name,
+      text:
+        type == "suc"
+          ? " تمت اضافة  المصروف بنجاح! قم باعادة تحميل الصفحة"
+          : "حدث خطأ اثناء اضافة المصروف الرجاء المحاولة لاحقا",
+      icon: type == "suc" ? "success" : "error",
     });
   };
 
-  const [value, setValue] = useState("1");
+  useEffect(() => {
+    if (add.isSuccess) {
+      onClose();
+      showAlert("suc");
+    }
+    if (add.error) {
+      showAlert("err");
+    }
+  }, [add.isSuccess, add.error]);
 
   return (
     <div>
@@ -44,7 +62,7 @@ const AddExpenses = ({ onClose = () => {} }: Props) => {
                 color: value == "1" ? "black" : "#666666",
               }}
             >
-              مكافئة/ خصم للعمال
+              مصاريف عامة للصالة
             </text>
           </Radio>
           <Radio value="2">
@@ -74,16 +92,22 @@ const AddExpenses = ({ onClose = () => {} }: Props) => {
                 color: value == "4" ? "black" : "#666666",
               }}
             >
-              مصاريف عامة للصالة
+              مكافئة/ خصم للعمال
             </text>
           </Radio>
         </Stack>
       </RadioGroup>
-      <Collapse in={value == "1"} transition={{ enter: { delay: 0.2 } }}>
-        <AddEmplyoeeExpense />
+      <Collapse in={value == "4"} transition={{ enter: { delay: 0.2 } }}>
+        <AddEmplyoeeExpense
+          setEmployee={setEmployee}
+          setamount={setCost}
+          settype={setBouns}
+          cost={cost}
+          isReward={bouns}
+        />
       </Collapse>
-      <Collapse in={value != "1"} transition={{ enter: { delay: 0.2 } }}>
-        <AddoOtherExpenses />
+      <Collapse in={value != "4"} transition={{ enter: { delay: 0.2 } }}>
+        <AddoOtherExpenses setName={setName} setCost={setCost} />
       </Collapse>
       <Divider mt={7} mb={-1} />
       <Button
@@ -96,7 +120,24 @@ const AddExpenses = ({ onClose = () => {} }: Props) => {
         type="submit"
         marginTop={8}
         borderRadius={"10"}
-        onClick={() => showAlert()}
+        isDisabled={add.isPending}
+        onClick={() =>
+          value != "4"
+            ? add.mutate({
+                type: value,
+                name: name,
+                cost: cost,
+                employee_id: 0,
+                amount: 0,
+              })
+            : add.mutate({
+                type: bouns,
+                name: "",
+                cost: 0,
+                employee_id: employee,
+                amount: cost,
+              })
+        }
       >
         {"اضافة"}
       </Button>

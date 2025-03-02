@@ -1,16 +1,22 @@
 import { Box, HStack, Input, Text } from "@chakra-ui/react";
 import EmplyeesSelector from "./EmplyeesSelector";
-import useAddEmployeeExpense from "../../stores/AddEmployeeExpense";
 
-const AddEmplyoeeExpense = () => {
-  const { setIsReward, isReward, setCost, cost } = useAddEmployeeExpense();
+interface Props{
+  setEmployee: (v: number) => void;
+  setamount: (v: number) => void;
+  settype: (v: string) => void;
+  cost:number;
+  isReward:string;
+}
+
+const AddEmplyoeeExpense = ({setEmployee, setamount, settype, isReward, cost}:Props) => {
 
   return (
     <Box p={5}>
       <Text mb={3} mt={5}>
         الموظف:
       </Text>
-      <EmplyeesSelector />
+      <EmplyeesSelector setEmp={setEmployee} />
 
       <HStack mt={6}>
         <Box
@@ -19,15 +25,15 @@ const AddEmplyoeeExpense = () => {
           borderWidth="1px"
           borderRadius="md"
           boxShadow="md"
-          bg={isReward == true ? "green.600" : "white"}
-          color={isReward == true ? "white" : "black"}
-          borderColor={isReward == true ? "teal.600" : "gray.200"}
+          bg={isReward == "1" ? "green.600" : "white"}
+          color={isReward == "1" ? "white" : "black"}
+          borderColor={isReward == "1" ? "teal.600" : "gray.200"}
           _focus={{
             boxShadow: "outline",
           }}
           px={3}
           py={2}
-          onClick={() => setIsReward(true)}
+          onClick={() => settype('1')}
         >
           مكافئة
         </Box>
@@ -37,16 +43,16 @@ const AddEmplyoeeExpense = () => {
           borderWidth="1px"
           borderRadius="md"
           boxShadow="md"
-          bg={isReward == false ? "red.600" : "white"}
-          color={isReward == false ? "white" : "black"}
-          borderColor={isReward == false ? "red.600" : "gray.200"}
+          bg={isReward == "2" ? "red.600" : "white"}
+          color={isReward == "2" ? "white" : "black"}
+          borderColor={isReward == "2" ? "red.600" : "gray.200"}
           _focus={{
             boxShadow: "outline",
           }}
           px={3}
           py={2}
           ml={5}
-          onClick={() => setIsReward(false)}
+          onClick={() => settype('2')}
         >
           خصم
         </Box>
@@ -55,8 +61,8 @@ const AddEmplyoeeExpense = () => {
           type="number"
           value={cost}
           onChange={(e) => {
-            if (e.target.value != "0" || cost.length != 0)
-              setCost(e.target.value);
+            if (e.target.value != "0" || cost != 0)
+              setamount(Number(e.target.value));
           }}
         />
       </HStack>
