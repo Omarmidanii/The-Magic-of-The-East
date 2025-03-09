@@ -5,19 +5,19 @@ const Fonts = () => (
     styles={`
     @font-face{
         font-family: 'Arslan';
-        src:url('/src/assets/Fonts/Arslan.ttf') format('truetype');
+        src:url('Fonts1/Arslan.ttf') format('truetype');
     }
          @font-face{
         font-family: 'Khebrat';
-        src:url('/src/assets/Fonts/Khebrat.ttf') format('truetype');
+        src:url('Fonts1/Khebrat.ttf') format('truetype');
     }
         @font-face{
         font-family: 'Beiruti';
-        src:url('/src/assets/Fonts/Beiruti.ttf') format('truetype');
+        src:url('Fonts1/Beiruti.ttf') format('truetype');
     } 
          @font-face{
         font-family: 'Noto';
-        src:url('/src/assets/Fonts/Noto.ttf') format('truetype');
+        src:url('Fonts1/Noto.ttf') format('truetype');
     } `}
   />
 );
