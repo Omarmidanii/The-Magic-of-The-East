@@ -125,8 +125,8 @@ const ExpensesTabs = () => {
             >
               <ExpensesTable
                 headers={[
-                  { icon: FaUserTie, name: "اجار الصالات ", enName: "rent" },
                   { icon: BsReceiptCutoff, name: "الضرائب ", enName: "bills" },
+                  { icon: FaUserTie, name: "اجار الصالات ", enName: "rent" },
                 ]}
               />
             </motion.div>

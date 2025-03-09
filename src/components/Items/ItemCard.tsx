@@ -14,16 +14,19 @@ interface Props {
   name: string | undefined;
   images: string[];
   badge: string;
-  gat:string;
+  gat: string;
+  istransparent?: number;
 }
 
-const ItemCard = ({ name, images, badge, gat }: Props) => {
+const ItemCard = ({ name, images, badge, gat, istransparent = 0 }: Props) => {
   return (
     <Card
       p={2}
       overflow="hidden"
       borderRadius={20}
       boxShadow={`0`}
+      bg={istransparent ? "rgba(244, 232, 232, 0.6)" : "auto"}
+      backdropFilter={istransparent ?"blur(3px)":'auto'}
       //bgGradient={`linear(210deg,gray.100 , white  )`}
       //bgColor={'#FFFFE0'}
     >
@@ -45,7 +48,7 @@ const ItemCard = ({ name, images, badge, gat }: Props) => {
           >
             <GridItem
               m={1}
-              boxShadow={`0 10px 20px -2px gray`}
+              boxShadow={`0 10px 20px -8px gray`}
               marginLeft={1.5}
               borderRadius={15}
               rowSpan={5}

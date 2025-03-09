@@ -3,6 +3,7 @@ import ItemCard from "../Items/ItemCard";
 import resizeWindow from "../../services/resizeWindow";
 import Lottie from "lottie-react";
 import scrollDown from "../../assets/scrollDown.json";
+import bg5 from "../../assets/bg5.jpg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Card } from "../../entities/classGroups";
@@ -15,7 +16,10 @@ const ShowItems = ({ items }: Props) => {
 
   return (
     <Stack
-      bgGradient={`linear(10deg,#AA3344,#992233 )`}
+      bgImage={bg5}
+      bgRepeat={"no-repeat"}
+      bgSize={"cover"}
+      //bgGradient={`linear(10deg,#AA3344,#992233 )`}
       pt={20}
       mb={48}
       mt={52}
@@ -32,7 +36,7 @@ const ShowItems = ({ items }: Props) => {
         px={5}
         pb={3}
         fontSize={32}
-        color={"white"}
+        color={"yellow.500"}
       >
         {" "}
         تفقد أخر منتجاتنا المصنعة باحترافية عالية!
@@ -51,7 +55,7 @@ const ShowItems = ({ items }: Props) => {
                 ? 2
                 : 1) && (
               <Box
-                boxShadow={`0px 15px 18px 0px rgba(205, 196, 149, 0.81)`}
+                //boxShadow={`0px 15px 18px 0px rgba(205, 201, 149, 0.81)`}
                 key={index}
                 boxSize={300}
                 height={280}
@@ -59,6 +63,7 @@ const ShowItems = ({ items }: Props) => {
                 borderRadius={20}
               >
                 <ItemCard
+                  istransparent={1}
                   images={image.photos}
                   name={image.name}
                   badge={image.state}

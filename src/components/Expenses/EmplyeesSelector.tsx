@@ -11,11 +11,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Error } from "../Error";
 import employer from "../../entities/employer";
 import useFetchEmplyees from "../../hooks/useFetchEmplyees";
-import useAddEmployeeExpense from "../../stores/AddEmployeeExpense";
 
-const EmplyeesSelector = () => {
-    const { employee, setEmployee } = useAddEmployeeExpense();
+interface Props {
+  setEmp: (v: number) => void;
+}
 
+const EmplyeesSelector = ({ setEmp }: Props) => {
+  const [employee, setEmployee] = useState<employer>();
 
   // to open the list and close it
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +27,7 @@ const EmplyeesSelector = () => {
 
   const handleSelectemployee = (employee: employer) => {
     setEmployee(employee);
+    setEmp(employee.id || 0);
   };
 
   const toggleList = () => {

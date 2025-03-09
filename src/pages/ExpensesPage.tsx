@@ -14,7 +14,7 @@ const ExpensesPage = () => {
       {!isOpen && (
         <span
           style={{
-            zIndex: 99999,
+            zIndex: 1,
             display: "inline-block",
             position: "fixed",
             marginLeft: "calc(75% - 100px)",

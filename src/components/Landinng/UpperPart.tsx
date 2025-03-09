@@ -20,7 +20,7 @@ const UpperPart = () => {
         </Text>
       ) : (
         <>
-          <Text mt={40} placeSelf={"center"} fontFamily="Khebrat" fontSize={52}>
+          <Text mt={40} placeSelf={"center"} fontFamily="Khebrat" fontSize={48}>
             سحر الشرق
           </Text>
           <Text mt={-2} placeSelf={"center"} fontFamily="Khebrat" fontSize={24}>
@@ -32,10 +32,10 @@ const UpperPart = () => {
         p={3}
         textAlign={"center"}
         color={"gray.600"}
-        fontSize={26}
-        mt={16}
+        fontSize={width >= 700 ? 26 : 22}
+        mt={12}
         fontFamily="Beiruti"
-        lineHeight={1.4}
+        lineHeight={1.3}
       >
         نحن في صالات{" "}
         <b style={{ color: "#D12F2F", marginLeft: 5, marginRight: 5 }}>
@@ -45,22 +45,23 @@ const UpperPart = () => {
       </Text>
       <Text
         p={3}
-        lineHeight={1.4}
+        lineHeight={1.3}
         textAlign={"center"}
         color={"gray.600"}
-        fontSize={26}
-        my={2}
+        fontSize={width >= 700 ? 26 : 22}
         fontFamily="Beiruti"
+        my={-3}
       >
         من المفروشات الفاخرة التي تجمع بين الأناقة والراحة
       </Text>
       <Text
         p={3}
         mb={20}
+        mt={-1}
         lineHeight={1.4}
         textAlign={"center"}
         color={"gray.600"}
-        fontSize={26}
+        fontSize={width >= 700 ? 26 : 22}
         fontFamily="Beiruti"
       >
         {" "}
@@ -150,7 +151,7 @@ const UpperPart = () => {
           mt={16}
         >
           {width >= 700 && <Box width={width / 6}></Box>}
-          <Stack placeItems={'center'}>
+          <Stack placeItems={"center"}>
             <HStack mr={width >= 700 ? -96 : 5}>
               <Box
                 bgColor={"gray.200"}
@@ -162,7 +163,7 @@ const UpperPart = () => {
 
               <Text
                 fontFamily={"Khebrat"}
-                mr={width >= 700 ? -96 : width<400?-72:-80}
+                mr={width >= 700 ? -96 : width < 400 ? -72 : -80}
                 ml={width >= 700 ? 5 : 8}
                 pr={width >= 700 ? 8 : 5}
                 fontSize={width >= 700 ? 40 : 32}
@@ -184,10 +185,10 @@ const UpperPart = () => {
               <Image
                 boxSize={width >= 700 ? 250 : 180}
                 mr={-6}
-                ml={width >= 700 ? 12 : width<400?3:5}
+                ml={width >= 700 ? 12 : width < 400 ? 3 : 5}
                 h={280}
                 mt={-5}
-                w={width >= 700 ? 350 : width<400?250:280}
+                w={width >= 700 ? 350 : width < 400 ? 250 : 280}
                 src={redbed}
               />
             </HStack>
@@ -199,9 +200,9 @@ const UpperPart = () => {
                 borderRadius={20}
               />
               <Image
-                boxSize={width >= 700 ? 320 :width<400?240: 260}
+                boxSize={width >= 700 ? 320 : width < 400 ? 240 : 260}
                 height={480}
-                mr={width >= 700 ? -480 : width<400?-370:-390}
+                mr={width >= 700 ? -480 : width < 400 ? -370 : -390}
                 src={whitebed}
               />
               <Text
@@ -234,7 +235,7 @@ const UpperPart = () => {
               <Text
                 borderBottom={"2px"}
                 borderColor={RED}
-                fontSize={32}
+                fontSize={width >= 700 ? 32 : 28}
                 fontFamily="Beiruti"
                 mb={5}
                 color={"#AA0000"}
@@ -243,7 +244,7 @@ const UpperPart = () => {
               </Text>
               <Text
                 textAlign={"center"}
-                fontSize={24}
+                fontSize={width >= 700 ? 24 : 22}
                 fontFamily="Beiruti"
                 mb={3}
                 lineHeight={1.45}
@@ -254,7 +255,7 @@ const UpperPart = () => {
               </Text>
               <Text
                 textAlign={"center"}
-                fontSize={24}
+                fontSize={width >= 700 ? 24 : 22}
                 fontFamily="Beiruti"
                 lineHeight={1.45}
                 color={"gray.700"}
@@ -268,7 +269,7 @@ const UpperPart = () => {
               <Text
                 lineHeight={1.45}
                 textAlign={"center"}
-                fontSize={24}
+                fontSize={width >= 700 ? 24 : 22}
                 fontFamily="Beiruti"
                 my={2}
                 color={"gray.700"}
