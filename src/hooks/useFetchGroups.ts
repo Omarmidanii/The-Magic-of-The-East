@@ -1,5 +1,5 @@
-import useIndex from "./useIndex";
 import { Card } from "../entities/classGroups";
+import useIndex from "./useIndex";
 
 const useFetchGroups = (id?: number, customerId?: number) => {
   return useIndex<Card>(
