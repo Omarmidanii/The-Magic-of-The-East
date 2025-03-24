@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Card } from "../hooks/useFetchAllClassGroups";
+import { Card } from "../entities/classGroups";
 
 interface BillGroup {
   groups: { group: Card; count: number }[] | undefined;

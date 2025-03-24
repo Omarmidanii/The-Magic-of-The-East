@@ -1,6 +1,5 @@
-
 export default interface expensesDetails {
-    name: string;
-    cost: string;
-  }
-  
+  id: number;
+  name: string;
+  cost: string;
+}

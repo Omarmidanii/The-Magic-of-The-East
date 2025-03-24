@@ -33,7 +33,7 @@ export const NavBar = () => {
           <SearchInput />
         )}
         
-        <Link to="/settings">
+        <Link to="/dash/settings">
           <IconButton
             aria-label=""
             icon={<IoMdSettings size="26px" color="white" />}

@@ -188,7 +188,7 @@ const UpperPart = () => {
                 ml={width >= 700 ? 12 : width < 400 ? 3 : 5}
                 h={280}
                 mt={-5}
-                w={width >= 700 ? 350 : width < 400 ? 250 : 280}
+                w={width >= 700 ? 350 : width < 400 ? 240 : 280}
                 src={redbed}
               />
             </HStack>
@@ -200,9 +200,9 @@ const UpperPart = () => {
                 borderRadius={20}
               />
               <Image
-                boxSize={width >= 700 ? 320 : width < 400 ? 240 : 260}
+                boxSize={width >= 700 ? 320 : width < 400 ? 230 : 260}
                 height={480}
-                mr={width >= 700 ? -480 : width < 400 ? -370 : -390}
+                mr={width >= 700 ? -480 : width < 400 ? -350 : -390}
                 src={whitebed}
               />
               <Text

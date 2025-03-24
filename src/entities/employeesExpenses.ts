@@ -3,4 +3,5 @@ export default interface employeesExpenses {
   total: number;
   salary: string;
   employer_name: string;
+  employee_id:number;
 }

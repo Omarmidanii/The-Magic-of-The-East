@@ -12,7 +12,7 @@ const WarehouseExpensesDetails = ({ name, month }: Props) => {
     name == "expenses" ? 1 : name == "bills" ? 3 : name == "rent" ? 2 : 0; //make sure
   const details = tap
     ? useFetchExpenseDetails(tap, month)
-    : { status: 0, data: [], message: "", isFetching: false };
+    : { status: 0, data: [], message: "", isFetching: false, refetch:()=>{} };
 
   return (
     <Box mb={16} mr={16} ml={16}>
@@ -41,7 +41,7 @@ const WarehouseExpensesDetails = ({ name, month }: Props) => {
             boxShadow="md"
             bg={useColorModeValue("white", "gray.500")}
           >
-            <CustomDelete type="" ID={2} endpoint="" />
+            <CustomDelete type="" ID={item.id} endpoint="expenses" refetch={details.refetch} />
             <Text fontWeight="bold" color={"gray.700"}>
               {item.name}
             </Text>

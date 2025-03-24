@@ -14,7 +14,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import loading from "../../assets/loading.mp4";
-import React from "react";
+import React, { useState } from "react";
 import CustomDelete from "../Delete";
 import { BsExclamationCircle } from "react-icons/bs";
 import CustomModal from "../Modal";
@@ -29,7 +29,7 @@ interface Props {
 }
 
 const EmployersSalaryDetails = ({ month }: Props) => {
-  const { data, error, fetchNextPage, hasNextPage } =
+  const { data, error, fetchNextPage, hasNextPage, refetch } =
     useFetchEmplyeesExpenses(month);
   if (error) return <Error message={error.message} />;
 
@@ -37,6 +37,7 @@ const EmployersSalaryDetails = ({ month }: Props) => {
     data?.pages.reduce((total, page) => total + page.data.length, 0) || 0;
 
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const [emp, setEmp] = useState({ id: 0, name: "" });
 
   return (
     <Box
@@ -91,7 +92,12 @@ const EmployersSalaryDetails = ({ month }: Props) => {
                     <React.Fragment key={Index}>
                       <Tr>
                         <Td>
-                          <CustomDelete type="" ID={2} endpoint="" />
+                          <CustomDelete
+                            refetch={refetch}
+                            type=""
+                            ID={em.id}
+                            endpoint="totaladditionals"
+                          />
                           <Text textAlign={"center"} pr={2}>
                             {em.employer_name}
                           </Text>
@@ -108,7 +114,13 @@ const EmployersSalaryDetails = ({ month }: Props) => {
                           >
                             <button>
                               <Icon
-                                onClick={onOpen}
+                                onClick={() => {
+                                  setEmp({
+                                    id: em.employee_id,
+                                    name: em.employer_name,
+                                  });
+                                  onOpen();
+                                }}
                                 as={BsExclamationCircle}
                                 mr={2}
                                 mb={-0.5}
@@ -133,7 +145,7 @@ const EmployersSalaryDetails = ({ month }: Props) => {
         onClose={onClose}
         color={"white"}
       >
-        <SalaryDetailsModal />
+        <SalaryDetailsModal month={month} empId={emp.id} empName={emp.name} />
       </CustomModal>
     </Box>
   );
