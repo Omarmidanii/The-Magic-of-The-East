@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { serverurl } from "../constants";
+import { localurl, serverurl } from "../constants";
 const axiosInstance = axios.create({
-  baseURL: serverurl,
+  baseURL: localurl,//serverurl,
   headers: {
     Accept: "application/json",
   },

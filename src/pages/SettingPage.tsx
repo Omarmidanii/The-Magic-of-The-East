@@ -2,11 +2,13 @@ import { Box, Grid, GridItem, Image, Show, Text } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import LandingSettings from "../components/SettingPage/LandingSettings";
 import resizeWindow from "../services/resizeWindow";
+import useFetchData from "../hooks/useFetchWithoutPaj";
 
 export const SettingPage = () => {
   const { height } = resizeWindow();
+  useFetchData<{ name: string; value: string }[]>(`settings`);
   return (
-    <Box overflowY={"auto"} overflowX={"hidden"} maxH={height - 110}>
+    <Box overflowY={"auto"} overflowX={"hidden"}>
       <Grid
         templateAreas={{
           lg: `"side main"`,
@@ -22,7 +24,7 @@ export const SettingPage = () => {
         </Show>
 
         <GridItem area={"main"} py={20} px={5}>
-          <Box>
+          <Box maxH={height - 200} overflowY={"auto"}>
             <Text fontSize={28} fontFamily={"Khebrat"} color={"red.500"}>
               {" "}
               صالات مفروشات سحر الشرق
