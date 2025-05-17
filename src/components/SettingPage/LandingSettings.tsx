@@ -17,12 +17,6 @@ const LandingSettings = () => {
     <Stack mt={10} spacing={7} w={Math.min(width, 600)} pl={10} pr={3}>
       <Box>
         <Text fontSize={18} mb={1} fontFamily={"Beiruti"} fontWeight={"bold"}>
-          كلمة السر:{" "}
-        </Text>
-        <Input />
-      </Box>
-      <Box>
-        <Text fontSize={18} mb={1} fontFamily={"Beiruti"} fontWeight={"bold"}>
           رابط صفحة الفيس بوك:
         </Text>
         <Input value={landingInfo.facebook} />

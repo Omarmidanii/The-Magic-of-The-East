@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import LandingSettings from "../components/SettingPage/LandingSettings";
 import resizeWindow from "../services/resizeWindow";
 import useFetchData from "../hooks/useFetchWithoutPaj";
+import SetNewPassword from "../components/SettingPage/SetNewPassword";
 
 export const SettingPage = () => {
   const { height } = resizeWindow();
@@ -39,6 +40,7 @@ export const SettingPage = () => {
               {" "}
               diaajomaa1234@gmail.com
             </Text>
+            <SetNewPassword/>
             <LandingSettings />
           </Box>
         </GridItem>

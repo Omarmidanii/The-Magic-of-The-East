@@ -2,7 +2,7 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOve
 import { ReactNode } from "react";
 interface Props{
     children: ReactNode | ReactNode[];
-    color : string;
+    color? : string;
     buttonLabel: string;
     isOpen: boolean;
     onClose: () => void;
